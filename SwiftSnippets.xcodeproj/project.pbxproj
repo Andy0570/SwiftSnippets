@@ -65,15 +65,11 @@
 		};
 		2249BF542CEDA96D0016B93B /* SwiftSnippetsTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = SwiftSnippetsTests;
 			sourceTree = "<group>";
 		};
 		2249BF5E2CEDA96D0016B93B /* SwiftSnippetsUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = SwiftSnippetsUITests;
 			sourceTree = "<group>";
 		};
@@ -149,7 +145,6 @@
 				F29D75A839E66115D1B67C30 /* Pods-SwiftSnippetsTests.debug.xcconfig */,
 				F0596D819E35A359CD8E0B79 /* Pods-SwiftSnippetsTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -441,6 +436,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2KL5GZQCWM;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SwiftSnippets/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -475,6 +471,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2KL5GZQCWM;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SwiftSnippets/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
