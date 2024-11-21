@@ -54,7 +54,7 @@
 
 1. 在终端执行如下命令：
 ``` bash
-# 克隆到本地
+# 将项目克隆到本地
 git clone https://github.com/Andy0570/SwiftSnippets.git
 
 # 定位到工程目录内
@@ -62,6 +62,9 @@ cd SwiftSnippets
 
 # 安装组件
 pod install
+
+# 使用 Xcode 打开当前项目
+xed .
 ```
 
 
