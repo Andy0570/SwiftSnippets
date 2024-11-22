@@ -26,11 +26,10 @@
 
 ## 功能特点
 
-- [x] 特性 1
-- [x] 特性 2
-- [x] 特性 3
-- [x] 特性 4
-- [x] 特性 5
+* [x] Git 存储库 PR 规则遵循 Gitflow 工作流；
+* [ ] 使用 [Fastlane](https://fastlane.tools/) 自动化开发流程；
+* [ ] 使用 [Travis](https://travis-ci.org/) 为 Github 项目配置持续集成；
+* [ ] 使用 [Danger](https://danger.systems/) 为存储库创建 PR 规则；
 
 
 ## 要求
@@ -49,10 +48,9 @@
 
 本项目目前暂未使用任何第三方 SDK，但出于演示目的，以后可能会逐步集成相关使用示例。
 
-### 安装工程
-请通过以下步骤进行安装。
+### 安装
+请通过以下步骤进行安装，在终端执行如下命令：
 
-1. 在终端执行如下命令：
 ``` bash
 # 将项目克隆到本地
 git clone https://github.com/Andy0570/SwiftSnippets.git
@@ -69,28 +67,17 @@ xed .
 
 
 ## 依赖项
-<table>
-    <tr>
-        <th>项目</th>
-        <th>简述</th>
-    </tr>
-    <tr>
-        <td>Alamofire</td>
-        <td>HTTP网络库。</td>
-    </tr>
-    <tr>
-        <td>SwiftyJSON</td>
-        <td>高效的处理JSON数据格式。</td>
-    </tr>
-    <tr>
-        <td>Kingfisher</td>
-        <td>网络图片缓存与多种附加功能。</td>
-    </tr>
-    <tr>
-        <td>...</td>
-        <td>...</td>
-    </tr>
-</table>
+
+| 项目                                                        | 描述                         |
+| ----------------------------------------------------------- | ---------------------------- |
+| Alamofire                                                   | HTTP 网络框架                |
+| SwiftyJSON                                                  | 高效的处理JSON数据格式       |
+| [Kingfisher](https://github.com/onevcat/Kingfisher)         | 网络图片缓存与多种附加功能。 |
+| [SwiftGen](https://github.com/SwiftGen/SwiftGen)            | 项目资产管理                 |
+| [SwiftLint](https://github.com/realm/SwiftLint)             | 代码格式校验                 |
+| [CryptoSwift](https://github.com/krzyzanowskim/CryptoSwift) |                              |
+| [Dollar](https://github.com/ankurp/Dollar)                  |                              |
+| ...                                                         |                              |
 
 更多依赖项，请查看 [Podfile](https://github.com/Andy0570/SwiftSnippets/blob/main/Podfile)。
 
