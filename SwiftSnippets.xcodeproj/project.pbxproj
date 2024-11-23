@@ -45,7 +45,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		2249BF632CEDA96D0016B93B /* Exceptions for "SwiftSnippets" folder in "SwiftSnippets" target */ = {
+		220659E42CF028CB002B4E72 /* Exceptions for "SwiftSnippets" folder in "SwiftSnippets" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -55,10 +55,10 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		2249BF3D2CEDA9670016B93B /* SwiftSnippets */ = {
+		220659DD2CF028CB002B4E72 /* SwiftSnippets */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				2249BF632CEDA96D0016B93B /* Exceptions for "SwiftSnippets" folder in "SwiftSnippets" target */,
+				220659E42CF028CB002B4E72 /* Exceptions for "SwiftSnippets" folder in "SwiftSnippets" target */,
 			);
 			path = SwiftSnippets;
 			sourceTree = "<group>";
@@ -106,7 +106,7 @@
 		2249BF322CEDA9660016B93B = {
 			isa = PBXGroup;
 			children = (
-				2249BF3D2CEDA9670016B93B /* SwiftSnippets */,
+				220659DD2CF028CB002B4E72 /* SwiftSnippets */,
 				2249BF542CEDA96D0016B93B /* SwiftSnippetsTests */,
 				2249BF5E2CEDA96D0016B93B /* SwiftSnippetsUITests */,
 				2249BF3C2CEDA9670016B93B /* Products */,
@@ -166,7 +166,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				2249BF3D2CEDA9670016B93B /* SwiftSnippets */,
+				220659DD2CF028CB002B4E72 /* SwiftSnippets */,
 			);
 			name = SwiftSnippets;
 			productName = SwiftSnippets;
