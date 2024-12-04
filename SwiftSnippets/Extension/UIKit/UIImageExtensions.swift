@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIImage {
-    /// 调整 UIImage 尺寸
+    /// 调整 UIImage 的像素尺寸
     ///
     /// - SeeAlso: <https://stackoverflow.com/questions/2658738/the-simplest-way-to-resize-an-uiimage>
     func resize(to size: CGSize, retina: Bool = true) -> UIImage? {

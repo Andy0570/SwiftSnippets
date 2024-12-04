@@ -31,6 +31,7 @@ extension UIDevice {
     ///
     ///     UIDevice.vibrate()
     ///
+    /// - SeeAlso: <https://betterprogramming.pub/24-swift-extensions-for-cleaner-code-41e250c9c4c3>
     static func vibrate() {
         AudioServicesPlaySystemSound(1519)
     }

@@ -6,8 +6,12 @@
 //
 
 import Foundation
+import UIKit
+import CoreLocation
 import CommonCrypto
 import Security
+import CryptoKit
+import SwifterSwift
 
 extension String {
     /// 使用多个分隔符快速拆分字符串
@@ -21,6 +25,33 @@ extension String {
             result = result
                 .map { $0.components(separatedBy: separator)}
                 .flatMap { $0 }
+        }
+        return result
+    }
+
+    /// 格式化字符串，在原始字符串的基础上，每隔 n 个字符插入特定字符
+    ///
+    ///     var cardNumber = "1234567890123456"
+    ///     cardNumber.insert(separator: " ", every: 4)
+    ///     // 1234 5678 9012 3456
+    ///
+    ///     let pin = "7690"
+    ///     let pinWithDashes = pin.inserting(separator: "-", every: 1)
+    ///     // 7-6-9-0
+    ///
+    /// - SeeAlso: <https://betterprogramming.pub/10-useful-swift-string-extensions-e4280e55a554>
+    mutating func insert(separator: String, every n: Int) {
+        self = inserting(separator: separator, every: n)
+    }
+
+    func inserting(separator: String, every n: Int) -> String {
+        var result: String = ""
+        let characters = Array(self)
+        stride(from: 0, to: count, by: n).forEach {
+            result += String(characters[$0..<min($0+n, count)])
+            if $0+n < count {
+                result += separator
+            }
         }
         return result
     }
@@ -63,12 +94,129 @@ extension String {
 
         return foundUrls
     }
+
+    /// 计算字符串的 MD5 哈希值
+    /// - Requires: CryptoKit
+    var md5: String {
+        let digest = Insecure.MD5.hash(data: self.data(using: .utf8) ?? Data())
+
+        return digest.map {
+            String(format: "%02hhx", $0)
+        }.joined()
+    }
+
+    /// 将 json string 类型转换为 Dictionary 类型
+    ///
+    ///     let json = "{\"hello\": \"world\"}"
+    ///     let dictFromJSON = json.asDictionary
+    ///
+    /// - SeeAlso: <https://betterprogramming.pub/24-swift-extensions-for-cleaner-code-41e250c9c4c3>
+    var asDictionary: [String: Any]? {
+        guard let data = self.data(using: .utf8) else {
+            return nil
+        }
+        return try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? [String: Any]
+    }
+
+    /// 将 json 数组转换为 Array 数组
+    ///
+    ///     let json = "[1, 2, 3]"
+    ///     let arrayFromJSON = json.asArray
+    ///
+    /// - SeeAlso: <https://betterprogramming.pub/24-swift-extensions-for-cleaner-code-41e250c9c4c3>
+    var asArray: [Any]? {
+        guard let data = self.data(using: .utf8) else {
+            return nil
+        }
+        return try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? [Any]
+    }
+
+    /// 将 HTML 格式的字符串转换为 NSAttributedString
+    ///
+    ///     let htmlString = "<p>Hello, <strong>world!</string></p>"
+    ///     let attrString = htmlString.asAttributedString
+    ///
+    /// - SeeAlso: <https://betterprogramming.pub/24-swift-extensions-for-cleaner-code-41e250c9c4c3>
+    var asAttributedString: NSAttributedString? {
+        guard let data = self.data(using: .utf8) else {
+            return nil
+        }
+        return try? NSAttributedString(data: data,
+                                       options: [.documentType: NSAttributedString.DocumentType.html],
+                                       documentAttributes: nil)
+    }
+
+    /// 将字符串形式的经纬度坐标转化为 CLLocationCoordinate2D 形式
+    ///
+    ///     let strCoordinates = "41.6168, 41.6367"
+    ///     let coordinates = strCoordinates.asCoordinates
+    ///
+    /// - Requires: CoreLocation、SwifterSwift
+    /// - SeeAlso: <https://betterprogramming.pub/24-swift-extensions-for-cleaner-code-41e250c9c4c3>
+    var asCoordinates: CLLocationCoordinate2D? {
+        let components = self.components(separatedBy: ",")
+        guard components.count == 2 else {
+            return nil
+        }
+
+        let strLat = components[0].trimmed
+        let strLng = components[1].trimmed
+        guard let lat = Double(strLat), let lng = Double(strLng) else {
+            return nil
+        }
+
+        return CLLocationCoordinate2D(latitude: lat, longitude: lng)
+    }
 }
 
+// MARK: -
+
+/// 使用提供的 UIFont 来计算字符串的宽度和高度
+///
+///     let text = "Hello, world!"
+///     let textHeight = text.height(withConstrainedWidth: 100, font: UIFont.systemFont(ofSize: 16))
+///
+/// - Requires: UIKit
+/// - SeeAlso: <https://betterprogramming.pub/24-swift-extensions-for-cleaner-code-41e250c9c4c3>
+extension String {
+    func height(withConstrainedWidth width: CGFloat, font: UIFont) -> CGFloat {
+        let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
+        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [.font: font], context: nil)
+
+        return ceil(boundingBox.height)
+    }
+
+    func width(withConstrainedHeight height: CGFloat, font: UIFont) -> CGFloat {
+        let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
+        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [.font: font], context: nil)
+
+        return ceil(boundingBox.width)
+    }
+}
+
+extension NSAttributedString {
+    func height(withConstrainedWidth width: CGFloat) -> CGFloat {
+        let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
+        let boundingBox = boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, context: nil)
+
+        return ceil(boundingBox.height)
+    }
+
+    func width(withConstrainedHeight height: CGFloat) -> CGFloat {
+        let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
+        let boundingBox = boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, context: nil)
+
+        return ceil(boundingBox.width)
+    }
+}
+
+// MARK: - Algorithm
+
 /// 使用 DES、3DES、AES 算法进行对称加密和解密的扩展
-/// 
-/// 参考: <https://gist.github.com/tharindu/1cf0201492e41f1c287e51abb02902cd>
-/// 参考: <https://github.com/krzyzanowskim/CryptoSwift>
+///
+/// - Requires: CommonCrypto、Security
+/// - SeeAlso: <https://gist.github.com/tharindu/1cf0201492e41f1c287e51abb02902cd>
+/// - SeeAlso: <https://github.com/krzyzanowskim/CryptoSwift>
 extension String {
     /// Encrypts message with DES algorithm
     func desEncrypt(key: String) -> String? {
