@@ -75,7 +75,7 @@ internal enum Asset {
       internal static let overlay = ImageAsset(name: "overlay")
     }
     internal enum CustomControl {
-      internal static let checkmark = ImageAsset(name: "checkmark")
+      internal static let checkmarks = ImageAsset(name: "checkmarks")
       internal static let download = ImageAsset(name: "download")
       internal static let likeFill = ImageAsset(name: "like_fill")
       internal static let likeNormal = ImageAsset(name: "like_normal")
@@ -153,21 +153,6 @@ internal enum Asset {
     internal static let backgroundBayleaf = ImageAsset(name: "background_bayleaf")
     internal static let backgroundRwdevcon = ImageAsset(name: "background_rwdevcon")
     internal static let kanagawa = ImageAsset(name: "kanagawa")
-  }
-  internal enum Colors {
-    internal static let auteursBackground = ColorAsset(name: "auteursBackground")
-    internal static let background = ColorAsset(name: "background")
-    internal static let black = ColorAsset(name: "black")
-    internal static let foreground = ColorAsset(name: "foreground")
-    internal static let grayHeavier = ColorAsset(name: "grayHeavier")
-    internal static let grayHeavy = ColorAsset(name: "grayHeavy")
-    internal static let grayLight = ColorAsset(name: "grayLight")
-    internal static let grayLighter = ColorAsset(name: "grayLighter")
-    internal static let grayNormal = ColorAsset(name: "grayNormal")
-    internal static let overlayer = ColorAsset(name: "overlayer")
-    internal static let shadow = ColorAsset(name: "shadow")
-    internal static let theme = ColorAsset(name: "theme")
-    internal static let white = ColorAsset(name: "white")
   }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name

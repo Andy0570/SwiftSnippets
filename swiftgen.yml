@@ -28,7 +28,6 @@ output_dir: SwiftSnippets/Generated/
 xcassets:
   inputs:
     - Resources/Assets.xcassets
-    - Resources/Colors.xcassets
   outputs:
     - templateName: swift5
       params:

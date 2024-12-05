@@ -46,67 +46,67 @@ final class ColorPalette {
 
     // MARK: - Color Varibles
 
-    static var colorWhite: UIColor {
+    static var white: UIColor {
         return self.colorWithDarkMode(darkColorHex: "#000000", lightColorHex: "#ffffff")
     }
 
-    static var colorBlack: UIColor {
+    static var black: UIColor {
         return self.colorWithDarkMode(darkColorHex: "#ffffff", lightColorHex: "#000000")
     }
 
-    static var colorGrayLighter: UIColor {
+    static var grayLighter: UIColor {
         return self.colorWithDarkMode(darkColorHex: "#242424", lightColorHex: "#ededed")
     }
 
-    static var colorGrayLight: UIColor {
+    static var grayLight: UIColor {
         return self.colorWithDarkMode(darkColorHex: "#4a4a4a", lightColorHex: "#9b9b9b")
     }
 
-    static var colorGrayNormal: UIColor {
+    static var grayNormal: UIColor {
         return self.colorWithDarkMode(darkColorHex: "#999999", lightColorHex: "#999999")
     }
 
-    static var colorGrayHeavy: UIColor {
+    static var grayHeavy: UIColor {
         return self.colorWithDarkMode(darkColorHex: "#9b9b9b", lightColorHex: "#4a4a4a")
     }
 
-    static var colorGrayHeavier: UIColor {
+    static var grayHeavier: UIColor {
         return self.colorWithDarkMode(darkColorHex: "#ededed", lightColorHex: "#242424")
     }
 
-    static var colorForeground: UIColor {
+    static var foreground: UIColor {
         return self.colorWithDarkMode(darkColorHex: "#101010", lightColorHex: "#ffffff")
     }
 
-    static var colorBackground: UIColor {
+    static var background: UIColor {
         return self.colorWithDarkMode(darkColorHex: "#000000", lightColorHex: "#f7f7f7")
     }
 
-    static var colorShadow: UIColor {
+    static var shadow: UIColor {
         return UIColor.black.alpha(0.09)
     }
 
-    static var colorOverlayer: UIColor {
+    static var overlayer: UIColor {
         return self.colorWithDarkMode(darkColor: UIColor.black.alpha(0.6), lightColor: UIColor.black.alpha(0.4))
     }
 
-    static var colorRed: UIColor {
+    static var red: UIColor {
         return self.colorWithDarkMode(darkColorHex: "#bb055a", lightColorHex: "#bb055a")
     }
 
-    static var colorOrange: UIColor {
+    static var orange: UIColor {
         return self.colorWithDarkMode(darkColorHex: "#ce6647", lightColorHex: "#ff7850")
     }
 
-    static var colorBlue: UIColor {
+    static var blue: UIColor {
         return self.colorWithDarkMode(darkColorHex: "#429fde", lightColorHex: "#0097ff")
     }
 
-    static var colorGreen: UIColor {
+    static var green: UIColor {
         return self.colorWithDarkMode(darkColorHex: "#9aca52", lightColorHex: "#b9ff50")
     }
 
-    static var colorDenim: UIColor {
+    static var denim: UIColor {
         return self.colorWithDarkMode(darkColorHex: "#3c5080", lightColorHex: "#3c5080")
     }
 }
