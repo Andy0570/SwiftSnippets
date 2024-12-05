@@ -42,6 +42,7 @@ PODS:
   - SwifterSwift/SwiftStdlib (7.0.0)
   - SwifterSwift/UIKit (7.0.0)
   - SwifterSwift/WebKit (7.0.0)
+  - SwiftGen (6.6.3)
   - SwiftMessages (10.0.1):
     - SwiftMessages/App (= 10.0.1)
   - SwiftMessages/App (10.0.1)
@@ -60,6 +61,7 @@ DEPENDENCIES:
   - LicensePlist (~> 3.24.5)
   - Siren
   - SwifterSwift (~> 7.0.0)
+  - SwiftGen (~> 6.6.3)
   - SwiftMessages (~> 10.0.1)
   - SwiftyJSON (~> 5.0.2)
   - ViewAnimator (~> 3.1.0)
@@ -77,6 +79,7 @@ SPEC REPOS:
     - LicensePlist
     - Siren
     - SwifterSwift
+    - SwiftGen
     - SwiftMessages
     - SwiftyJSON
     - ViewAnimator
@@ -93,10 +96,11 @@ SPEC CHECKSUMS:
   LicensePlist: e8b5c7b30a914b92b83ffd78ded5af057621ba64
   Siren: c0f6012f61196b73455202db07730f6454a4beb0
   SwifterSwift: e9caf990fc72e835432280755d1f4c43f2a483d5
+  SwiftGen: 4993cbf71cbc4886f775e26f8d5c3a1188ec9f99
   SwiftMessages: 759b4a0bf5c3a116a0d7e8a34b098ba83c458625
   SwiftyJSON: f5b1bf1cd8dd53cd25887ac0eabcfd92301c6a5a
   ViewAnimator: a9ceed80266e00fd435ec4fb99b2df64d580d0e4
 
-PODFILE CHECKSUM: 21ddf9bb7b61a55219c92568516097d2094b2f72
+PODFILE CHECKSUM: 956a98a5b9337f798c3d72f50ccdfb54f4107895
 
 COCOAPODS: 1.16.2

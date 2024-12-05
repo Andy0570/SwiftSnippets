@@ -9,17 +9,17 @@ target 'SwiftSnippets' do
   use_frameworks!
 
   # Pods for SwiftSnippets
-  # 网络模块
+  # 网络
   pod 'Alamofire', '~> 5.10.1'
+
+  # 图片
   pod 'Kingfisher', '~> 8.1.1'
 
-  # UI模块/工具类
-  pod 'CHTCollectionViewWaterfallLayout', '~> 0.9.10' # 瀑布流布局
+  # UI动画
   pod 'Hero', '~> 1.6.3'
   pod 'SwiftMessages', '~> 10.0.1'
+  pod 'CHTCollectionViewWaterfallLayout', '~> 0.9.10' # 瀑布流布局
   pod 'FaveButton', '~> 3.2.1' # 点赞按钮
-  pod 'SwifterSwift', '~> 7.0.0' # Swift 扩展
-  pod 'Hue', '~> 5.0.0' # 颜色
   pod 'anim', '~> 1.2.10' # 页面内动画
   pod 'ViewAnimator', '~> 3.1.0' # 页面转场动画
   # pod 'MJRefresh', '~> 3.7.9'
@@ -44,9 +44,14 @@ target 'SwiftSnippets' do
   # pod 'RxRealm'
   # pod 'RxRealmDataSources' # Depends on RxSwift (~> 3.0.0)
 
-  # 调试工具/崩溃统计
+  # 工具&服务
+  pod 'Hue', '~> 5.0.0' # 颜色
+  pod 'SwiftGen', '~> 6.6.3' # 项目资产管理
+  pod 'SwifterSwift', '~> 7.0.0' # Swift Extensions
   pod 'Siren' # 版本更新弹窗
   pod 'LicensePlist', '~> 3.24.5' # 第三方依赖 Lincense 列表生成器
+
+  # 调试工具/崩溃统计
   pod 'GDPerformanceView-Swift', '~> 2.1.1'
 
   target 'SwiftSnippetsTests' do

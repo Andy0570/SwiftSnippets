@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		219CA3580AB0B0479B4967E3 /* Pods_SwiftSnippets_SwiftSnippetsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BCBAF6C2733D457CA9B0D41 /* Pods_SwiftSnippets_SwiftSnippetsUITests.framework */; };
+		229A87832D015FDC0010CAAA /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = 229A87822D015FDC0010CAAA /* swiftgen.yml */; };
 		32EA0B4929F57F385C6F6B67 /* Pods_SwiftSnippetsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 592232381CD479FDE2CF58B4 /* Pods_SwiftSnippetsTests.framework */; };
 		ECDA36AB5F03D790A5F60D7A /* Pods_SwiftSnippets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 990F748CEB7C7E223DACE628 /* Pods_SwiftSnippets.framework */; };
 /* End PBXBuildFile section */
@@ -34,6 +35,7 @@
 		2249BF3B2CEDA9670016B93B /* SwiftSnippets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftSnippets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2249BF512CEDA96D0016B93B /* SwiftSnippetsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftSnippetsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2249BF5B2CEDA96D0016B93B /* SwiftSnippetsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftSnippetsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		229A87822D015FDC0010CAAA /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		4BCBAF6C2733D457CA9B0D41 /* Pods_SwiftSnippets_SwiftSnippetsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftSnippets_SwiftSnippetsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		51F1D47BC5F5BC93D476B1A3 /* Pods-SwiftSnippets.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftSnippets.release.xcconfig"; path = "Target Support Files/Pods-SwiftSnippets/Pods-SwiftSnippets.release.xcconfig"; sourceTree = "<group>"; };
 		592232381CD479FDE2CF58B4 /* Pods_SwiftSnippetsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftSnippetsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,6 +108,7 @@
 		2249BF322CEDA9660016B93B = {
 			isa = PBXGroup;
 			children = (
+				229A87822D015FDC0010CAAA /* swiftgen.yml */,
 				220659DD2CF028CB002B4E72 /* SwiftSnippets */,
 				2249BF542CEDA96D0016B93B /* SwiftSnippetsTests */,
 				2249BF5E2CEDA96D0016B93B /* SwiftSnippetsUITests */,
@@ -156,6 +159,7 @@
 			buildConfigurationList = 2249BF642CEDA96D0016B93B /* Build configuration list for PBXNativeTarget "SwiftSnippets" */;
 			buildPhases = (
 				9B26A010EED90BC0F0D2D005 /* [CP] Check Pods Manifest.lock */,
+				229A87812D015F390010CAAA /* SwiftGen */,
 				2249BF372CEDA9660016B93B /* Sources */,
 				2249BF382CEDA9660016B93B /* Frameworks */,
 				2249BF392CEDA9660016B93B /* Resources */,
@@ -267,6 +271,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				229A87832D015FDC0010CAAA /* swiftgen.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +292,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		229A87812D015F390010CAAA /* SwiftGen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftGen;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ -f \"${PODS_ROOT}/SwiftGen/bin/swiftgen\" ]]; then\n  \"${PODS_ROOT}/SwiftGen/bin/swiftgen\"\nelse\n  echo \"warning: SwiftGen is not installed. Run 'pod install --repo-update' to install it.\"\nfi\n";
+		};
 		9B26A010EED90BC0F0D2D005 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
