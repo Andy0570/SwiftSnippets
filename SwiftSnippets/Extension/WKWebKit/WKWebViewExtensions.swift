@@ -15,7 +15,7 @@ extension WKWebView {
         let cssString = "@media (prefers-color-scheme: dark) {body { background-color: black; color: white;} a:link {color: #0096e2;} a:visited {color: #9d57df;}}"
         let jsString = "var style = document.createElement('style'); style.innerHTML = '\(cssString)'; document.head.appendChild(style);"
         self.evaluateJavaScript(jsString, completionHandler: nil)
-     }
+    }
 }
 
 // MARK: - PDF

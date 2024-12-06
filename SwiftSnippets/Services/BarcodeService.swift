@@ -15,7 +15,7 @@ protocol Barcodable {
 
 /// Swift 中的原生二维码生成
 /// Reference: <https://digitalbunker.dev/native-barcode-qr-code-generation-in-swift/>
-struct BarcodeService {
+enum BarcodeService {
     static func generateBarcode(from barcode: Barcodable, scale: CGFloat = 3.0) -> UIImage? {
         if let filter = CIFilter(name: barcode.name) {
             filter.setValuesForKeys(barcode.properties)
@@ -31,10 +31,10 @@ struct BarcodeService {
 }
 
 /// Generate an Aztec barcode image for message data.
-///    Usage:
-///    if let data = "http://www.digitalbunker.dev".data(using: .ascii), let aztecBarcode = try? AztecBarcode(inputMessage: data) {
-///        imageView.image = BarcodeService.generateBarcode(from: aztecBarcode)
-///    }
+///
+///     if let data = "http://www.digitalbunker.dev".data(using: .ascii), let aztecBarcode = try? AztecBarcode(inputMessage: data) {
+///         imageView.image = BarcodeService.generateBarcode(from: aztecBarcode)
+///     }
 struct AztecBarcode: Barcodable {
     let name = "CIAztecCodeGenerator"
 
@@ -74,11 +74,11 @@ struct AztecBarcode: Barcodable {
 }
 
 /// Generate a QR Code image for message data.
-///    Usage:
-///    if let data = "http://www.digitalbunker.dev".data(using: .ascii) {
-///        let qrCode = QRCode(inputMessage: data)
-///        imageView.image = BarcodeService.generateBarcode(from: qrCode)
-///    }
+///
+///     if let data = "http://www.digitalbunker.dev".data(using: .ascii) {
+///         let qrCode = QRCode(inputMessage: data)
+///         imageView.image = BarcodeService.generateBarcode(from: qrCode)
+///     }
 struct QRCode: Barcodable {
     /// QRCode 容错等级，表示即使有部分内容破损的情况下，仍然可以正常解析内容。
     /// 容錯等級分為 L: 7%, M: 15%, Q: 25%, H: 30%
@@ -108,11 +108,11 @@ struct QRCode: Barcodable {
 }
 
 /// Generate a PDF417 barcode image for message data.
-///    Usage:
-///    if let data = "http://www.digitalbunker.dev".data(using: .ascii) {
-///        let pdfBarcode = PDF417Barcode(inputMessage: data, inputMinWidth: 100, inputMaxWidth: 100, inputMinHeight: 100, inputMaxHeight: 100, inputDataColumns: 10, inputRows: 10, inputPreferredAspectRatio: 3, inputCompactionMode: 2, inputCompactStyle: true, inputCorrectionLevel: 2, inputAlwaysSpecifyCompaction: true)
-///        imageView.image = BarcodeService.generateBarcode(from: pdfBarcode)
-///    }
+///
+///     if let data = "http://www.digitalbunker.dev".data(using: .ascii) {
+///         let pdfBarcode = PDF417Barcode(inputMessage: data, inputMinWidth: 100, inputMaxWidth: 100, inputMinHeight: 100, inputMaxHeight: 100, inputDataColumns: 10, inputRows: 10, inputPreferredAspectRatio: 3, inputCompactionMode: 2, inputCompactStyle: true, inputCorrectionLevel: 2, inputAlwaysSpecifyCompaction: true)
+///         imageView.image = BarcodeService.generateBarcode(from: pdfBarcode)
+///     }
 struct PDF417Barcode: Barcodable {
     let name = "CIPDF417BarcodeGenerator"
 
@@ -171,11 +171,11 @@ struct PDF417Barcode: Barcodable {
 }
 
 /// Generate a Code 128 barcode image for message data.
-///    Usage:
-///    if let data = "http://www.digitalbunker.dev".data(using: .ascii) {
-///        let code128Barcode = Code128Barcode(inputMessage: data, inputQuietSpace: 20, inputBarcodeHeight: 100)
-///        imageView.image = BarcodeService.generateBarcode(from: code128Barcode)
-///    }
+///
+///     if let data = "http://www.digitalbunker.dev".data(using: .ascii) {
+///         let code128Barcode = Code128Barcode(inputMessage: data, inputQuietSpace: 20, inputBarcodeHeight: 100)
+///         imageView.image = BarcodeService.generateBarcode(from: code128Barcode)
+///     }
 struct Code128Barcode: Barcodable {
     let name = "CICode128BarcodeGenerator"
 

@@ -26,12 +26,13 @@
 
 ## 功能特点
 
+* [x] 使用 [SwiftLint](https://github.com/realm/SwiftLint) 作为代码格式校验工具；
 * [x] 使用 [SwiftGen](https://github.com/SwiftGen/SwiftGen) 管理项目资产文件；
 * [x] Git 存储库 PR 规则遵循 Gitflow 工作流；
 * [ ] 使用 [Fastlane](https://fastlane.tools/) 自动化开发流程；
 * [ ] 使用 [Travis](https://travis-ci.org/) 为 Github 项目配置持续集成；
 * [ ] 使用 [Danger](https://danger.systems/) 为存储库创建 PR 规则；
-* [ ] 使用 [SwiftLint](https://github.com/realm/SwiftLint) 作为代码格式校验工具；
+
 
 
 ## 要求

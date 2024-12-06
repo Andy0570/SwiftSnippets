@@ -2,8 +2,11 @@ import UIKit
 
 /// 添加照片加载模糊效果
 extension UIImage {
+    // swiftlint:disable:next cyclomatic_complexity function_body_length
     convenience init?(blurHash: String, size: CGSize, punch: Float = 1) {
-        guard blurHash.count >= 6 else { return nil }
+        guard blurHash.count >= 6 else {
+            return nil
+        }
 
 		let sizeFlag = String(blurHash[0]).decode83()
 		let numY = (sizeFlag / 9) + 1
@@ -12,7 +15,9 @@ extension UIImage {
 		let quantisedMaximumValue = String(blurHash[1]).decode83()
         let maximumValue = Float(quantisedMaximumValue + 1) / 166
 
-        guard blurHash.count == 4 + 2 * numX * numY else { return nil }
+        guard blurHash.count == 4 + 2 * numX * numY else {
+            return nil
+        }
 
         let colours: [(Float, Float, Float)] = (0 ..< numX * numY).map { i in
             if i == 0 {
@@ -27,29 +32,35 @@ extension UIImage {
         let width = Int(size.width)
         let height = Int(size.height)
         let bytesPerRow = width * 3
-        guard let data = CFDataCreateMutable(kCFAllocatorDefault, bytesPerRow * height) else { return nil }
+        guard let data = CFDataCreateMutable(kCFAllocatorDefault, bytesPerRow * height) else {
+            return nil
+        }
+
         CFDataSetLength(data, bytesPerRow * height)
-        guard let pixels = CFDataGetMutableBytePtr(data) else { return nil }
+        guard let pixels = CFDataGetMutableBytePtr(data) else {
+            return nil
+        }
 
         for y in 0 ..< height {
             for x in 0 ..< width {
-                var r: Float = 0
-                var g: Float = 0
-                var b: Float = 0
+                var red: Float = 0
+                var green: Float = 0
+                var blue: Float = 0
 
+                // swiftlint:disable:next identifier_name
                 for j in 0 ..< numY {
                     for i in 0 ..< numX {
                         let basis = cos(Float.pi * Float(x) * Float(i) / Float(width)) * cos(Float.pi * Float(y) * Float(j) / Float(height))
                         let colour = colours[i + j * numX]
-                        r += colour.0 * basis
-                        g += colour.1 * basis
-                        b += colour.2 * basis
+                        red += colour.0 * basis
+                        green += colour.1 * basis
+                        blue += colour.2 * basis
                     }
                 }
 
-                let intR = UInt8(linearTosRGB(r))
-                let intG = UInt8(linearTosRGB(g))
-                let intB = UInt8(linearTosRGB(b))
+                let intR = UInt8(linearTosRGB(red))
+                let intG = UInt8(linearTosRGB(green))
+                let intB = UInt8(linearTosRGB(blue))
 
                 pixels[3 * x + 0 + y * bytesPerRow] = intR
                 pixels[3 * x + 1 + y * bytesPerRow] = intG
@@ -59,9 +70,24 @@ extension UIImage {
 
         let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.none.rawValue)
 
-        guard let provider = CGDataProvider(data: data) else { return nil }
-        guard let cgImage = CGImage(width: width, height: height, bitsPerComponent: 8, bitsPerPixel: 24, bytesPerRow: bytesPerRow,
-        space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: bitmapInfo, provider: provider, decode: nil, shouldInterpolate: true, intent: .defaultIntent) else { return nil }
+        guard let provider = CGDataProvider(data: data) else {
+            return nil
+        }
+        guard let cgImage = CGImage(
+            width: width,
+            height: height,
+            bitsPerComponent: 8,
+            bitsPerPixel: 24,
+            bytesPerRow: bytesPerRow,
+            space: CGColorSpaceCreateDeviceRGB(),
+            bitmapInfo: bitmapInfo,
+            provider: provider,
+            decode: nil,
+            shouldInterpolate: true,
+            intent: .defaultIntent
+        ) else {
+            return nil
+        }
 
         self.init(cgImage: cgImage)
     }
@@ -93,15 +119,21 @@ private func signPow(_ value: Float, _ exp: Float) -> Float {
 }
 
 private func linearTosRGB(_ value: Float) -> Int {
-    let v = max(0, min(1, value))
-    if v <= 0.0031308 { return Int(v * 12.92 * 255 + 0.5) }
-    else { return Int((1.055 * pow(v, 1 / 2.4) - 0.055) * 255 + 0.5) }
+    let value = max(0, min(1, value))
+    if value <= 0.0031308 {
+        return Int(value * 12.92 * 255 + 0.5)
+    } else {
+        return Int((1.055 * pow(value, 1 / 2.4) - 0.055) * 255 + 0.5)
+    }
 }
 
 private func sRGBToLinear<Type: BinaryInteger>(_ value: Type) -> Float {
-    let v = Float(Int64(value)) / 255
-    if v <= 0.04045 { return v / 12.92 }
-    else { return pow((v + 0.055) / 1.055, 2.4) }
+    let value = Float(Int64(value)) / 255
+    if value <= 0.04045 {
+        return value / 12.92
+    } else {
+        return pow((value + 0.055) / 1.055, 2.4)
+    }
 }
 
 private let encodeCharacters: [String] = {

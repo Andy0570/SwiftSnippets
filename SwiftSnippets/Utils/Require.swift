@@ -22,9 +22,11 @@ public extension Optional {
      *
      *  - return: The value this optional contains.
      */
-    func require(hint hintExpression: @autoclosure () -> String? = nil,
-                 file: StaticString = #file,
-                 line: UInt = #line) -> Wrapped {
+    func require(
+        hint hintExpression: @autoclosure () -> String? = nil,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) -> Wrapped {
         guard let unwrapped = self else {
             var message = "Required value was nil in \(file), at line \(line)"
 
@@ -33,13 +35,13 @@ public extension Optional {
             }
 
             #if !os(Linux)
-            let exception = NSException(
-                name: .invalidArgumentException,
-                reason: message,
-                userInfo: nil
-            )
+                let exception = NSException(
+                    name: .invalidArgumentException,
+                    reason: message,
+                    userInfo: nil
+                )
 
-            exception.raise()
+                exception.raise()
             #endif
 
             preconditionFailure(message)

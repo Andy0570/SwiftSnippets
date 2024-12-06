@@ -16,9 +16,9 @@ extension Int {
         case 0..<1000:
             readableCount = String(self)
         case 1000..<10000:
-            readableCount = String(format: "%.1f千", Float(self)/1000)
+            readableCount = String(format: "%.1f千", Float(self) / 1000)
         case 10000..<100000:
-            readableCount = String(format: "%.1f万", Float(self)/10000)
+            readableCount = String(format: "%.1f万", Float(self) / 10000)
         default:
             readableCount = String(self)
         }

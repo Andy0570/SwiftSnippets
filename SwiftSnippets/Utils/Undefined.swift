@@ -33,6 +33,6 @@ import Foundation
  * - SeeAlso: <https://github.com/weissi/swift-undefined>
  */
 public func undefined<T>(hint: String = "", type: T.Type = T.self, file: StaticString = #file, line: UInt = #line) -> T {
-    let message = hint == "" ? "" : ": \(hint)"
-    fatalError("undefined \(T.self)\(message)", file:file, line:line)
+    let message = hint.isEmpty ? "" : ": \(hint)"
+    fatalError("undefined \(T.self)\(message)", file: file, line: line)
 }

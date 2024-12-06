@@ -14,36 +14,39 @@ final class MessageCenter {
     static let shared = MessageCenter()
     private init() {} // 这样可以防止其他对象使用这个类的默认 '()' 初始化器。
 
-    @MainActor
-    func showMessage(title: String,
-                     body: String,
-                     theme: Theme = .success,
-                     buttonText: String? = nil,
-                     buttonTapHandler: (() -> Void)? = nil,
-                     tapHandler: (() -> Void)? = nil) {
-        SwiftMessages.show {
-            let view = MessageView.viewFromNib(layout: .cardView)
-            view.configureDropShadow()
-            view.configureContent(title: title, body: body)
-            view.configureTheme(theme)
+    func showMessage(
+        title: String,
+        body: String,
+        theme: Theme = .success,
+        buttonText: String? = nil,
+        buttonTapHandler: (() -> Void)? = nil,
+        tapHandler: (() -> Void)? = nil
+    ) {
+        DispatchQueue.main.async {
+            SwiftMessages.show {
+                let view = MessageView.viewFromNib(layout: .cardView)
+                view.configureDropShadow()
+                view.configureContent(title: title, body: body)
+                view.configureTheme(theme)
 
-            if let buttonTapHandler {
-                view.buttonTapHandler = { _ in
-                    buttonTapHandler()
+                if let buttonTapHandler {
+                    view.buttonTapHandler = { _ in
+                        buttonTapHandler()
+                    }
+                    view.button?.setTitle(buttonText, for: .normal)
+                    view.button?.isHidden = false
+                } else {
+                    view.button?.isHidden = true
                 }
-                view.button?.setTitle(buttonText, for: .normal)
-                view.button?.isHidden = false
-            } else {
-                view.button?.isHidden = true
-            }
 
-            if let tapHandler {
-                view.tapHandler = { _ in
-                    tapHandler()
+                if let tapHandler {
+                    view.tapHandler = { _ in
+                        tapHandler()
+                    }
                 }
-            }
 
-            return view
+                return view
+            }
         }
     }
 }

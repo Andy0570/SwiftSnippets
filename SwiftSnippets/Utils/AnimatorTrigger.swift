@@ -11,7 +11,7 @@ import ViewAnimator
 /// 转场动画效果，对 ViewAnimator 的封装
 ///
 /// - SeeAlso: <https://github.com/marcosgriselli/ViewAnimator>
-final class AnimatorTrigger {
+enum AnimatorTrigger {
     static let animationInterval: TimeInterval = 0.2
     static let duration: TimeInterval = 0.3
 
@@ -23,11 +23,13 @@ final class AnimatorTrigger {
         case toLeft
     }
 
-    static func float(views: [UIView],
-                             direction: FloatDirection = .toTop,
-                             delay: Double = 0.1,
-                             animationInterval: TimeInterval = animationInterval,
-                             duration: TimeInterval = duration) {
+    static func float(
+        views: [UIView],
+        direction: FloatDirection = .toTop,
+        delay: Double = 0.1,
+        animationInterval: TimeInterval = animationInterval,
+        duration: TimeInterval = duration
+    ) {
         let volumn: CGFloat = 50.0
 
         var vector: CGVector
@@ -44,10 +46,12 @@ final class AnimatorTrigger {
 
         let animation = AnimationType.vector(vector)
 
-        UIView.animate(views: views,
-                       animations: [animation],
-                       delay: delay,
-                       animationInterval: animationInterval,
-                       duration: duration)
+        UIView.animate(
+            views: views,
+            animations: [animation],
+            delay: delay,
+            animationInterval: animationInterval,
+            duration: duration
+        )
     }
 }

@@ -9,7 +9,6 @@ import UIKit
 import Photos
 
 final class PhotoAlbum {
-
     // MARK: - Single Skeleton
 
     // 如果你需要在初始化时进行额外设置，你可以将一个闭包的调用结果分配给全局的常量。
@@ -29,7 +28,7 @@ final class PhotoAlbum {
     static let name = "SwiftSnippets"
 
     // MARK: - Private
-    
+
     private var assetCollection: PHAssetCollection!
 
     // MARK: - Public Functions
@@ -40,31 +39,41 @@ final class PhotoAlbum {
                 if authorizationStatus == .authorized {
                     self.creatAlbum()
                 } else {
-                    MessageCenter.shared.showMessage(title: NSLocalizedString("uns_photo_ablum_no_authoration_title", comment: "Oops, there was a problem of authentication..."),
-                                                     body: NSLocalizedString("uns_photo_ablum_no_authoration_description", comment: "Allow Monotone to access your photos in \"Settings > Privacy > Photos\""),
-                                                     theme: .error,
-                                                     buttonText: NSLocalizedString("uns_photo_ablum_no_authoration_btn_to_system_settings", comment: "Settings"),
-                                                     buttonTapHandler: {
-                        guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else { return }
+                    MessageCenter.shared.showMessage(
+                        title: NSLocalizedString("uns_photo_ablum_no_authoration_title", comment: "Oops, there was a problem of authentication..."),
+                        body: NSLocalizedString("uns_photo_ablum_no_authoration_description", comment: "Allow Monotone to access your photos in \"Settings > Privacy > Photos\""),
+                        theme: .error,
+                        buttonText: NSLocalizedString("uns_photo_ablum_no_authoration_btn_to_system_settings", comment: "Settings"),
+                        buttonTapHandler: {
+                            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                                return
+                            }
 
-                        if UIApplication.shared.canOpenURL(settingsUrl) {
-                            UIApplication.shared.open(settingsUrl)
-                        }
-                    })
+                            if UIApplication.shared.canOpenURL(settingsUrl) {
+                                UIApplication.shared.open(settingsUrl)
+                            }
+                        })
                 }
             }
         }
 
-        guard PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized else { return false }
+        guard PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized else {
+            return false
+        }
         return true
     }
 
     func save(image: UIImage) {
-        guard self.checkAuthorization() else { return }
-        guard self.assetCollection != nil else { return }
+        guard self.checkAuthorization() else {
+            return
+        }
+        guard self.assetCollection != nil else {
+            return
+        }
 
         PHPhotoLibrary.shared().performChanges {
             let assetChangeRequest = PHAssetChangeRequest.creationRequestForAsset(from: image)
+            // swiftlint:disable:next force_unwrapping
             let assetPlaceholder = assetChangeRequest.placeholderForCreatedAsset!
             let albumChangeRequest = PHAssetCollectionChangeRequest(for: self.assetCollection)
             albumChangeRequest?.addAssets([assetPlaceholder] as NSArray)

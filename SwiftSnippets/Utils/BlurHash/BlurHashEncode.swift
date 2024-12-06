@@ -5,6 +5,7 @@ extension UIImage {
 		let pixelWidth = Int(round(size.width * scale))
 		let pixelHeight = Int(round(size.height * scale))
 
+        // swiftlint:disable force_unwrapping
 		let context = CGContext(
 			data: nil,
 			width: pixelWidth,
@@ -14,6 +15,7 @@ extension UIImage {
 			space: CGColorSpace(name: CGColorSpace.sRGB)!,
 			bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
 		)!
+        // swiftlint:enable force_unwrapping
 		context.scaleBy(x: scale, y: -scale)
 		context.translateBy(x: 0, y: -size.height)
 
@@ -44,8 +46,8 @@ extension UIImage {
             }
         }
 
-        let dc = factors.first!
-        let ac = factors.dropFirst()
+        let dc = factors.first! // swiftlint:disable:this force_unwrapping identifier_name
+        let ac = factors.dropFirst() // swiftlint:disable:this identifier_name
 
         var hash = ""
 
@@ -53,7 +55,8 @@ extension UIImage {
 		hash += sizeFlag.encode83(length: 1)
 
 		let maximumValue: Float
-		if ac.count > 0 {
+		if !ac.isEmpty {
+            // swiftlint:disable:next force_unwrapping
 			let actualMaximumValue = ac.map({ max(abs($0.0), abs($0.1), abs($0.2)) }).max()!
 			let quantisedMaximumValue = Int(max(0, min(82, floor(actualMaximumValue * 166 - 0.5))))
 			maximumValue = Float(quantisedMaximumValue + 1) / 166
@@ -72,25 +75,26 @@ extension UIImage {
         return hash
     }
 
+    // swiftlint:disable:next function_parameter_count
     private func multiplyBasisFunction(pixels: UnsafePointer<UInt8>, width: Int, height: Int, bytesPerRow: Int, bytesPerPixel: Int, pixelOffset: Int, basisFunction: (Float, Float) -> Float) -> (Float, Float, Float) {
-        var r: Float = 0
-        var g: Float = 0
-        var b: Float = 0
+        var red: Float = 0
+        var green: Float = 0
+        var blue: Float = 0
 
         let buffer = UnsafeBufferPointer(start: pixels, count: height * bytesPerRow)
 
         for x in 0 ..< width {
             for y in 0 ..< height {
                 let basis = basisFunction(Float(x), Float(y))
-                r += basis * sRGBToLinear(buffer[bytesPerPixel * x + pixelOffset + 0 + y * bytesPerRow])
-                g += basis * sRGBToLinear(buffer[bytesPerPixel * x + pixelOffset + 1 + y * bytesPerRow])
-                b += basis * sRGBToLinear(buffer[bytesPerPixel * x + pixelOffset + 2 + y * bytesPerRow])
+                red += basis * sRGBToLinear(buffer[bytesPerPixel * x + pixelOffset + 0 + y * bytesPerRow])
+                green += basis * sRGBToLinear(buffer[bytesPerPixel * x + pixelOffset + 1 + y * bytesPerRow])
+                blue += basis * sRGBToLinear(buffer[bytesPerPixel * x + pixelOffset + 2 + y * bytesPerRow])
             }
         }
 
         let scale = 1 / Float(width * height)
 
-        return (r * scale, g * scale, b * scale)
+        return (red * scale, green * scale, blue * scale)
     }
 }
 
@@ -114,15 +118,21 @@ private func signPow(_ value: Float, _ exp: Float) -> Float {
 }
 
 private func linearTosRGB(_ value: Float) -> Int {
-    let v = max(0, min(1, value))
-    if v <= 0.0031308 { return Int(v * 12.92 * 255 + 0.5) }
-    else { return Int((1.055 * pow(v, 1 / 2.4) - 0.055) * 255 + 0.5) }
+    let value = max(0, min(1, value))
+    if value <= 0.0031308 {
+        return Int(value * 12.92 * 255 + 0.5)
+    } else {
+        return Int((1.055 * pow(value, 1 / 2.4) - 0.055) * 255 + 0.5)
+    }
 }
 
 private func sRGBToLinear<Type: BinaryInteger>(_ value: Type) -> Float {
-    let v = Float(Int64(value)) / 255
-    if v <= 0.04045 { return v / 12.92 }
-    else { return pow((v + 0.055) / 1.055, 2.4) }
+    let value = Float(Int64(value)) / 255
+    if value <= 0.04045 {
+        return value / 12.92
+    } else {
+        return pow((value + 0.055) / 1.055, 2.4)
+    }
 }
 
 private let encodeCharacters: [String] = {

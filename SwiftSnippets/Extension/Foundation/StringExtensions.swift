@@ -23,13 +23,13 @@ extension String {
         var result = [self]
         for separator in separators {
             result = result
-                .map { $0.components(separatedBy: separator)}
+                .map { $0.components(separatedBy: separator) }
                 .flatMap { $0 }
         }
         return result
     }
 
-    /// 格式化字符串，在原始字符串的基础上，每隔 n 个字符插入特定字符
+    /// 格式化字符串，在原始字符串的基础上，每隔 interval 个字符插入特定字符
     ///
     ///     var cardNumber = "1234567890123456"
     ///     cardNumber.insert(separator: " ", every: 4)
@@ -40,16 +40,16 @@ extension String {
     ///     // 7-6-9-0
     ///
     /// - SeeAlso: <https://betterprogramming.pub/10-useful-swift-string-extensions-e4280e55a554>
-    mutating func insert(separator: String, every n: Int) {
-        self = inserting(separator: separator, every: n)
+    mutating func insert(separator: String, every interval: Int) {
+        self = inserting(separator: separator, every: interval)
     }
 
-    func inserting(separator: String, every n: Int) -> String {
+    func inserting(separator: String, every interval: Int) -> String {
         var result: String = ""
         let characters = Array(self)
-        stride(from: 0, to: count, by: n).forEach {
-            result += String(characters[$0..<min($0+n, count)])
-            if $0+n < count {
+        stride(from: 0, to: count, by: interval).forEach {
+            result += String(characters[$0..<min($0 + interval, count)])
+            if $0 + interval < count {
                 result += separator
             }
         }
@@ -99,10 +99,7 @@ extension String {
     /// - Requires: CryptoKit
     var md5: String {
         let digest = Insecure.MD5.hash(data: self.data(using: .utf8) ?? Data())
-
-        return digest.map {
-            String(format: "%02hhx", $0)
-        }.joined()
+        return digest.map { String(format: "%02hhx", $0) }.joined()
     }
 
     /// 将 json string 类型转换为 Dictionary 类型
@@ -141,9 +138,11 @@ extension String {
         guard let data = self.data(using: .utf8) else {
             return nil
         }
-        return try? NSAttributedString(data: data,
-                                       options: [.documentType: NSAttributedString.DocumentType.html],
-                                       documentAttributes: nil)
+        return try? NSAttributedString(
+            data: data,
+            options: [.documentType: NSAttributedString.DocumentType.html],
+            documentAttributes: nil
+        )
     }
 
     /// 将字符串形式的经纬度坐标转化为 CLLocationCoordinate2D 形式
@@ -240,25 +239,27 @@ extension String {
 
     /// Encrypts a message with symmetric algorithm
     func symetricEncrypt(key: String, blockSize: Int, keyLength: size_t, algorithm: CCAlgorithm, options: Int = kCCOptionPKCS7Padding) -> String? {
-        let keyData = key.data(using: String.Encoding.utf8)! as NSData // swiftlint:disable:this force_unwrapping
-        let data = self.data(using: String.Encoding.utf8)! as NSData // swiftlint:disable:this force_unwrapping
-
-        let cryptData = NSMutableData(length: Int(data.length) + blockSize)! // swiftlint:disable:this force_unwrapping
-
+        // swiftlint:disable force_unwrapping
+        let keyData = key.data(using: String.Encoding.utf8)! as NSData
+        let data = self.data(using: String.Encoding.utf8)! as NSData
+        let cryptData = NSMutableData(length: Int(data.length) + blockSize)!
+        // swiftlint:enable force_unwrapping
         let operation: CCOperation = UInt32(kCCEncrypt)
-
         var numBytesEncrypted: size_t = 0
 
-        // swiftlint:disable indentation_width
-        let cryptStatus = CCCrypt(operation,
-                                  algorithm,
-                                  UInt32(options),
-                                  keyData.bytes, keyLength,
-                                  nil,
-                                  data.bytes, data.length,
-                                  cryptData.mutableBytes, cryptData.length,
-                                  &numBytesEncrypted)
-        // swiftlint:enable indentation_width
+        let cryptStatus = CCCrypt(
+            operation,
+            algorithm,
+            UInt32(options),
+            keyData.bytes,
+            keyLength,
+            nil,
+            data.bytes,
+            data.length,
+            cryptData.mutableBytes,
+            cryptData.length,
+            &numBytesEncrypted
+        )
 
         if UInt32(cryptStatus) == UInt32(kCCSuccess) {
             cryptData.length = Int(numBytesEncrypted)
@@ -293,20 +294,23 @@ extension String {
     func symetricDecrypt(key: String, blockSize: Int, keyLength: size_t, algorithm: CCAlgorithm, options: Int = kCCOptionPKCS7Padding) -> String? {
         if let keyData = key.data(using: String.Encoding.utf8),
             let data = NSData(base64Encoded: self, options: .ignoreUnknownCharacters),
-            let cryptData    = NSMutableData(length: Int((data.length)) + blockSize) {
+            let cryptData = NSMutableData(length: Int((data.length)) + blockSize) {
             let operation: CCOperation = UInt32(kCCDecrypt)
             var numBytesEncrypted: size_t = 0
 
-            // swiftlint:disable indentation_width
-            let cryptStatus = CCCrypt(operation,
-                                      algorithm,
-                                      UInt32(options),
-                                      (keyData as NSData).bytes, keyLength,
-                                      nil,
-                                      data.bytes, data.length,
-                                      cryptData.mutableBytes, cryptData.length,
-                                      &numBytesEncrypted)
-            // swiftlint:enable indentation_width
+            let cryptStatus = CCCrypt(
+                operation,
+                algorithm,
+                UInt32(options),
+                (keyData as NSData).bytes,
+                keyLength,
+                nil,
+                data.bytes,
+                data.length,
+                cryptData.mutableBytes,
+                cryptData.length,
+                &numBytesEncrypted
+            )
 
             if UInt32(cryptStatus) == UInt32(kCCSuccess) {
                 cryptData.length = Int(numBytesEncrypted)

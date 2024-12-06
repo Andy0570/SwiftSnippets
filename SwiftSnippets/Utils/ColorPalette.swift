@@ -11,8 +11,7 @@ import Hue
 /// 纯代码实现的一套 APP 色彩方案，支持深色模式
 /// 
 /// - SeeAlso: <http://www.chienerrant.com/blog/4190/>
-final class ColorPalette {
-
+enum ColorPalette {
     /// Easily define two colors for both light and dark mode.
     /// - Parameters:
     ///   - darkColor: The color to use in dark mode.
@@ -20,7 +19,9 @@ final class ColorPalette {
     /// - Returns: A dynamic color that uses both given colors respectively for the given user interface style.
     static func colorWithDarkMode(darkColor: UIColor, lightColor: UIColor) -> UIColor {
         // Return a fallback color for iOS 12 and lower
-        guard #available(iOS 13.0, *) else { return lightColor }
+        guard #available(iOS 13.0, *) else {
+            return lightColor
+        }
 
         return UIColor.init(dynamicProvider: { (traitCollection: UITraitCollection) -> UIColor in
             if traitCollection.userInterfaceStyle == .dark {
@@ -38,7 +39,9 @@ final class ColorPalette {
     }
 
     static func colorWithUserInterfaceStyle(color: UIColor, with userInterfaceStyle: UIUserInterfaceStyle) -> UIColor {
-        guard #available(iOS 13.0, *) else { return color }
+        guard #available(iOS 13.0, *) else {
+            return color
+        }
 
         let traitCollection = UITraitCollection(userInterfaceStyle: userInterfaceStyle)
         return color.resolvedColor(with: traitCollection)
