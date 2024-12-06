@@ -73,11 +73,11 @@ xed .
 
 | 项目                                                        | 描述                         |
 | ----------------------------------------------------------- | ---------------------------- |
+| [SwiftLint](https://github.com/realm/SwiftLint)             | 代码格式校验                 |
+| [SwiftGen](https://github.com/SwiftGen/SwiftGen)            | 项目资产管理                 |
 | Alamofire                                                   | HTTP 网络框架                |
 | SwiftyJSON                                                  | 高效的处理JSON数据格式       |
 | [Kingfisher](https://github.com/onevcat/Kingfisher)         | 网络图片缓存与多种附加功能。 |
-| [SwiftGen](https://github.com/SwiftGen/SwiftGen)            | 项目资产管理                 |
-| [SwiftLint](https://github.com/realm/SwiftLint)             | 代码格式校验                 |
 | [CryptoSwift](https://github.com/krzyzanowskim/CryptoSwift) |                              |
 | [Dollar](https://github.com/ankurp/Dollar)                  |                              |
 | ...                                                         |                              |
