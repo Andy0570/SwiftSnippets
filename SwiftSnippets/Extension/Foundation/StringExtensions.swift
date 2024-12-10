@@ -14,6 +14,17 @@ import CryptoKit
 import SwifterSwift
 
 extension String {
+    /// 直接通过 Int 类型获取字符串的前 n 个字符
+    ///
+    ///     let hello = "hello world"
+    ///     hello.prefix(upTo: 5) // "hello"
+    ///
+    /// - SeeAlso: <https://tanaschita.com/swift-strings-indices-and-substrings/>
+    func prefix(upTo: Int) -> String {
+        let toIndex = self.index(startIndex, offsetBy: upTo)
+        return String(self[..<toIndex])
+    }
+
     /// 使用多个分隔符快速拆分字符串
     ///
     /// - Parameter separators: 包含分隔符的数组
