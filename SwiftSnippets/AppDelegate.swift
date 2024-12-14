@@ -46,6 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: 备忘录模式，恢复应用状态
     // 备忘录模式捕获并使对象的内部状态暴露出来。换句话说，它可以在某处保存你的东西，稍后在不违反封装的原则下恢复此对外暴露的状态。
     // 也就是说，私有数据仍然是私有的。
+    // 《使用 Swift 的 iOS 设计模式》
 
     func application(_ application: UIApplication, shouldSaveSecureApplicationState coder: NSCoder) -> Bool {
         return true

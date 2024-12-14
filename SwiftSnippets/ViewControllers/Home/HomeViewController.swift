@@ -33,7 +33,7 @@ class HomeViewController: UIViewController {
         // view.addSubview(UIView(frame: .zero))
 
         view.addSubview(tableView)
-        view.backgroundColor = .systemBackground 
+        view.backgroundColor = .systemBackground
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -52,7 +52,7 @@ class HomeViewController: UIViewController {
         arrayDataSource.cellConfigureClosure = { tableViewCell, cell in
             tableViewCell.configureForCell(cell: cell)
         }
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
 }
 
@@ -61,7 +61,7 @@ extension HomeViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
 
         if let item = self.arrayDataSource?.getCellItem(at: indexPath),
-           let controller = viewControllerFromString(viewControllerName: item.className) {
+            let controller = viewControllerFromString(viewControllerName: item.className) {
             navigationController?.pushViewController(controller, animated: true)
         }
     }

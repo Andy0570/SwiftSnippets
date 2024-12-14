@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BlueLibraryViewController" customModule="SwiftSnippets" customModuleProvider="target">
+            <connections>
+                <outlet property="horizontalScrollerView" destination="BQF-vx-SLb" id="Gua-co-7lZ"/>
+                <outlet property="tableView" destination="nml-PM-llg" id="ZbI-8b-JF5"/>
+                <outlet property="trashBarButtonItem" destination="M0K-Kv-oK9" id="duC-su-XvC"/>
+                <outlet property="undoBarButtonItem" destination="7tv-PM-d1Q" id="peK-Ha-DRi"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BQF-vx-SLb" userLabel="Horizontal Scroller View" customClass="HorizontalScrollerView" customModule="SwiftSnippets" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="59" width="393" height="120"/>
+                    <color key="backgroundColor" red="0.78823529411764703" green="0.78823529411764703" blue="0.81176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="120" id="y0G-jL-zjR"/>
+                    </constraints>
+                </view>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Up1-6S-rqV">
+                    <rect key="frame" x="0.0" y="774" width="393" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="9C2-Ih-rHT"/>
+                    </constraints>
+                    <items>
+                        <barButtonItem systemItem="undo" id="7tv-PM-d1Q" userLabel="Undo Bar Button Item"/>
+                        <barButtonItem width="300" style="plain" systemItem="fixedSpace" id="jRU-pu-SOq"/>
+                        <barButtonItem systemItem="trash" id="M0K-Kv-oK9" userLabel="Trash Bar Button Item"/>
+                    </items>
+                </toolbar>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="nml-PM-llg">
+                    <rect key="frame" x="0.0" y="179" width="393" height="595"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="BQF-vx-SLb" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="4ay-Ag-01w"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="nml-PM-llg" secondAttribute="trailing" id="5hN-rj-dxw"/>
+                <constraint firstItem="Up1-6S-rqV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="9cI-zE-jed"/>
+                <constraint firstItem="Up1-6S-rqV" firstAttribute="top" secondItem="nml-PM-llg" secondAttribute="bottom" id="AiO-Ws-kmN"/>
+                <constraint firstItem="BQF-vx-SLb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="FRK-FK-6YQ"/>
+                <constraint firstItem="nml-PM-llg" firstAttribute="top" secondItem="BQF-vx-SLb" secondAttribute="bottom" id="U5p-sL-zvZ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Up1-6S-rqV" secondAttribute="trailing" id="eYM-4X-zCO"/>
+                <constraint firstItem="Up1-6S-rqV" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="hhf-EQ-Yza"/>
+                <constraint firstItem="nml-PM-llg" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="sdF-J9-cuh"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="BQF-vx-SLb" secondAttribute="trailing" id="vwb-Pz-v6f"/>
+            </constraints>
+            <point key="canvasLocation" x="73" y="-11"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
