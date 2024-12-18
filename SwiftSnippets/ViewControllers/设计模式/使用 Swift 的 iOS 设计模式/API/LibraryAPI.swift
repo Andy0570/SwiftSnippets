@@ -51,9 +51,9 @@ final class LibraryAPI {
 
     @objc func downloadImage(with notification: Notification) {
         guard let userInfo = notification.userInfo,
-              let imageView = userInfo["imageView"] as? UIImageView,
-              let coverUrl = userInfo["coverUrl"] as? String,
-              let filename = URL(string: coverUrl)?.lastPathComponent else {
+            let imageView = userInfo["imageView"] as? UIImageView,
+            let coverUrl = userInfo["coverUrl"] as? String,
+            let filename = URL(string: coverUrl)?.lastPathComponent else {
             return
         }
 

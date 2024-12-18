@@ -140,7 +140,7 @@ extension BlueLibraryViewController: HorizontalScrollerViewDataSource {
 extension BlueLibraryViewController: HorizontalScrollerViewDelegate {
     func horizontalScrollerView(_ horizontalScrollerView: HorizontalScrollerView, didSelectViewAt index: Int) {
         guard let previousAlbumView = horizontalScrollerView.view(at: currentAlbumIndex) as? AlbumView,
-              let currentAlbumView = horizontalScrollerView.view(at: index) as? AlbumView else {
+            let currentAlbumView = horizontalScrollerView.view(at: index) as? AlbumView else {
             return
         }
 

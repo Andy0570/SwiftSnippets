@@ -23,8 +23,8 @@ class HTTPClient {
     // 通过 url 下载图片
     func downloadImage(_ url: String) -> UIImage? {
         guard let aURL = URL(string: url),
-              let data = try? Data(contentsOf: aURL),
-              let image = UIImage(data: data) else {
+            let data = try? Data(contentsOf: aURL),
+            let image = UIImage(data: data) else {
             return nil
         }
 
