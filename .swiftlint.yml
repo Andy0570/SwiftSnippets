@@ -22,7 +22,6 @@ opt_in_rules: # 以下可选规则是默认关闭的，所以你需要手动启�
   - closure_end_indentation # 闭包 {} 缩进对齐
   - closure_spacing # 闭包的 {} 中间要有空格
   - collection_alignment # 集合中的所有元素都应垂直对齐
-  - colon # promote to error
   - conditional_returns_on_newline # 条件的 return 语句写在新行
   - convenience_type # 静态变量应声明为无枚举值的枚举类型，以避免被意外实例化
   - discouraged_optional_boolean # 不建议使用可选类型的布尔值
@@ -79,8 +78,8 @@ attributes:
 
 force_cast: warning # 不建议使用强制类型转换 as!
 force_try: warning # 对于可能抛出异常 (throws) 的方法，不建议使用 try! 强解
-function_body_length: # 函数体默认超过40行警告，超过100行报错
-    warning: 60
+function_body_length: # 默认情况下，函数体超过40行警告，超过100行报错
+    warning: 70
 
 legacy_hashing: error
 

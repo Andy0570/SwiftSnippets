@@ -43,6 +43,17 @@ ${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}
 参考：[Github: Command PhaseScriptExecution failed with a nonzero exit code #12209](https://github.com/CocoaPods/CocoaPods/issues/12209#issuecomment-1952635494)
 
 
+## SwiftLint: The file “.swiftlint.yml” couldn’t be opened because you don’t have permission to view it
+
+在 Xcode 14 中，Apple 添加了一个新的 flag `ENABLE_USER_SCRIPT_SANDBOXING`，它告诉编译系统是否阻止脚本阶段（scripts phases）访问源文件或中间构建对象。
+
+回到 Xcode 14（默认情况下），这个标志被设置为 `No`，所以一切正常工作。但是在 Xcode 15 中，这个标志现在被设置为 `Yes`，因此脚本不能访问文件。
+
+解决方法：跳转到项目的 **Targets** - **Build Settings** 页面，搜索 `ENABLE_USER_SCRIPT_SANDBOXING`，将 `User Script Sandboxing` 设置为 `No`。
+
+参考：[How to fix the "The file “.swiftlint.yml” couldn’t be opened because you don’t have permission to view it" issue](https://thisdevbrain.com/swiftlint-permission-issue/)
+
+
 # PCH 头文件相关
 
 ## Error: Build input file cannot be found:
