@@ -38,8 +38,8 @@
 ## 要求
 
 - iOS 15.6+
-- Xcode 16.1
-- Swift 5.0
+- Xcode 16.2
+- Swift 6.0
 
 
 ## 上手指南
