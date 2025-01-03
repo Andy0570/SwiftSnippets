@@ -50,29 +50,29 @@ class HRMViewController: UIViewController {
 
     private func onHeartRateReceived(_ heartRate: Int) {
         heartRateLabel.text = String(heartRate)
-        print("BPM: \(heartRate)")
+        printLog("BPM: \(heartRate)")
     }
 }
 
 extension HRMViewController: CBCentralManagerDelegate {
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         switch central.state {
-        case .unknown:
-            print("central.state is .unknown")
-        case .resetting:
-            print("central.state is .resetting")
-        case .unsupported:
-            print("central.state is .unsupported")
-        case .unauthorized:
-            print("central.state is .unauthorized")
-        case .poweredOff:
-            print("central.state is .poweredOff")
-        case .poweredOn:
-            print("central.state is .poweredOn")
-            // 当蓝牙打开时，扫描特定服务的外围设备
-            centralManager.scanForPeripherals(withServices: [heartRateServicesCBUUID])
-        @unknown default:
-            print("central.state is unknown")
+            case .unknown:
+                printLog("central.state is .unknown")
+            case .resetting:
+                printLog("central.state is .resetting")
+            case .unsupported:
+                printLog("central.state is .unsupported")
+            case .unauthorized:
+                printLog("central.state is .unauthorized")
+            case .poweredOff:
+                printLog("central.state is .poweredOff")
+            case .poweredOn:
+                printLog("central.state is .poweredOn")
+                // 当蓝牙打开时，扫描特定服务的外围设备
+                centralManager.scanForPeripherals(withServices: [heartRateServicesCBUUID])
+            @unknown default:
+                printLog("central.state is unknown")
         }
     }
 
@@ -84,7 +84,7 @@ extension HRMViewController: CBCentralManagerDelegate {
     }
 
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        print("外围设备连接成功")
+        printLog("外围设备连接成功")
         heartRatePeripheral.discoverServices([heartRateServicesCBUUID]) // 发现服务
     }
 }
@@ -96,7 +96,7 @@ extension HRMViewController: CBPeripheralDelegate {
         }
 
         for service in services {
-            print(service)
+            printLog(service)
             // 显式请求发现服务的特征
             peripheral.discoverCharacteristics(nil, for: service)
         }
@@ -108,15 +108,15 @@ extension HRMViewController: CBPeripheralDelegate {
         }
 
         for characteristic in characteristics {
-            print(characteristic)
+            printLog(characteristic)
             // 检查特征属性
             if characteristic.properties.contains(.read) {
-                print("\(characteristic.uuid): properties contains .read")
+                printLog("\(characteristic.uuid): properties contains .read")
                 // 读取特征值，获取身体传感器的位置
                 peripheral.readValue(for: characteristic)
             }
             if characteristic.properties.contains(.notify) {
-                print("\(characteristic.uuid): properties contains .notify")
+                printLog("\(characteristic.uuid): properties contains .notify")
                 // 订阅特征值，获取心率测量结果
                 peripheral.setNotifyValue(true, for: characteristic)
             }
@@ -132,7 +132,7 @@ extension HRMViewController: CBPeripheralDelegate {
             let bpm = heartRate(form: characteristic)
             onHeartRateReceived(bpm)
         default:
-            print("Unhandled Characteristic UUID: \(characteristic.uuid)")
+            printLog("Unhandled Characteristic UUID: \(characteristic.uuid)")
         }
     }
 

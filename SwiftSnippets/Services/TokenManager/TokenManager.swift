@@ -23,7 +23,7 @@ final class TokenManager {
         do {
             try secureStore.setValue(token.accessToken, for: userAccount)
         } catch {
-            print("Error saving access token: \(error)")
+            printLog("Error saving access token: \(error)")
         }
     }
 
@@ -31,7 +31,7 @@ final class TokenManager {
         do {
             return try secureStore.getValue(for: userAccount)
         } catch {
-            print("Error fetching access token: \(error)")
+            printLog("Error fetching access token: \(error)")
         }
         return nil
     }

@@ -71,7 +71,7 @@ extension NSObject {
     // <https://stackoverflow.com/questions/46806969/create-a-uiviewcontroller-class-instance-from-string-view-controller-string-nam>
     func viewControllerFromString(viewControllerName: String) -> UIViewController? {
         if let appName = Bundle.main.infoDictionary?["CFBundleName"] as? String {
-            print("CFBundleName - \(appName)")
+            printLog("CFBundleName - \(appName)")
             if let viewControllerType = NSClassFromString("\(appName).\(viewControllerName)") as? UIViewController.Type {
                 return viewControllerType.init()
             }
