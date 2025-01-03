@@ -69,7 +69,6 @@ class GradientColorViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "将渐变色应用于 UILabel"
         view.backgroundColor = .black
 
         // 配置 gradientLabel
