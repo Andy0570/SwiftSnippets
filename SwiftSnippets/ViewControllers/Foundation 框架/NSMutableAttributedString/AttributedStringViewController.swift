@@ -15,7 +15,7 @@ import UIKit
 
  ### AttributedString
 
- 建议项目中使用 Swift 的 AttributedString 创建样式化文本。
+ 使用 iOS 15 的 AttributedString 创建样式化文本。
  参考：<https://fatbobman.com/zh/posts/attributedstring/>
  */
 class AttributedStringViewController: UIViewController {

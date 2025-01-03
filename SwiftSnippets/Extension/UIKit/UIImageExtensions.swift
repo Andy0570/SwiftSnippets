@@ -41,10 +41,12 @@ extension UIImage {
     }
 
     /// 生成从左到右的渐变图片
+    ///
+    /// - SeeAlso: <https://nemecek.be/blog/143/always-correct-gradient-text-in-uikit>
     static func gradientImage(bounds: CGRect, colors: [UIColor]) -> UIImage {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = bounds
-        gradientLayer.colors = colors.map { $0.cgColor }
+        gradientLayer.colors = colors.map(\.cgColor)
         // 从左到右渐变，默认是从上到下，即 (0.5, 0.0) -> (0.5, 1.0)
         gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
         gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
