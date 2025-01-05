@@ -10,7 +10,7 @@ import SwiftMessages
 /// 通知栏，对 SwiftMessages 的封装
 ///
 /// - SeeAlso: <https://github.com/SwiftKickMobile/SwiftMessages>
-final class MessageCenter {
+final class MessageCenter: Sendable {
     static let shared = MessageCenter()
     private init() {} // 这样可以防止其他对象使用这个类的默认 '()' 初始化器。
 
@@ -22,7 +22,7 @@ final class MessageCenter {
         buttonTapHandler: (() -> Void)? = nil,
         tapHandler: (() -> Void)? = nil
     ) {
-        DispatchQueue.main.async {
+        Task { @MainActor in
             SwiftMessages.show {
                 let view = MessageView.viewFromNib(layout: .cardView)
                 view.configureDropShadow()
