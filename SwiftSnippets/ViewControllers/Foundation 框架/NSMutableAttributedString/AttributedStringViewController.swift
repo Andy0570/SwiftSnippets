@@ -24,12 +24,12 @@ class AttributedStringViewController: UIViewController {
     let appYellowColor = UIColor(red: 248.0 / 255.0, green: 175.0 / 255.0, blue: 0.0, alpha: 1.0)
     let darkOrangeColor = UIColor(red: 248.0 / 255.0, green: 150.0 / 255.0, blue: 75.0 / 255.0, alpha: 1.0)
 
-    @IBOutlet private weak var firstLabel: UILabel!
-    @IBOutlet private weak var secondLabel: UILabel!
-    @IBOutlet private weak var thirdLabel: UILabel!
-    @IBOutlet private weak var fourthLabel: UILabel!
-    @IBOutlet private weak var fifthLabel: UILabel!
-    @IBOutlet private weak var sixLabel: UILabel!
+    @IBOutlet private var firstLabel: UILabel!
+    @IBOutlet private var secondLabel: UILabel!
+    @IBOutlet private var thirdLabel: UILabel!
+    @IBOutlet private var fourthLabel: UILabel!
+    @IBOutlet private var fifthLabel: UILabel!
+    @IBOutlet private var sixLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +55,7 @@ class AttributedStringViewController: UIViewController {
         attributedText.apply(color: .purple, subString: "colorful")
         attributedText.apply(color: appBlueColor, subString: "attributed")
         attributedText.apply(color: darkOrangeColor, subString: "string")
-        self.firstLabel.attributedText = attributedText
+        firstLabel.attributedText = attributedText
     }
 
     // 字体
@@ -76,7 +76,7 @@ class AttributedStringViewController: UIViewController {
         attributedText.apply(color: .blue, subString: "having")
         attributedText.apply(font: condensedBlackFont, subString: "multiple")
         attributedText.apply(color: appRedColor, subString: "multiple")
-        self.secondLabel.attributedText = attributedText
+        secondLabel.attributedText = attributedText
     }
 
     // 下划线、背景色
@@ -85,7 +85,7 @@ class AttributedStringViewController: UIViewController {
         let attributedText = NSMutableAttributedString.getAttributedString(fromString: text)
         attributedText.underLine(subString: "This is underline string")
         attributedText.apply(backgroundColor: appYellowColor, subString: "underline")
-        self.thirdLabel.attributedText = attributedText
+        thirdLabel.attributedText = attributedText
     }
 
     // 删除线、下划线、描边
@@ -95,7 +95,7 @@ class AttributedStringViewController: UIViewController {
         attributedText.strikeThrough(thickness: 2, subString: "This is a")
         attributedText.underLine(subString: "underline")
         attributedText.applyStroke(color: appRedColor, thickness: 2, subString: "stroke string")
-        self.fourthLabel.attributedText = attributedText
+        fourthLabel.attributedText = attributedText
     }
 
     // 阴影
@@ -105,7 +105,7 @@ class AttributedStringViewController: UIViewController {
         attributedText.applyShadow(shadowColor: .black, shadowWidth: 4.0, shadowHeight: 4.0, shadowRadius: 4.0, subString: "This string is")
         attributedText.applyShadow(shadowColor: .black, shadowWidth: 0, shadowHeight: 0, shadowRadius: 5.0, subString: "having")
         attributedText.applyShadow(shadowColor: .black, shadowWidth: 4.0, shadowHeight: 4.0, shadowRadius: 4.0, subString: "a shadow")
-        self.fifthLabel.attributedText = attributedText
+        fifthLabel.attributedText = attributedText
     }
 
     // 生成一个包含粗体以及超链接的属性字符串
@@ -117,6 +117,6 @@ class AttributedStringViewController: UIViewController {
         attributedString[linkStringRange].link = URL(string: "https://fatbobman.com")! // 设置超链接属性
 
         // AttributedString -> NSAttributedString
-        self.sixLabel.attributedText = NSAttributedString(attributedString)
+        sixLabel.attributedText = NSAttributedString(attributedString)
     }
 }

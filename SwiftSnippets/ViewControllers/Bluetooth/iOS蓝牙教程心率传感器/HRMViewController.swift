@@ -57,22 +57,22 @@ class HRMViewController: UIViewController {
 extension HRMViewController: CBCentralManagerDelegate {
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         switch central.state {
-            case .unknown:
-                printLog("central.state is .unknown")
-            case .resetting:
-                printLog("central.state is .resetting")
-            case .unsupported:
-                printLog("central.state is .unsupported")
-            case .unauthorized:
-                printLog("central.state is .unauthorized")
-            case .poweredOff:
-                printLog("central.state is .poweredOff")
-            case .poweredOn:
-                printLog("central.state is .poweredOn")
-                // 当蓝牙打开时，扫描特定服务的外围设备
-                centralManager.scanForPeripherals(withServices: [heartRateServicesCBUUID])
-            @unknown default:
-                printLog("central.state is unknown")
+        case .unknown:
+            printLog("central.state is .unknown")
+        case .resetting:
+            printLog("central.state is .resetting")
+        case .unsupported:
+            printLog("central.state is .unsupported")
+        case .unauthorized:
+            printLog("central.state is .unauthorized")
+        case .poweredOff:
+            printLog("central.state is .poweredOff")
+        case .poweredOn:
+            printLog("central.state is .poweredOn")
+            // 当蓝牙打开时，扫描特定服务的外围设备
+            centralManager.scanForPeripherals(withServices: [heartRateServicesCBUUID])
+        @unknown default:
+            printLog("central.state is unknown")
         }
     }
 
