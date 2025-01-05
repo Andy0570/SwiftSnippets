@@ -7,14 +7,15 @@
 
 import UIKit
 
+/// 使用原生 Swift 代码生成各种条形码和 QR 码
+/// Reference: <https://digitalbunker.dev/native-barcode-qr-code-generation-in-swift/>
+
 /// 条形码的名称和样式
 protocol Barcodable {
     var name: String { get }
     var properties: [String: Any] { get }
 }
 
-/// Swift 中的原生二维码生成
-/// Reference: <https://digitalbunker.dev/native-barcode-qr-code-generation-in-swift/>
 enum BarcodeService {
     static func generateBarcode(from barcode: Barcodable, scale: CGFloat = 3.0) -> UIImage? {
         if let filter = CIFilter(name: barcode.name) {

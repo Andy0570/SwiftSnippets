@@ -17,11 +17,11 @@ import SwifterSwift
  <https://www.swiftdevcenter.com/how-to-create-gradient-color-using-cagradientlayer/>
  */
 class GradientViewController: UIViewController {
-    @IBOutlet weak var firstView: UIView!
-    @IBOutlet weak var secondView: UIView!
-    @IBOutlet weak var thirdView: UIView!
-    @IBOutlet weak var fourthView: UIView!
-    @IBOutlet weak var fiveView: UIView!
+    @IBOutlet private weak var firstView: UIView!
+    @IBOutlet private weak var secondView: UIView!
+    @IBOutlet private weak var thirdView: UIView!
+    @IBOutlet private weak var fourthView: UIView!
+    @IBOutlet private weak var fiveView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
