@@ -79,6 +79,7 @@ internal enum Asset {
       internal static let download = ImageAsset(name: "download")
       internal static let likeFill = ImageAsset(name: "like_fill")
       internal static let likeNormal = ImageAsset(name: "like_normal")
+      internal static let navBarMore = ImageAsset(name: "navBar_more")
       internal static let ovalHighlighted = ImageAsset(name: "oval_highlighted")
       internal static let ovalNormal = ImageAsset(name: "oval_normal")
       internal static let rectHighlighted = ImageAsset(name: "rect_highlighted")
@@ -86,6 +87,8 @@ internal enum Asset {
     }
     internal enum FaveButton {
       internal static let heart = ImageAsset(name: "heart")
+      internal static let heartEmpty = ImageAsset(name: "heart_empty")
+      internal static let heartFilled = ImageAsset(name: "heart_filled")
       internal static let like = ImageAsset(name: "like")
       internal static let smile = ImageAsset(name: "smile")
       internal static let star = ImageAsset(name: "star")
