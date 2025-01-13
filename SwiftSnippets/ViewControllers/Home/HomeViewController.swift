@@ -75,7 +75,45 @@ extension HomeViewController: UITableViewDelegate {
 extension NSObject {
     // <https://stackoverflow.com/questions/46806969/create-a-uiviewcontroller-class-instance-from-string-view-controller-string-nam>
     func viewControllerFromString(viewControllerName: String) -> UIViewController? {
-        if let appName = Bundle.main.infoDictionary?["CFBundleName"] as? String {
+        if viewControllerName == "BookListViewController" {
+            return BookListViewController(books: [
+                Book(
+                    id: UUID(),
+                    name: "iOS App Distribution & Best Practices",
+                    edition: "1st Edition",
+                    imageName: "pasi",
+                    available: true
+                ),
+                Book(
+                    id: UUID(),
+                    name: "SwiftUI Apprentice",
+                    edition: "1st Edition",
+                    imageName: "swiftui",
+                    available: false
+                ),
+                Book(
+                    id: UUID(),
+                    name: "Living by the Code",
+                    edition: "2nd Edition",
+                    imageName: "livingcode",
+                    available: true
+                ),
+                Book(
+                    id: UUID(),
+                    name: "Git Apprentice",
+                    edition: "1st Edition",
+                    imageName: "git",
+                    available: true
+                ),
+                Book(
+                    id: UUID(),
+                    name: "Expert Swift",
+                    edition: "1st Edition",
+                    imageName: "expertswift",
+                    available: false
+                )
+            ])
+        } else if let appName = Bundle.main.infoDictionary?["CFBundleName"] as? String {
             // printLog("CFBundleName: \(appName)")
             if let viewControllerType = NSClassFromString("\(appName).\(viewControllerName)") as? UIViewController.Type {
                 return viewControllerType.init()

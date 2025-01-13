@@ -243,6 +243,12 @@
       },
       {
         "imageName": "image",
+        "title": "RaysBooks 示例",
+        "description": "-",
+        "className": "BookListViewController"
+      },
+      {
+        "imageName": "image",
         "title": "UITextField 字符计数器",
         "description": "-",
         "className": "DRHTextFieldViewController"

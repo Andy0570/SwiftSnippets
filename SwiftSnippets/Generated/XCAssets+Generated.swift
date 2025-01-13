@@ -153,6 +153,13 @@ internal enum Asset {
     internal enum ModeratorsExplorer {
       internal static let seIcon = ImageAsset(name: "se_icon")
     }
+    internal enum RaysBooks {
+      internal static let expertswift = ImageAsset(name: "expertswift")
+      internal static let git = ImageAsset(name: "git")
+      internal static let livingcode = ImageAsset(name: "livingcode")
+      internal static let pasi = ImageAsset(name: "pasi")
+      internal static let swiftui = ImageAsset(name: "swiftui")
+    }
     internal static let backgroundBayleaf = ImageAsset(name: "background_bayleaf")
     internal static let backgroundRwdevcon = ImageAsset(name: "background_rwdevcon")
     internal static let kanagawa = ImageAsset(name: "kanagawa")
