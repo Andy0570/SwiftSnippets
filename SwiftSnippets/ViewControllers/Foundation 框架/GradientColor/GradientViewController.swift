@@ -14,7 +14,8 @@ import SwifterSwift
  这里使用了 SwifterSwift 框架中的扩展方法创建渐变图层，并应用于 UIView。
 
  参考：
- <https://www.swiftdevcenter.com/how-to-create-gradient-color-using-cagradientlayer/>
+ * <https://www.swiftdevcenter.com/how-to-create-gradient-color-using-cagradientlayer/>
+ * <https://medium.com/doyeona/cagradientlayer-swift-2ad0dd548309>
  */
 class GradientViewController: UIViewController {
     @IBOutlet private weak var firstView: UIView!
