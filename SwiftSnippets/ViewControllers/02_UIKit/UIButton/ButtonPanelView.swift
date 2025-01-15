@@ -16,6 +16,7 @@ protocol ButtonPanelDelegate: AnyObject {
 
 /// 自定义可展开按钮
 /// 参考：<https://github.com/apatronl/Expandable-Button-Demo>
+/// 其他开源框架：<https://github.com/liuzhiyi1992/SpreadButton>
 final class ButtonPanelView: UIView {
     private enum Constants {
         static let buttonSize: CGFloat = 56
