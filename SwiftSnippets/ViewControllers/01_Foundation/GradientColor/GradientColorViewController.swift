@@ -24,6 +24,7 @@ class GradientColorViewController: UIViewController {
 
     override func loadView() {
         super.loadView()
+        navigationItem.largeTitleDisplayMode = .never
 
         // 初始化并添加 gradientLabel
         let gradientLabel1 = GradientLabel()

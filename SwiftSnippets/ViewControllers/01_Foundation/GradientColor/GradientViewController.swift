@@ -26,6 +26,7 @@ class GradientViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.largeTitleDisplayMode = .never
 
         let colors: [UIColor] = [.red, .blue]
         firstView.addGradient(colors: colors, direction: .topToBottom)

@@ -75,7 +75,7 @@ internal enum Asset {
       internal static let overlay = ImageAsset(name: "overlay")
     }
     internal enum CustomControl {
-      internal static let checkmarks = ImageAsset(name: "checkmarks")
+      internal static let checkmark = ImageAsset(name: "checkmark")
       internal static let download = ImageAsset(name: "download")
       internal static let likeFill = ImageAsset(name: "like_fill")
       internal static let likeNormal = ImageAsset(name: "like_normal")

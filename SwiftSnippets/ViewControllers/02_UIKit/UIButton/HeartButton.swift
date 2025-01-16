@@ -9,7 +9,7 @@ import UIKit
 
 /// 用 Swift 实现 Instagram 的“点赞”动画
 /// 参考：<https://github.com/4taras4/Heart-Button-Demo>
-class HeartButton: UIButton {
+final class HeartButton: UIButton {
     private var isLiked = false
 
     private let unlikedImage = UIImage(named: "heart_empty")

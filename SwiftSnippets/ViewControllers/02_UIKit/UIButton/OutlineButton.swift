@@ -9,7 +9,7 @@ import UIKit
 
 /// 带圆角边框样式的 UIButton
 /// 参考：<https://sarunw.com/posts/how-to-mark-custom-button-style-with-uibuttonconfiguration/>
-class OutlineButton: UIButton {
+final class OutlineButton: UIButton {
     override func updateConfiguration() {
         guard var updatedConfiguration = configuration else {
             return
