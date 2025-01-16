@@ -57,6 +57,12 @@
       },
       {
         "imageName": "image",
+        "title": "UIProgressView",
+        "description": "-",
+        "className": "FlowersViewController"
+      },
+      {
+        "imageName": "image",
         "title": "自定义控件",
         "description": "-",
         "className": "CustomControlViewController"
