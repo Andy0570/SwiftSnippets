@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (5.10.1)
+  - Alamofire (5.10.2)
   - anim (1.2.10)
   - CHTCollectionViewWaterfallLayout (0.9.10):
     - CHTCollectionViewWaterfallLayout/Swift (= 0.9.10)
@@ -7,8 +7,9 @@ PODS:
   - FaveButton (3.2.1)
   - GDPerformanceView-Swift (2.1.1)
   - Hero (1.6.3)
+  - HGRippleRadarView (0.1.2)
   - Hue (5.0.0)
-  - Kingfisher (8.1.1)
+  - Kingfisher (8.1.3)
   - LicensePlist (3.24.11)
   - Siren (6.1.3)
   - SwifterSwift (7.0.0):
@@ -56,6 +57,7 @@ DEPENDENCIES:
   - FaveButton (~> 3.2.1)
   - GDPerformanceView-Swift (~> 2.1.1)
   - Hero (~> 1.6.3)
+  - HGRippleRadarView (~> 0.1.2)
   - Hue (~> 5.0.0)
   - Kingfisher (~> 8.1.1)
   - LicensePlist (~> 3.24.5)
@@ -74,6 +76,7 @@ SPEC REPOS:
     - FaveButton
     - GDPerformanceView-Swift
     - Hero
+    - HGRippleRadarView
     - Hue
     - Kingfisher
     - LicensePlist
@@ -85,14 +88,15 @@ SPEC REPOS:
     - ViewAnimator
 
 SPEC CHECKSUMS:
-  Alamofire: 840d2a1ad82355b536ec6ba5f97e5bfa54600ca3
+  Alamofire: 7193b3b92c74a07f85569e1a6c4f4237291e7496
   anim: 8603b8aa9f20c26fb04bfc94967f0e942687938d
   CHTCollectionViewWaterfallLayout: b989a459788d7657ac010e03bc0f7eedca95a420
   FaveButton: 93cfebf6030336fa7653fad2068c3152ed668b39
   GDPerformanceView-Swift: 22d964fe40b19e3d914dba2586237d064de8fd77
   Hero: 419d43384355b3168512bd8ac6a33aadd3dc575b
+  HGRippleRadarView: 5379e27634c09222ebc836671c7425ad7b257cc4
   Hue: c129cb67be7d093a82bbbc30ce8a96757bf6f37a
-  Kingfisher: fc2788e497306f97fdef6e4df49f02106cb57788
+  Kingfisher: f2af9028b16baf9dc6c07c570072bc41cbf009ef
   LicensePlist: e8b5c7b30a914b92b83ffd78ded5af057621ba64
   Siren: c0f6012f61196b73455202db07730f6454a4beb0
   SwifterSwift: e9caf990fc72e835432280755d1f4c43f2a483d5
@@ -101,6 +105,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: f5b1bf1cd8dd53cd25887ac0eabcfd92301c6a5a
   ViewAnimator: a9ceed80266e00fd435ec4fb99b2df64d580d0e4
 
-PODFILE CHECKSUM: 956a98a5b9337f798c3d72f50ccdfb54f4107895
+PODFILE CHECKSUM: 2f5d736358db82a58995a2d5720fd962c2ec237d
 
 COCOAPODS: 1.16.2

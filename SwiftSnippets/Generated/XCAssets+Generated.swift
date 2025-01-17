@@ -75,7 +75,7 @@ internal enum Asset {
       internal static let overlay = ImageAsset(name: "overlay")
     }
     internal enum CustomControl {
-      internal static let checkmark = ImageAsset(name: "checkmark")
+      internal static let checkmarks = ImageAsset(name: "checkmarks")
       internal static let download = ImageAsset(name: "download")
       internal static let likeFill = ImageAsset(name: "like_fill")
       internal static let likeNormal = ImageAsset(name: "like_normal")
@@ -127,9 +127,22 @@ internal enum Asset {
       internal static let fluidPhoto8 = ImageAsset(name: "fluidPhoto8")
       internal static let fluidPhoto9 = ImageAsset(name: "fluidPhoto9")
     }
-    internal enum IconCollectionView {
-      internal static let candle = ImageAsset(name: "candle")
+    internal enum HGRippleRadarView {
+      internal static let bird = ImageAsset(name: "bird")
       internal static let cat = ImageAsset(name: "cat")
+      internal static let catttle = ImageAsset(name: "catttle")
+      internal static let dog = ImageAsset(name: "dog")
+      internal static let elephant = ImageAsset(name: "elephant")
+      internal static let hippopotamus = ImageAsset(name: "hippopotamus")
+      internal static let lion = ImageAsset(name: "lion")
+      internal static let location = ImageAsset(name: "location")
+      internal static let rat = ImageAsset(name: "rat")
+      internal static let sheep = ImageAsset(name: "sheep")
+      internal static let tiger = ImageAsset(name: "tiger")
+    }
+    internal enum IconCollectionView {
+      internal static let angryCat = ImageAsset(name: "angry_cat")
+      internal static let candle = ImageAsset(name: "candle")
       internal static let dribbble = ImageAsset(name: "dribbble")
       internal static let featureBg = ImageAsset(name: "feature_bg")
       internal static let ghost = ImageAsset(name: "ghost")

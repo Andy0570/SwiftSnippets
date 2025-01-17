@@ -113,8 +113,8 @@ class CustomControlViewController: UIViewController {
         let time = DispatchTime.now() + 3
         DispatchQueue.main.asyncAfter(deadline: time) {
             self.rangeSlider.trackHighlightTintColor = .red
-            self.rangeSlider.thumbImage = UIImage(named: "rect_normal")
-            self.rangeSlider.highlightedThumbImage = UIImage(named: "rect_highlighted")
+            self.rangeSlider.thumbImage = UIImage.rectNormal
+            self.rangeSlider.highlightedThumbImage = UIImage.rectHighlighted
         }
     }
 

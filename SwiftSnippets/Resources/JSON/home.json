@@ -72,6 +72,12 @@
         "title": "FaveButton",
         "description": "-",
         "className": "FaveButtonViewController"
+      },
+      {
+        "imageName": "image",
+        "title": "登录注册",
+        "description": "-",
+        "className": "FriendlyFormViewController"
       }
     ]
   },
@@ -328,6 +334,24 @@
   {
     "title": "11_开源框架",
     "cells": [
+      {
+        "imageName": "image",
+        "title": "HGRippleRadarView_1",
+        "description": "-",
+        "className": "RadarViewController"
+      },
+      {
+        "imageName": "image",
+        "title": "HGRippleRadarView_2",
+        "description": "-",
+        "className": "GymNearbyViewController"
+      },
+      {
+        "imageName": "image",
+        "title": "HGRippleRadarView_3",
+        "description": "-",
+        "className": "AnimalsViewController"
+      },
       {
         "imageName": "image",
         "title": "SPPermissions",

@@ -22,6 +22,7 @@ target 'SwiftSnippets' do
   pod 'FaveButton', '~> 3.2.1' # 点赞按钮
   pod 'anim', '~> 1.2.10' # 页面内动画
   pod 'ViewAnimator', '~> 3.1.0' # 页面转场动画
+  pod 'HGRippleRadarView', '~> 0.1.2' # 雷达视图
   # pod 'MJRefresh', '~> 3.7.9'
   # pod 'NVActivityIndicatorView', '~> 5.2.0' # <https://github.com/ninjaprox/NVActivityIndicatorView>
   # pod 'HMSegmentedControl', '~> 1.5.6' # <https://github.com/HeshamMegid/HMSegmentedControl>

@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// RaysBooks 示例，集合视图 Cell
 class BookCollectionCell: UICollectionViewCell {
     /// 书本封面
     private lazy var bookCoverView: UIImageView = {
@@ -82,7 +83,10 @@ class BookCollectionCell: UICollectionViewCell {
 
     public var book: Book? {
         didSet {
-            guard let book else { return }
+            guard let book else {
+                return
+            }
+
             bookCoverView.image = UIImage(named: book.imageName)
             bookTitleLabel.text = book.name
             bookSubtitleLabel.text = book.edition

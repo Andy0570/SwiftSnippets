@@ -7,7 +7,7 @@
 
 import UIKit
 
-/// 购物车结算视图
+/// RaysBooks 示例，购物车结算视图
 class CartPanelView: UIView {
     /// 垂直布局的堆栈视图
     private lazy var stackView: UIStackView = {

@@ -10,8 +10,8 @@ import UIKit
 /// 自定义下载按钮
 /// Reference: <https://nsscreencast.com/episodes/242-designing-a-custom-download-button-part-1>
 final class DownloadButton: UIControl {
-    lazy var downloadImage = UIImage(named: "download")
-    lazy var completedImage = UIImage(named: "checkmark")
+    lazy var downloadImage = UIImage.download
+    lazy var completedImage = UIImage.checkmarks
 
     var imageView: UIImageView!
 

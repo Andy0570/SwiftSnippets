@@ -52,7 +52,7 @@ final class RangeSlider: UIControl {
         }
     }
 
-    var thumbImage = UIImage(named: "oval_normal") {
+    var thumbImage = UIImage.ovalNormal {
         didSet {
             upperThumbImageView.image = thumbImage
             lowerThumbImageView.image = thumbImage
@@ -60,7 +60,7 @@ final class RangeSlider: UIControl {
         }
     }
 
-    var highlightedThumbImage = UIImage(named: "oval_highlighted") {
+    var highlightedThumbImage = UIImage.ovalHighlighted {
         didSet {
             upperThumbImageView.highlightedImage = highlightedThumbImage
             lowerThumbImageView.highlightedImage = highlightedThumbImage
@@ -110,10 +110,6 @@ final class RangeSlider: UIControl {
     }
 
     private func updateLayerFrames() {
-        guard let thumbImage else {
-            return
-        }
-
         // 将整个 frame 的更新包装到一个事务中，以使重流渲染平滑
         CATransaction.begin()
         CATransaction.setDisableActions(true) // 禁用图层上的隐式动画
@@ -128,10 +124,6 @@ final class RangeSlider: UIControl {
     }
 
     private func thumbOriginForValue(_ value: CGFloat) -> CGPoint {
-        guard let thumbImage else {
-            return CGPoint.zero
-        }
-
         let x = positionForValue(value) - thumbImage.size.width / 2.0
         return CGPoint(x: x, y: (bounds.height - thumbImage.size.height) / 2.0)
     }

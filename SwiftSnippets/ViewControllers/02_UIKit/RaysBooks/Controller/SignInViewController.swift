@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// RaysBooks 示例，登录页面
 final class SignInViewController: UIViewController {
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()

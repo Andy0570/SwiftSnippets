@@ -127,7 +127,7 @@ final class ButtonPanelView: UIView {
             self.expandedStackView.subviews.forEach { $0.isHidden.toggle() }
             self.expandedStackView.isHidden.toggle()
             if willExpand {
-              self.menuButton.setTitle(menuButtonNewTitle, for: .normal)
+                self.menuButton.setTitle(menuButtonNewTitle, for: .normal)
             }
         } completion: { _ in
             // When collapsing, wait for animation to finish before changing from "x" to "+"

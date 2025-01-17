@@ -514,7 +514,10 @@ class MenuButtonViewController: UIViewController {
 
 extension MenuButtonViewController: ButtonPanelDelegate {
     func didTapButtonWithText(_ text: String) {
-        guard text != label.text else { return }
+        guard text != label.text else {
+            return
+        }
+
         label.text = text
     }
 }
