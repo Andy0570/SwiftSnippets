@@ -39,6 +39,8 @@ class FlowersViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
+        navigationItem.largeTitleDisplayMode = .never
 
         setupView()
         fetchRedDelightFlowers()
@@ -73,9 +75,6 @@ class FlowersViewController: UIViewController {
     }
 
     private func setupView() {
-        view.backgroundColor = .systemBackground
-        navigationItem.largeTitleDisplayMode = .never
-
         view.addSubview(imageView)
         view.addSubview(loadingView)
         loadingView.addSubview(progressView)
