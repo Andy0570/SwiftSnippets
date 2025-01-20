@@ -75,9 +75,15 @@
       },
       {
         "imageName": "image",
-        "title": "登录注册",
+        "title": "登录页面1",
         "description": "-",
         "className": "FriendlyFormViewController"
+      },
+      {
+        "imageName": "image",
+        "title": "登录页面2",
+        "description": "-",
+        "className": "BayleafLoginViewController"
       }
     ]
   },
