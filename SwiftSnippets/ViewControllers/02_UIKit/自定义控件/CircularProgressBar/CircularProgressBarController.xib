@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CircularProgressBarController" customModule="SwiftSnippets" customModuleProvider="target">
+            <connections>
+                <outlet property="circularProgressBar" destination="S3d-vP-nWB" id="bdU-8I-S7c"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S3d-vP-nWB" customClass="CircularProgressBar" customModule="SwiftSnippets" customModuleProvider="target">
+                    <rect key="frame" x="71.666666666666686" y="301" width="250" height="250"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="250" id="ptN-fl-Fet"/>
+                        <constraint firstAttribute="height" constant="250" id="xZn-fB-Z9t"/>
+                    </constraints>
+                </view>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="TfK-Ad-93a">
+                    <rect key="frame" x="18" y="601" width="357" height="31"/>
+                    <connections>
+                        <action selector="sliderAction:" destination="-1" eventType="valueChanged" id="vKT-fI-u0I"/>
+                    </connections>
+                </slider>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="TfK-Ad-93a" secondAttribute="trailing" constant="20" id="8Vd-aa-jLc"/>
+                <constraint firstItem="S3d-vP-nWB" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="IQZ-n4-wX7"/>
+                <constraint firstItem="TfK-Ad-93a" firstAttribute="top" secondItem="S3d-vP-nWB" secondAttribute="bottom" constant="50" id="O9p-rZ-pit"/>
+                <constraint firstItem="S3d-vP-nWB" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="hkH-fR-jYO"/>
+                <constraint firstItem="TfK-Ad-93a" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="u63-mG-XHi"/>
+            </constraints>
+            <point key="canvasLocation" x="-34" y="-11"/>
+        </view>
+    </objects>
+</document>

@@ -75,6 +75,12 @@
       },
       {
         "imageName": "image",
+        "title": "使用 .xib 文件创建自定义视图",
+        "description": "-",
+        "className": "CircularProgressBarController"
+      },
+      {
+        "imageName": "image",
         "title": "UITextField 字符计数器",
         "description": "-",
         "className": "DRHTextFieldViewController"
