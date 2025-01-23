@@ -210,6 +210,12 @@
     "cells": [
       {
         "imageName": "image",
+        "title": "自定义日历组件",
+        "description": "",
+        "className": "ItemListViewController"
+      },
+      {
+        "imageName": "image",
         "title": "使用 UICollectionView.CellRegistration 配置集合视图",
         "description": "",
         "className": "MyCollectionViewController"

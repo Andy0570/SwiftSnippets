@@ -112,9 +112,9 @@ class AttributedStringViewController: UIViewController {
     // 生成一个包含粗体以及超链接的属性字符串
     private func setSixLabel() {
         var attributedString = AttributedString("使用 AttributedString 创建属性字符串")
-        let boldStringRange = attributedString.range(of: "AttributedString")! // 获取指定字符串范围（Range）
+        let boldStringRange = attributedString.range(of: "AttributedString").require() // 获取指定字符串范围（Range）
         attributedString[boldStringRange].inlinePresentationIntent = .stronglyEmphasized // 设置粗体属性
-        let linkStringRange = attributedString.range(of: "属性字符串")!
+        let linkStringRange = attributedString.range(of: "属性字符串").require()
         attributedString[linkStringRange].link = URL(string: "https://fatbobman.com")! // 设置超链接属性
 
         // AttributedString -> NSAttributedString

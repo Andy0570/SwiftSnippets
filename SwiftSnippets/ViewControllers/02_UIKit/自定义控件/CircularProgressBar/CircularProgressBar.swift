@@ -11,6 +11,7 @@ import UIKit
 /// 参考
 /// * <https://www.scalablepath.com/ios/ios-custom-views-uikit>
 /// * <https://nshipster.com/ibinspectable-ibdesignable/>
+/// * <https://manasaprema04.medium.com/different-way-of-creating-uiviews-in-swift-4aeb1b5d0d6b>
 @IBDesignable
 open class CircularProgressBar: UIView {
     var view: UIView!

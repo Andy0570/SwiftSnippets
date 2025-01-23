@@ -25,6 +25,10 @@ extension String {
         return String(self[..<toIndex])
     }
 
+    func truncatedPrefix(_ maxLength: Int, using truncator: String = "...") -> String {
+        "\(prefix(maxLength))\(truncator)"
+    }
+
     /// 使用多个分隔符快速拆分字符串
     ///
     /// - Parameter separators: 包含分隔符的数组
