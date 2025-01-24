@@ -135,14 +135,8 @@
       {
         "imageName": "image",
         "title": "UITraitCollection更新约束",
-        "description": "特征集合更新自动布局约束",
+        "description": "根据特征集合自动更新紧凑型和常规屏幕下的布局约束",
         "className": "TraitCollectionViewController"
-      },
-      {
-        "imageName": "image",
-        "title": "在 Swift 中创建 UIView 的不同方式",
-        "description": "分别演示 XIB 方式和代码方式创建自定义 UIView",
-        "className": "DifferentViewController"
       },
       {
         "imageName": "image",
