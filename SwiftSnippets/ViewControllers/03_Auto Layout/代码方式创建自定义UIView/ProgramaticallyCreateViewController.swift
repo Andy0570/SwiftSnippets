@@ -8,7 +8,9 @@
 import UIKit
 
 /// 代码方式创建自定义 UIView
-/// Reference: <https://medium.com/@tapkain/custom-uiview-in-swift-done-right-ddfe2c3080a>
+/// 参考：
+/// * <https://medium.com/@tapkain/custom-uiview-in-swift-done-right-ddfe2c3080a>
+/// * <https://tapdev.co/2021/02/05/neatly-organise-complex-programmatic-views-with-a-uiview-subclass/>
 class ProgramaticallyCreateViewController: UIViewController {
     private lazy var addButton: UIButton = {
         let button = UIButton(type: .system)
