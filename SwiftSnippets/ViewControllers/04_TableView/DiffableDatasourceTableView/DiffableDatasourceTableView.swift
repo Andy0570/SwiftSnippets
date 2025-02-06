@@ -48,7 +48,7 @@ extension VideoGame {
  */
 typealias TableDataSource = UITableViewDiffableDataSource<Int, VideoGame>
 
-class DiffableDatasourceTableView: UIViewController {
+final class DiffableDatasourceTableView: UIViewController {
     let videogames: [VideoGame] = VideoGame.data
     let tableView = UITableView(frame: .zero, style: .insetGrouped)
 
