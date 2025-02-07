@@ -42,6 +42,9 @@ ${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}
 
 参考：[Github: Command PhaseScriptExecution failed with a nonzero exit code #12209](https://github.com/CocoaPods/CocoaPods/issues/12209#issuecomment-1952635494)
 
+## Sandbox: bash(48834) deny(1) file-write-create /Users/Andy/Application/YourAppName/Pods/resources-to-copy-FoxWidgetExtension.txt
+
+解决方法：在项目中选择当前编译的 Target，在 **Build Settings** 配置页面，搜索 `user Script Sandboxing` 将默认值 `Yes` 改为 `No`。
 
 ## SwiftLint: The file “.swiftlint.yml” couldn’t be opened because you don’t have permission to view it
 
