@@ -10,6 +10,16 @@ import CoreBluetooth
 
 /**
  iOS 蓝牙教程：心率传感器
+ 
+ 1. 建立中心（central）角色
+ 2. 扫描外设（discover）
+ 3. 连接外设(connect)
+ 4. 扫描外设中的服务和特征(discover)
+     - 4.1 获取外设的services
+     - 4.2 获取外设的Characteristics,获取Characteristics的值，获取Characteristics的Descriptor和Descriptor的值
+ 5. 与外设做数据交互(explore and interact)
+ 6. 订阅Characteristic的通知
+ 7. 断开连接(disconnect)
 
  ### 参考
  * <https://www.notion.so/andy0570/iOS-15d973ced06c80009e56de65b8b22a18?pvs=4>
@@ -77,15 +87,19 @@ extension HRMViewController: CBCentralManagerDelegate {
     }
 
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String: Any], rssi RSSI: NSNumber) {
+        printLog("扫描到外围设备")
+        
         heartRatePeripheral = peripheral // 存储对扫描到的外围设备的引用
-        centralManager.stopScan() // 停止服务
+        centralManager.stopScan() // 停止扫描
         centralManager.connect(heartRatePeripheral) // 连接外围设备
         heartRatePeripheral.delegate = self
     }
 
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         printLog("外围设备连接成功")
-        heartRatePeripheral.discoverServices([heartRateServicesCBUUID]) // 发现服务
+        
+        // 外围设备连接成功后，下一步执行“发现外围设备的特定服务”
+        heartRatePeripheral.discoverServices([heartRateServicesCBUUID])
     }
 }
 
@@ -112,11 +126,13 @@ extension HRMViewController: CBPeripheralDelegate {
             // 检查特征属性
             if characteristic.properties.contains(.read) {
                 printLog("\(characteristic.uuid): properties contains .read")
+                
                 // 读取特征值，获取身体传感器的位置
                 peripheral.readValue(for: characteristic)
             }
             if characteristic.properties.contains(.notify) {
                 printLog("\(characteristic.uuid): properties contains .notify")
+                
                 // 订阅特征值，获取心率测量结果
                 peripheral.setNotifyValue(true, for: characteristic)
             }
@@ -168,7 +184,7 @@ extension HRMViewController: CBPeripheralDelegate {
             return Int(byteArray[1])
         } else {
             // Heart Rate Value Format is in the 2nd and 3rd bytes
-            // 第二个字节向左移动 8 位，相当于乘以 256，心率值：(第二个字节值 * 256) + 第三个字节值。
+            // 第二个字节向左移动 8 位，相当于乘以 256，心率值 = (第二个字节值 * 256) + 第三个字节值。
             return (Int(byteArray[1]) << 8) + Int(byteArray[2])
         }
     }
