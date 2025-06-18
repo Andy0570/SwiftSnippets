@@ -88,7 +88,7 @@ extension HRMViewController: CBCentralManagerDelegate {
 
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String: Any], rssi RSSI: NSNumber) {
         printLog("扫描到外围设备")
-        
+
         heartRatePeripheral = peripheral // 存储对扫描到的外围设备的引用
         centralManager.stopScan() // 停止扫描
         centralManager.connect(heartRatePeripheral) // 连接外围设备
@@ -97,7 +97,7 @@ extension HRMViewController: CBCentralManagerDelegate {
 
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         printLog("外围设备连接成功")
-        
+
         // 外围设备连接成功后，下一步执行“发现外围设备的特定服务”
         heartRatePeripheral.discoverServices([heartRateServicesCBUUID])
     }
@@ -126,13 +126,13 @@ extension HRMViewController: CBPeripheralDelegate {
             // 检查特征属性
             if characteristic.properties.contains(.read) {
                 printLog("\(characteristic.uuid): properties contains .read")
-                
+
                 // 读取特征值，获取身体传感器的位置
                 peripheral.readValue(for: characteristic)
             }
             if characteristic.properties.contains(.notify) {
                 printLog("\(characteristic.uuid): properties contains .notify")
-                
+
                 // 订阅特征值，获取心率测量结果
                 peripheral.setNotifyValue(true, for: characteristic)
             }

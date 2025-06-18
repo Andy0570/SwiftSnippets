@@ -75,8 +75,8 @@ internal enum Asset {
       internal static let overlay = ImageAsset(name: "overlay")
     }
     internal enum CustomControl {
+      internal static let download = ImageAsset(name: "Download")
       internal static let checkmarks = ImageAsset(name: "checkmarks")
-      internal static let download = ImageAsset(name: "download")
       internal static let likeFill = ImageAsset(name: "like_fill")
       internal static let likeNormal = ImageAsset(name: "like_normal")
       internal static let navBarMore = ImageAsset(name: "navBar_more")
@@ -173,7 +173,7 @@ internal enum Asset {
       internal static let pasi = ImageAsset(name: "pasi")
       internal static let swiftui = ImageAsset(name: "swiftui")
     }
-    internal static let backgroundBayleaf = ImageAsset(name: "background_bayleaf")
+    internal static let backgroundBayleaf = ImageAsset(name: "background_Bayleaf")
     internal static let backgroundRwdevcon = ImageAsset(name: "background_rwdevcon")
     internal static let kanagawa = ImageAsset(name: "kanagawa")
   }

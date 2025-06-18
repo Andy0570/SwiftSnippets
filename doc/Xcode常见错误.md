@@ -56,6 +56,18 @@ ${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}
 
 参考：[How to fix the "The file “.swiftlint.yml” couldn’t be opened because you don’t have permission to view it" issue](https://thisdevbrain.com/swiftlint-permission-issue/)
 
+## swift pods 遇到问题 [!] The `X` target overrides the `ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES` build setting defined in `X`. This can lead to problems with the CocoaPods installation - Use the `$(inherited)`
+
+```bash
+[!] The `MyProject [Debug]` target overrides the `ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES` build setting defined in `Pods/Target Support Files/Pods-MyProject/Pods-MyProject.debug.xcconfig'. This can lead to problems with the CocoaPods installation
+    - Use the `$(inherited)` flag, or
+    - Remove the build settings from the target.
+```
+
+解决方法：Build Settings ->ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES -> 选择 'Other', 输入 "$(inherited)"
+
+参考：<https://www.cnblogs.com/xbios/p/7551721.html>
+
 
 # PCH 头文件相关
 
