@@ -1,11 +1,26 @@
 //
-//  AttributedString.swift
+//  NSAttributedStringExtensions.swift
 //  SwiftSnippets
 //
 //  Created by Qilin Hu on 2025/1/2.
 //
 
 import UIKit
+
+extension NSAttributedString {
+    /// 给定宽度，计算属性字符串的高度
+    ///
+    /// Reference: <https://medium.com/@garejakirit/how-to-get-the-height-of-an-attributed-string-in-swift-ios-8a75ef2a8f84>
+    func height(constrainedToWidth width: CGFloat) -> CGFloat {
+        let size = CGSize(width: width, height: .greatestFiniteMagnitude)
+        let boundingBox = self.boundingRect(
+            with: size,
+            options: [.usesLineFragmentOrigin, .usesFontLeading],
+            context: nil
+        )
+        return ceil(boundingBox.height)
+    }
+}
 
 extension NSMutableAttributedString {
     // 将 String 类型转换为 NSMutableAttributedString 类型
@@ -27,7 +42,8 @@ extension NSMutableAttributedString {
         }
     }
 
-    /************************ Color Attribute ************************/
+    // MARK: - Color Attribute
+
     // Apply color on substring
     func apply(color: UIColor, subString: String) {
         if let range = self.string.range(of: subString) {
@@ -40,7 +56,8 @@ extension NSMutableAttributedString {
         self.addAttributes([NSAttributedString.Key.foregroundColor: color], range: range)
     }
 
-    /************************ Font Attribute ************************/
+    // MARK: - Font Attribute
+
     // Apply font on substring
     func apply(font: UIFont, subString: String) {
         if let range = self.string.range(of: subString) {
@@ -53,7 +70,8 @@ extension NSMutableAttributedString {
         self.addAttributes([NSAttributedString.Key.font: font], range: range)
     }
 
-    /************************ Background Color Attribute ************************/
+    // MARK: - Background Color Attribute
+
     // Apply background color on substring
     func apply(backgroundColor: UIColor, subString: String) {
         if let range = self.string.range(of: subString) {
@@ -66,7 +84,8 @@ extension NSMutableAttributedString {
         self.addAttributes([NSAttributedString.Key.backgroundColor: backgroundColor], range: range)
     }
 
-    /************************ Underline Attribute ************************/
+    // MARK: - Underline Attribute
+
     // Underline string
     func underLine(subString: String) {
         if let range = self.string.range(of: subString) {
@@ -79,7 +98,8 @@ extension NSMutableAttributedString {
         self.addAttributes([NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue], range: range)
     }
 
-    /************************ Strikethrough Attribute ************************/
+    // MARK: - Strikethrough Attribute
+
     // Apply Strikethrough on substring
     func strikeThrough(thickness: Int, subString: String) {
         if let range = self.string.range(of: subString) {
@@ -92,7 +112,8 @@ extension NSMutableAttributedString {
         self.addAttributes([NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.thick.rawValue], range: range)
     }
 
-    /************************ Stroke Attribute ************************/
+    // MARK: - Stroke Attribute
+
     // Apply stroke on substring
     func applyStroke(color: UIColor, thickness: Int, subString: String) {
         if let range = self.string.range(of: subString) {
@@ -109,7 +130,8 @@ extension NSMutableAttributedString {
         self.addAttributes(strokeAttributes, range: range)
     }
 
-    /************************ Shadow Color Attribute ************************/
+    // MARK: - Shadow Color Attribute
+
     // Apply shadow color on substring
     func applyShadow(
         shadowColor: UIColor,
@@ -144,7 +166,8 @@ extension NSMutableAttributedString {
         self.addAttributes([NSAttributedString.Key.shadow: shadow], range: range)
     }
 
-    /************************ Paragraph Style  Attribute ************************/
+    // MARK: - Paragraph Style  Attribute
+
     // Apply paragraph style on substring
     func alignment(alignment: NSTextAlignment, subString: String) {
         if let range = self.string.range(of: subString) {

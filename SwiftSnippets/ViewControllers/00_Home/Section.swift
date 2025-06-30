@@ -7,6 +7,13 @@
 
 import Foundation
 
+struct Cell: Codable, TableViewCellConfigureDelegate {
+    let imageName: String
+    let title: String
+    let description: String
+    let className: String
+}
+
 struct Section: Codable {
     let title: String
     let cells: [Cell]
@@ -28,11 +35,4 @@ struct Section: Codable {
 
         return sections
     }
-}
-
-struct Cell: Codable, TableViewCellConfigureDelegate {
-    let imageName: String
-    let title: String
-    let description: String
-    let className: String
 }

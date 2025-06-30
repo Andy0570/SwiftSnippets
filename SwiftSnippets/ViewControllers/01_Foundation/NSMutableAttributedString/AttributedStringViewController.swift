@@ -15,7 +15,7 @@ import UIKit
 
  ### AttributedString
 
- 使用 iOS 15 的 AttributedString 创建样式化文本。
+ 使用 iOS 15 的 AttributedString 特性创建样式化文本。
  参考：<https://fatbobman.com/zh/posts/attributedstring/>
  */
 class AttributedStringViewController: UIViewController {
@@ -115,7 +115,7 @@ class AttributedStringViewController: UIViewController {
         let boldStringRange = attributedString.range(of: "AttributedString").require() // 获取指定字符串范围（Range）
         attributedString[boldStringRange].inlinePresentationIntent = .stronglyEmphasized // 设置粗体属性
         let linkStringRange = attributedString.range(of: "属性字符串").require()
-        attributedString[linkStringRange].link = URL(string: "https://fatbobman.com")! // 设置超链接属性
+        attributedString[linkStringRange].link = URL(string: "https://www.baidu.com").require() // 设置超链接属性
 
         // AttributedString -> NSAttributedString
         sixLabel.attributedText = NSAttributedString(attributedString)

@@ -96,6 +96,12 @@
         "title": "登录页面2",
         "description": "-",
         "className": "BayleafLoginViewController"
+      },
+      {
+          "imageName": "image",
+          "title": "自定义AlertView",
+          "description": "-",
+          "className": "CustomAlertHomeController"
       }
     ]
   },
