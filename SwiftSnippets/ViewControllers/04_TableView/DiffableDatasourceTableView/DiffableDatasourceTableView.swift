@@ -9,9 +9,9 @@ import UIKit
 
 /**
  使用 UITableView 建立 diffable 数据源。
+ 
  参考：
- <https://www.swiftjectivec.com/Diffable-Datasource-Tableview/>
- <https://jllnmercier.medium.com/swift-uitableviewdiffabledatasource-c8db02dec35a>
+ <https://www.notion.so/andy0570/UITableView-diffable-225973ced06c80aa98cedf6be5fd115b?source=copy_link>
  */
 
 // Diffable 数据源要求其底层模型必须遵守 Hashable 协议
@@ -40,11 +40,11 @@ extension VideoGame {
 
  typealias UITableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>.CellProvider = (_ tableView: UITableView, _ indexPath: IndexPath, _ itemIdentifier: ItemIdentifierType) -> UITableViewCell?
 
- Diffable 数据源在初始化时可能看起来有点令人生畏，所以我发现通过为你使用的每个数据源使用类型别名来阅读它会更容易。
+ Diffable DataSource 负责当前数据源配置，DataSourceSnapshot 负责变更后的数据源处理。
+ Diffable DataSource 通过调用自身 apply 方法将 DataSourceSnapshot 变更后的数据更新同步到 UITableView 或 UICollectionView 的 UI。
+ 
+ Diffable DataSource 在初始化时可能看起来有点令人生畏，所以我发现通过为你使用的每个数据源使用类型别名来阅读它会更容易。
  虽然这不是必需的，但我认为这里值得的。
-
- DiffableDataSource 负责当前数据源配置，DataSourceSnapshot 负责变更后的数据源处理。
- DiffableDataSource 通过调用自身 apply 方法将 DataSourceSnapshot 变更后的数据更新同步到 UITableView 或 UICollectionView 的 UI。
  */
 typealias TableDataSource = UITableViewDiffableDataSource<Int, VideoGame>
 
@@ -59,7 +59,6 @@ final class DiffableDatasourceTableView: UIViewController {
             cell.textLabel?.text = model.name
             return cell
         }
-
         return dataSource
     }()
 
@@ -73,7 +72,7 @@ final class DiffableDatasourceTableView: UIViewController {
         tableView.frame = view.bounds
         tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
-        // Diffable 数据源使用快照的概念。这就是它的易用性和强大的 diffing 的来源。
+        // Diffable 数据源使用快照的概念。这就是它的易用性和强大的来源。
         // 使用 snapshot 对 dataSource 进行差异化比对，进行动态更新。
         // 在这里，你只需要考虑现在应该如何对数据进行建模。在这种情况下，我们已经获得了第一次加载所需的数据，因此我们将传递所有内容并应用它：
         var snapshot = dataSource.snapshot()
