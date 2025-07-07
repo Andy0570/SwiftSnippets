@@ -214,6 +214,12 @@
         "title": "在 cell 上同时设置圆角和阴影",
         "description": "",
         "className": "CornerRadiusTableViewController"
+      },
+      {
+        "imageName": "image",
+        "title": "动态高度的 table footer view",
+        "description": "",
+        "className": "TableFooterViewController"
       }
     ]
   },
