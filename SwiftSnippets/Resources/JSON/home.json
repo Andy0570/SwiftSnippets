@@ -226,6 +226,12 @@
   {
     "title": "05_CollectionView",
     "cells": [
+        {
+          "imageName": "image",
+          "title": "FlickrSearch",
+          "description": "",
+          "className": "FlickrPhotosViewController"
+        },
       {
         "imageName": "image",
         "title": "自定义日历组件",

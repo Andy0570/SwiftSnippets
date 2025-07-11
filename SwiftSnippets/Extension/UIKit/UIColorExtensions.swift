@@ -17,6 +17,8 @@ extension UIColor {
 }
 
 extension UIColor {
+    static let themeColor = UIColor(red: 0.01, green: 0.41, blue: 0.22, alpha: 1.0)
+
     /// Generate Random Color.
     class func randomColor(randomAlpha: Bool = false) -> UIColor {
         let redValue = CGFloat(arc4random_uniform(255)) / 255.0
