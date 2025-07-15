@@ -232,6 +232,12 @@
           "description": "",
           "className": "FlickrPhotosViewController"
         },
+        {
+          "imageName": "image",
+          "title": "Pinterest 瀑布流布局",
+          "description": "",
+          "className": "PhotoStreamViewController"
+        },
       {
         "imageName": "image",
         "title": "自定义日历组件",

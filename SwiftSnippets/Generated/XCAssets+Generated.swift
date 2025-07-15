@@ -166,6 +166,7 @@ internal enum Asset {
     internal enum ModeratorsExplorer {
       internal static let seIcon = ImageAsset(name: "se_icon")
     }
+    internal static let pattern = ImageAsset(name: "Pattern")
     internal enum RaysBooks {
       internal static let expertswift = ImageAsset(name: "expertswift")
       internal static let git = ImageAsset(name: "git")
