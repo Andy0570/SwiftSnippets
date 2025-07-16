@@ -102,7 +102,13 @@
           "title": "自定义AlertView",
           "description": "-",
           "className": "CustomAlertHomeController"
-      }
+      },
+      {
+          "imageName": "image",
+          "title": "Model Presentation",
+          "description": "-",
+          "className": "CustomPresentingTableViewController"
+      },
     ]
   },
   {
