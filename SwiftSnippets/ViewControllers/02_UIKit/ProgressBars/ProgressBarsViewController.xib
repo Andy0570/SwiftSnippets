@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProgressBarsViewController" customModule="SwiftSnippets" customModuleProvider="target">
+            <connections>
+                <outlet property="blueColorSlider" destination="jYC-Lo-Sfx" id="0lP-K0-hE1"/>
+                <outlet property="blueGradientSlider" destination="Etu-Rw-9Hv" id="MSh-QK-gry"/>
+                <outlet property="gradientCircularProgressBar" destination="qsP-oU-nRs" id="l7e-kx-BdW"/>
+                <outlet property="gradientHorizontalBar" destination="7fO-Wu-wNq" id="PzO-zA-Jkr"/>
+                <outlet property="greenColorSlider" destination="nb8-xH-x4E" id="TiZ-kA-3JO"/>
+                <outlet property="greenGradientSlider" destination="Bad-ym-AVk" id="s8w-cD-5Mk"/>
+                <outlet property="horizontalBar" destination="Kuq-1G-Qc4" id="fin-Dn-HsS"/>
+                <outlet property="progressSlider" destination="WFH-wz-5s5" id="cjp-fp-IhV"/>
+                <outlet property="redColorSlider" destination="Kzl-B9-sIA" id="oog-Xy-DGq"/>
+                <outlet property="redGradientSlider" destination="xcb-jw-wEz" id="N0y-XB-Zi3"/>
+                <outlet property="ringBar" destination="L1d-Dk-1I0" id="4Iy-3Z-UNX"/>
+                <outlet property="rotatingProgressBar" destination="4Qm-3U-0nW" id="1cK-xo-bOx"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="C4w-Pn-whx">
+                    <rect key="frame" x="19.666666666666657" y="122.33333333333331" width="353.66666666666674" height="607.33333333333348"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="iAQ-E0-kWy" userLabel="Top Stack View">
+                            <rect key="frame" x="0.0" y="0.0" width="353.66666666666669" height="183"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kuq-1G-Qc4" userLabel="Horizontal Bar" customClass="PlainHorizontalProgressBar" customModule="SwiftSnippets" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="353.66666666666669" height="20"/>
+                                    <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="20" id="y15-iV-l2d"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                            <color key="value" red="0.98039215690000003" green="0.72941176470000002" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7fO-Wu-wNq" userLabel="Gradient Horizontal Bar" customClass="GradientHorizontalProgressBar" customModule="SwiftSnippets" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="45.000000000000014" width="353.66666666666669" height="20"/>
+                                    <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="20" id="JHH-e9-L3d"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                            <color key="value" red="0.98039215690000003" green="0.72941176470000002" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="gradientColor">
+                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="cen-47-T9m" userLabel="Top Horizonal Stack View">
+                                    <rect key="frame" x="0.0" y="90" width="353.66666666666669" height="93"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L1d-Dk-1I0" userLabel="Ring Bar" customClass="PlainCircularProgressBar" customModule="SwiftSnippets" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="92.666666666666671" height="93"/>
+                                            <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="L1d-Dk-1I0" secondAttribute="height" multiplier="1:1" id="8lJ-Lx-KA5"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                    <color key="value" red="0.98039215690000003" green="0.72941176470000002" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qsP-oU-nRs" userLabel="Gradient Circular Progress Bar" customClass="GradientCircularProgressBar" customModule="SwiftSnippets" customModuleProvider="target">
+                                            <rect key="frame" x="130.33333333333334" y="0.0" width="93" height="93"/>
+                                            <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="qsP-oU-nRs" secondAttribute="height" multiplier="1:1" id="oJ4-eB-ccI"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                    <color key="value" red="0.98039215690000003" green="0.72941176470000002" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="gradientColor">
+                                                    <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Qm-3U-0nW" userLabel="Rotating Progress Bar" customClass="RotatingCircularGradientProgressBar" customModule="SwiftSnippets" customModuleProvider="target">
+                                            <rect key="frame" x="261" y="0.0" width="92.666666666666686" height="93"/>
+                                            <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="4Qm-3U-0nW" secondAttribute="height" multiplier="1:1" id="hWC-ws-aLi"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                    <color key="value" red="0.98039215690000003" green="0.72941176470000002" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="gradientColor">
+                                                    <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ftf-EH-QJk" userLabel="Bottom Stack View">
+                            <rect key="frame" x="0.0" y="381.66666666666669" width="353.66666666666669" height="225.66666666666669"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gradient Colors:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BCZ-1W-e2r" userLabel="Gradient Colors:">
+                                    <rect key="frame" x="0.0" y="0.0" width="353.66666666666669" height="20.333333333333332"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="1ce-4k-r1L">
+                                    <rect key="frame" x="0.0" y="35.333333333333371" width="353.66666666666669" height="110"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6RC-sL-buW">
+                                            <rect key="frame" x="0.0" y="0.0" width="172" height="110"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="tWF-q2-I4i">
+                                                    <rect key="frame" x="0.0" y="0.0" width="172" height="30"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="R:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N7o-oX-luv" userLabel="R:">
+                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="255" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="Kzl-B9-sIA" userLabel="Red Color Slider">
+                                                            <rect key="frame" x="8" y="0.0" width="166" height="31"/>
+                                                            <color key="tintColor" systemColor="systemRedColor"/>
+                                                            <connections>
+                                                                <action selector="colorChanged:" destination="-1" eventType="valueChanged" id="EaB-cK-Qvr"/>
+                                                            </connections>
+                                                        </slider>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="dz2-na-2ZJ">
+                                                    <rect key="frame" x="0.0" y="40" width="172" height="30"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="G:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SVP-R5-pWG" userLabel="G:">
+                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="186" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="nb8-xH-x4E" userLabel="Green Color Slider">
+                                                            <rect key="frame" x="8" y="0.0" width="166" height="31"/>
+                                                            <color key="tintColor" systemColor="systemGreenColor"/>
+                                                            <connections>
+                                                                <action selector="colorChanged:" destination="-1" eventType="valueChanged" id="0zi-8b-GJA"/>
+                                                            </connections>
+                                                        </slider>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="44y-mi-lKW">
+                                                    <rect key="frame" x="0.0" y="80" width="172" height="30"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="B:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jzM-Gy-6c3" userLabel="B:">
+                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="218" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="jYC-Lo-Sfx" userLabel="Blue Color Slider">
+                                                            <rect key="frame" x="8" y="0.0" width="166" height="31"/>
+                                                            <color key="tintColor" systemColor="systemBlueColor"/>
+                                                            <connections>
+                                                                <action selector="colorChanged:" destination="-1" eventType="valueChanged" id="9xY-cf-dH5"/>
+                                                            </connections>
+                                                        </slider>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                        </stackView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nzR-mS-vQF">
+                                            <rect key="frame" x="182" y="0.0" width="171.66666666666663" height="110"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="DAm-rX-rXA">
+                                                    <rect key="frame" x="0.0" y="0.0" width="171.66666666666666" height="30"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="R:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xj9-mr-Znb">
+                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="255" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="xcb-jw-wEz">
+                                                            <rect key="frame" x="8" y="0.0" width="165.66666666666666" height="31"/>
+                                                            <color key="tintColor" systemColor="systemRedColor"/>
+                                                            <connections>
+                                                                <action selector="colorChanged:" destination="-1" eventType="valueChanged" id="ezV-wi-yMw"/>
+                                                            </connections>
+                                                        </slider>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="UOx-dm-Gxf">
+                                                    <rect key="frame" x="0.0" y="40" width="171.66666666666666" height="30"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="G:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h1i-KC-4eA">
+                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="255" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="Bad-ym-AVk">
+                                                            <rect key="frame" x="8" y="0.0" width="165.66666666666666" height="31"/>
+                                                            <color key="tintColor" systemColor="systemGreenColor"/>
+                                                            <connections>
+                                                                <action selector="colorChanged:" destination="-1" eventType="valueChanged" id="Wd0-Yp-p9c"/>
+                                                            </connections>
+                                                        </slider>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="pSa-fq-ASQ">
+                                                    <rect key="frame" x="0.0" y="80" width="171.66666666666666" height="30"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="B:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IB3-9S-z24">
+                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="255" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="Etu-Rw-9Hv">
+                                                            <rect key="frame" x="8" y="0.0" width="165.66666666666666" height="31"/>
+                                                            <color key="tintColor" systemColor="systemBlueColor"/>
+                                                            <connections>
+                                                                <action selector="colorChanged:" destination="-1" eventType="valueChanged" id="PV4-TJ-D2U"/>
+                                                            </connections>
+                                                        </slider>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                </stackView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Progress:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pvh-qJ-tbS" userLabel="Progress:">
+                                    <rect key="frame" x="0.0" y="160.33333333333337" width="353.66666666666669" height="20.333333333333343"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="WFH-wz-5s5" userLabel="Progress Slider">
+                                    <rect key="frame" x="-2" y="195.66666666666663" width="357.66666666666669" height="31"/>
+                                    <connections>
+                                        <action selector="progressChanged:" destination="-1" eventType="valueChanged" id="g0w-VQ-uUd"/>
+                                    </connections>
+                                </slider>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="C4w-Pn-whx" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="KiA-Vd-cvu"/>
+                <constraint firstItem="C4w-Pn-whx" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="bp2-J5-VqA"/>
+                <constraint firstItem="C4w-Pn-whx" firstAttribute="height" secondItem="fnl-2z-Ty3" secondAttribute="height" multiplier="0.8" id="cz0-kY-pJo"/>
+                <constraint firstItem="C4w-Pn-whx" firstAttribute="width" secondItem="fnl-2z-Ty3" secondAttribute="width" multiplier="0.9" id="m6y-pg-ATc"/>
+                <constraint firstItem="cen-47-T9m" firstAttribute="height" secondItem="fnl-2z-Ty3" secondAttribute="height" multiplier="0.122249" id="wrA-0W-8O8"/>
+            </constraints>
+            <point key="canvasLocation" x="433" y="20"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

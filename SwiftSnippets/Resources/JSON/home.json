@@ -63,6 +63,12 @@
       },
       {
         "imageName": "image",
+        "title": "自定义动画 Progress Bar",
+        "description": "-",
+        "className": "ProgressBarsViewController"
+      },
+      {
+        "imageName": "image",
         "title": "自定义控件",
         "description": "-",
         "className": "CustomControlViewController"
