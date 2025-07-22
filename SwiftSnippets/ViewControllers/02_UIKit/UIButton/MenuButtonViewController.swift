@@ -44,6 +44,7 @@ class MenuButtonViewController: UIViewController {
     private weak var menuButton: MenuButton!
     private weak var submitButton: UIButton!
     private var publishImageButton: UIButton!
+    private var bluetoothButton: UIButton!
 
     private let buttonPanelView = ButtonPanelView()
     private let label = UILabel()
@@ -61,9 +62,13 @@ class MenuButtonViewController: UIViewController {
 
     /// 汽车按钮
     private lazy var carButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+
         var config = UIButton.Configuration.filled()
         config.buttonSize = .large
         config.cornerStyle = .capsule // 按钮圆角样式，胶囊
+
         config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer({ incoming in
             var outgoing = incoming
             outgoing.font = .preferredFont(forTextStyle: .headline)
@@ -74,9 +79,6 @@ class MenuButtonViewController: UIViewController {
         config.image = UIImage(systemName: "car", withConfiguration: UIImage.SymbolConfiguration(scale: .large))
         config.imagePlacement = .trailing
         config.imagePadding = 8.0
-
-        let button = UIButton(type: .system)
-        button.translatesAutoresizingMaskIntoConstraints = false
 
         /**
          要改变按钮的外观以响应状态的变化，需要注册一个配置更新处理程序。
@@ -263,6 +265,9 @@ class MenuButtonViewController: UIViewController {
         // 发图文、发视频
         setupPublishImageButton()
 
+        // 蓝牙设置按钮
+        setupBluetoothButton()
+
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Tap!"
         label.sizeToFit()
@@ -411,7 +416,7 @@ class MenuButtonViewController: UIViewController {
 
         NSLayoutConstraint.activate([
             submit.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            submit.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
+            submit.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -80)
         ])
     }
 
@@ -479,6 +484,52 @@ class MenuButtonViewController: UIViewController {
             button.setTitleColor(UIColor.black, for: .normal)
             button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
             button.layer.cornerRadius = 25.0
+            button.layer.masksToBounds = true
+        }
+
+        button.setTitle(title, for: .normal)
+        return button
+    }
+
+    private func setupBluetoothButton() {
+        bluetoothButton = makeBluetoothButton(title: "Enable Bluetooth")
+        view.addSubview(bluetoothButton)
+
+        NSLayoutConstraint.activate([
+            bluetoothButton.topAnchor.constraint(equalTo: publishImageButton.bottomAnchor, constant: 10),
+            bluetoothButton.centerXAnchor.constraint(equalTo: publishImageButton.centerXAnchor)
+        ])
+    }
+
+    // 通过工厂方法创建按钮
+    private func makeBluetoothButton(title: String) -> UIButton {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+
+        if #available(iOS 15.0, *) {
+            var config = UIButton.Configuration.filled()
+            config.buttonSize = .large
+            config.cornerStyle = .medium
+
+            // 配置按钮标题样式
+            config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer({ incoming in
+                var outgoing = incoming
+                outgoing.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+                return outgoing
+            })
+
+            // 配置 SF 图片
+            config.image = UIImage(systemName: "microphone")
+            config.imagePadding = 4
+            config.imagePlacement = .leading
+            config.preferredSymbolConfigurationForImage = UIImage.SymbolConfiguration(scale: .default)
+
+            button.configuration = config
+        } else {
+            button.backgroundColor = UIColor.systemBlue
+            button.setTitleColor(UIColor.white, for: .normal)
+            button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+            button.layer.cornerRadius = 8
             button.layer.masksToBounds = true
         }
 
