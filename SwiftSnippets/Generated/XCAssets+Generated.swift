@@ -176,6 +176,7 @@ internal enum Asset {
     }
     internal static let backgroundBayleaf = ImageAsset(name: "background_Bayleaf")
     internal static let backgroundRwdevcon = ImageAsset(name: "background_rwdevcon")
+    internal static let bluetoothLine = ImageAsset(name: "bluetooth_line")
     internal static let kanagawa = ImageAsset(name: "kanagawa")
   }
 }

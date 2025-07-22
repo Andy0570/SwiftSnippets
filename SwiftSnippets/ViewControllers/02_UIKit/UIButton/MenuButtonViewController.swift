@@ -498,16 +498,18 @@ class MenuButtonViewController: UIViewController {
         NSLayoutConstraint.activate([
             bluetoothButton.topAnchor.constraint(equalTo: publishImageButton.bottomAnchor, constant: 10),
             bluetoothButton.centerXAnchor.constraint(equalTo: publishImageButton.centerXAnchor)
+//            bluetoothButton.widthAnchor.constraint(equalToConstant: 168),
+//            bluetoothButton.heightAnchor.constraint(equalToConstant: 48)
         ])
     }
 
     // 通过工厂方法创建按钮
     private func makeBluetoothButton(title: String) -> UIButton {
-        let button = UIButton(type: .system)
-        button.translatesAutoresizingMaskIntoConstraints = false
-
         if #available(iOS 15.0, *) {
+            let button = UIButton(type: .system)
+            button.translatesAutoresizingMaskIntoConstraints = false
             var config = UIButton.Configuration.filled()
+            config.title = title
             config.buttonSize = .large
             config.cornerStyle = .medium
 
@@ -519,22 +521,28 @@ class MenuButtonViewController: UIViewController {
             })
 
             // 配置 SF 图片
-            config.image = UIImage(systemName: "microphone")
+            config.image = UIImage(named: "bluetooth_line")
             config.imagePadding = 4
             config.imagePlacement = .leading
-            config.preferredSymbolConfigurationForImage = UIImage.SymbolConfiguration(scale: .default)
 
             button.configuration = config
+
+            return button
         } else {
+            let button = UIButton(type: .custom)
+            button.translatesAutoresizingMaskIntoConstraints = false
+
             button.backgroundColor = UIColor.systemBlue
+            button.setTitle(title, for: .normal)
             button.setTitleColor(UIColor.white, for: .normal)
             button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+            button.setImage(UIImage(named: "bluetooth_line"), for: .normal)
             button.layer.cornerRadius = 8
             button.layer.masksToBounds = true
-        }
+            button.contentEdgeInsets = UIEdgeInsets(top: 13, left: 15, bottom: 13, right: 15)
 
-        button.setTitle(title, for: .normal)
-        return button
+            return button
+        }
     }
 
     // MARK: - Actions
