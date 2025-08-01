@@ -115,6 +115,12 @@
           "description": "-",
           "className": "CustomPresentingTableViewController"
       },
+      {
+          "imageName": "image",
+          "title": "在 UIView 上画虚线边框",
+          "description": "-",
+          "className": "UIViewDashedBorderController"
+      },
     ]
   },
   {

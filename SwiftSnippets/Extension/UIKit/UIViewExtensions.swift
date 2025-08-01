@@ -20,6 +20,7 @@ extension UIView {
         shapeLayer.strokeColor = color.cgColor
         shapeLayer.lineWidth = width
         shapeLayer.lineJoin = CAShapeLayerLineJoin.round
+        // 虚线模式，第一个数字是实线长度，第二个数字是空白长度
         shapeLayer.lineDashPattern = [6, 3]
         shapeLayer.path = UIBezierPath(roundedRect: shapeRect, cornerRadius: cornerRadius).cgPath
 

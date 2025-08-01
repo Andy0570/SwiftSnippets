@@ -64,6 +64,8 @@ class HRMViewController: UIViewController {
     }
 }
 
+// MARK: - CBCentralManagerDelegate
+
 extension HRMViewController: CBCentralManagerDelegate {
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         switch central.state {
