@@ -45,6 +45,7 @@ class MenuButtonViewController: UIViewController {
     private weak var submitButton: UIButton!
     private var publishImageButton: UIButton!
     private var bluetoothButton: UIButton!
+    private var detailButton: UIButton!
 
     private let buttonPanelView = ButtonPanelView()
     private let label = UILabel()
@@ -268,6 +269,9 @@ class MenuButtonViewController: UIViewController {
         // 蓝牙设置按钮
         setupBluetoothButton()
 
+        // “Detail >” 按钮
+        setupDetailButton()
+
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Tap!"
         label.sizeToFit()
@@ -440,6 +444,7 @@ class MenuButtonViewController: UIViewController {
         ])
     }
 
+    // 发图文
     private func setupPublishImageButton() {
         let imageBtnColor = UIColor(red: 84 / 255.0, green: 234 / 255.0, blue: 222 / 255.0, alpha: 1.0)
         publishImageButton = makePublishButton(title: "发图文", systenImageName: "photo", backgroundColor: imageBtnColor)
@@ -544,6 +549,69 @@ class MenuButtonViewController: UIViewController {
             return button
         }
     }
+
+    private func setupDetailButton() {
+        detailButton = makeForDetailButton(with: "Detail")
+        view.addSubview(detailButton)
+
+        NSLayoutConstraint.activate([
+            detailButton.topAnchor.constraint(equalTo: bluetoothButton.bottomAnchor, constant: 10),
+            detailButton.centerXAnchor.constraint(equalTo: bluetoothButton.centerXAnchor)
+        ])
+    }
+
+    // 使用自定义图片创建 “Detail >” 按钮
+    // FIXME: 存在的问题，如何调整图片尺寸？换自带 padding 的图片资源，或者image用 > 代替
+    private func makeForDetailButton(with title: String) -> UIButton {
+        var config = UIButton.Configuration.plain()
+        config.buttonSize = .small
+
+        // 配置按钮标题样式
+        config.title = title
+        config.baseForegroundColor = UIColor(hex: "#9FA2AC")
+        config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer({ incoming in
+            var outgoing = incoming
+            outgoing.font = UIFont.systemFont(ofSize: 11)
+            return outgoing
+        })
+
+        // 配置图片
+        config.image = UIImage(named: "arrow-right-s")?.withTintColor(UIColor(hex: "#9FA2AC"))
+        config.imagePlacement = .trailing
+
+        let button = UIButton(configuration: config)
+        button.translatesAutoresizingMaskIntoConstraints = false
+
+        return button
+    }
+
+    // 使用系统图片创建 “Detail >” 按钮
+//    private func makeForDetailButton(with title: String) -> UIButton {
+//        var config = UIButton.Configuration.plain()
+//        config.buttonSize = .small
+//
+//        // 配置按钮标题样式
+//        config.title = title
+//        config.baseForegroundColor = UIColor(hex: "#9FA2AC")
+//        config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer({ incoming in
+//            var outgoing = incoming
+//            outgoing.font = UIFont.systemFont(ofSize: 11)
+//            return outgoing
+//        })
+//
+//        // 配置图片
+//        config.image = UIImage(systemName: "chevron.right")
+//        // 设置图像大小
+//        config.preferredSymbolConfigurationForImage = UIImage.SymbolConfiguration(pointSize: 8)
+//        // 图像位置与文本间距
+//        // config.imagePadding = 1
+//        config.imagePlacement = .trailing
+//
+//        let button = UIButton(configuration: config)
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//
+//        return button
+//    }
 
     // MARK: - Actions
 

@@ -369,9 +369,9 @@
       },
       {
         "imageName": "image",
-        "title": "title2",
-        "description": "description",
-        "className": ""
+        "title": "交互式动画",
+        "description": "UIViewPropertyAnimator",
+        "className": "InteractiveAnimationViewController"
       }
     ]
   },

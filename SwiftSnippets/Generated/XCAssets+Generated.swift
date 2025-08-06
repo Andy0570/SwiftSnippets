@@ -163,6 +163,10 @@ internal enum Asset {
       internal static let sky = ImageAsset(name: "sky")
       internal static let toxic = ImageAsset(name: "toxic")
     }
+    internal enum InteractiveAnimations {
+      internal static let animationBgNormal = ImageAsset(name: "animation_bg_normal")
+      internal static let reviewsBgNormal = ImageAsset(name: "reviews_bg_normal")
+    }
     internal enum ModeratorsExplorer {
       internal static let seIcon = ImageAsset(name: "se_icon")
     }
@@ -174,6 +178,7 @@ internal enum Asset {
       internal static let pasi = ImageAsset(name: "pasi")
       internal static let swiftui = ImageAsset(name: "swiftui")
     }
+    internal static let arrowRightS = ImageAsset(name: "arrow-right-s")
     internal static let backgroundBayleaf = ImageAsset(name: "background_Bayleaf")
     internal static let backgroundRwdevcon = ImageAsset(name: "background_rwdevcon")
     internal static let bluetoothLine = ImageAsset(name: "bluetooth_line")
