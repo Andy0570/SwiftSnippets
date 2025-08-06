@@ -33,47 +33,46 @@ import CoreBluetooth
  bluetoothManager.restartScanning()
  */
 class BluetoothManager: NSObject, CBCentralManagerDelegate {
-    
     // MARK: - Properties
     private var centralManager: CBCentralManager!
     private var scanTimer: Timer?
     private var scanning: Bool = false
-    
+
     // 蓝牙状态变化的回调
     var didUpdateBluetoothState: ((CBManagerState) -> Void)?
     // 扫描到蓝牙外围设备的回调
-    var didDiscoverPeripheral: ((CBPeripheral, [String : Any], Int) -> Void)?
+    var didDiscoverPeripheral: ((CBPeripheral, [String: Any], Int) -> Void)?
     // 蓝牙扫描停止后的回调
     var didStopScan: ((Bool) -> Void)?
-    
+
     override init() {
         super.init()
         centralManager = CBCentralManager(delegate: self, queue: nil)
     }
-    
+
     // 开始扫描
     func startScanning() {
         guard centralManager.state == .poweredOn else {
             printLog("蓝牙未打开")
             return
         }
-        
+
         if scanning {
             printLog("扫描已经在进行中")
             return
         }
-        
+
         scanning = true
-        
+
         // 开始扫描所有设备
-        centralManager.scanForPeripherals(withServices: nil, options: [CBCentralManagerScanOptionAllowDuplicatesKey:true])
+        centralManager.scanForPeripherals(withServices: nil, options: [CBCentralManagerScanOptionAllowDuplicatesKey: true])
         // centralManager.scanForPeripherals(withServices: nil)
         printLog("开始扫描蓝牙设备...")
-        
+
         // 设置定时器，10 秒后自动停止扫描
         scanTimer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(stopScanning(_:)), userInfo: nil, repeats: false)
     }
-    
+
     /// 停止扫描
     /// - Parameter isUserInitiated: 区分当前蓝牙扫描是用户主动停止的，还是由于计时器到期而被动停止的。
     @objc func stopScanning(_ isUserInitiated: Bool = false) {
@@ -85,18 +84,18 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate {
             didStopScan?(isUserInitiated)
         }
     }
-    
+
     // 重新发起扫描
     func restartScanning() {
         stopScanning()
         startScanning()
     }
-    
+
     // MARK: - CBCentralManagerDelegate
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         // 获取蓝牙状态变化的回调
         didUpdateBluetoothState?(central.state)
-        
+
         switch central.state {
         case .poweredOn:
             print("蓝牙已开启")
@@ -114,9 +113,9 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate {
             print("遇到未知的蓝牙状态")
         }
     }
-    
+
     // 发现设备时回调
-    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
+    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String: Any], rssi RSSI: NSNumber) {
         // 传递发现的设备
         didDiscoverPeripheral?(peripheral, advertisementData, RSSI.intValue)
     }
