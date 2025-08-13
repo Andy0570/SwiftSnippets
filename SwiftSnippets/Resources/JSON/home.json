@@ -372,6 +372,12 @@
         "title": "交互式动画",
         "description": "UIViewPropertyAnimator",
         "className": "InteractiveAnimationViewController"
+      },
+      {
+        "imageName": "image",
+        "title": "CAEmitterLayer 示例代码",
+        "description": "CAEmitterLayer",
+        "className": "CAEmitterLayerUsageController"
       }
     ]
   },

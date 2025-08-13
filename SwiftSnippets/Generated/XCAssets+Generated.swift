@@ -75,8 +75,8 @@ internal enum Asset {
       internal static let overlay = ImageAsset(name: "overlay")
     }
     internal enum CustomControl {
-      internal static let download = ImageAsset(name: "Download")
       internal static let checkmarks = ImageAsset(name: "checkmarks")
+      internal static let download = ImageAsset(name: "download")
       internal static let likeFill = ImageAsset(name: "like_fill")
       internal static let likeNormal = ImageAsset(name: "like_normal")
       internal static let navBarMore = ImageAsset(name: "navBar_more")
@@ -179,9 +179,19 @@ internal enum Asset {
       internal static let swiftui = ImageAsset(name: "swiftui")
     }
     internal static let arrowRightS = ImageAsset(name: "arrow-right-s")
-    internal static let backgroundBayleaf = ImageAsset(name: "background_Bayleaf")
+    internal static let backgroundBayleaf = ImageAsset(name: "background_bayleaf")
     internal static let backgroundRwdevcon = ImageAsset(name: "background_rwdevcon")
     internal static let bluetoothLine = ImageAsset(name: "bluetooth_line")
+    internal static let good030x30 = ImageAsset(name: "good0_30x30")
+    internal static let good130x30 = ImageAsset(name: "good1_30x30")
+    internal static let good230x30 = ImageAsset(name: "good2_30x30")
+    internal static let good330x30 = ImageAsset(name: "good3_30x30")
+    internal static let good430x30 = ImageAsset(name: "good4_30x30")
+    internal static let good530x30 = ImageAsset(name: "good5_30x30")
+    internal static let good630x30 = ImageAsset(name: "good6_30x30")
+    internal static let good730x30 = ImageAsset(name: "good7_30x30")
+    internal static let good830x30 = ImageAsset(name: "good8_30x30")
+    internal static let good930x30 = ImageAsset(name: "good9_30x30")
     internal static let kanagawa = ImageAsset(name: "kanagawa")
   }
 }
