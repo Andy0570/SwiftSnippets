@@ -14,8 +14,8 @@ private enum State {
 extension State {
     var opposite: State {
         switch self {
-            case .open: return .closed
-            case .closed: return .open
+        case .open: return .closed
+        case .closed: return .open
         }
     }
 }

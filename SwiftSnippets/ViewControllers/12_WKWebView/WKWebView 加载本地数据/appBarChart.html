@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>barChart</title>
+    <meta
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+      name="viewport"
+    />
+    <script src="./echarts.min.js"></script>
+  </head>
+  <style>
+    body {
+      margin: 0px;
+      padding: 0px;
+      background: transparent;
+    }
+
+    .wrap {
+      width: 100%;
+      height: 90px;
+      overflow: hidden;
+    }
+
+    #barChart {
+      width: 100%;
+      height: 100%;
+    }
+
+    .tipRow {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 5px;
+      font-size: 12px;
+    }
+
+    .tipRow font:first-of-type {
+      margin-right: 6px;
+    }
+    #barChart canvas {
+      background: transparent !important;
+    }
+  </style>
+
+  <body>
+    <div class="wrap">
+      <div id="barChart"></div>
+    </div>
+  </body>
+  <script type="text/javascript">
+    var barDataChart = null;
+    barDataChart = echarts.init(document.getElementById("barChart"));
+    let productBarData = {
+      color: "#198038",
+      barData: [
+        {
+          index: "27",
+          value: "12.8",
+        },
+        {
+          index: "28",
+          value: "12",
+        },
+        {
+          index: "29",
+          value: "11",
+        },
+        {
+          index: "30",
+          value: "15",
+        },
+        {
+          index: "31",
+          value: "30",
+        },
+        {
+          index: "1",
+          value: "18",
+        },
+        {
+          index: "2",
+          value: "12.8",
+        },
+      ],
+    };
+
+    // echartsBarList(JSON.stringify(productBarData));
+
+    window.echarts = this.echartsBarList;
+    function echartsBarList(arg) {
+      // 通过 evaluateJavaScript 传递 JSON 字符串时，JavaScript 会自动将其解析成对象
+      // var arg = JSON.parse(arr);
+      let seriesData = [];
+      let colorList =productBarData.color
+      let XDataName = arg.barData.map((o) => o.index);
+      seriesData.push({
+        type: "bar",
+        stack: "total",
+        barWidth: 7,
+        itemStyle: {
+          barBorderRadius: [2, 2, 0, 0], // 这会使柱子的顶部呈现圆角效果
+        },
+        data: arg.barData.map((o) => o.value),
+      });
+      barDataChart.setOption(
+        {
+          color: colorList,
+          grid: {
+            left: 0,
+            right: 0,
+            top: 30,
+            bottom: 0,
+            containLabel: true,
+          },
+          xAxis: {
+            type: "category",
+            data: XDataName,
+            axisTick: {
+              show: false,
+            },
+            axisLine: {
+              show: true,
+              lineStyle: {
+                type: "none",
+                color: "rgba(135, 141, 150, 0.32)",
+              },
+            },
+            splitLine: {
+              show: false,
+            },
+            axisLabel: {
+              formatter: function (value, index) {
+                if (index === XDataName.length - 1) {
+                  return "{last|" + value + "}";
+                } else {
+                  return value;
+                }
+              },
+              rich: {
+                last: {
+                  color: "#002D9C",
+                  backgroundColor: "rgba(0, 67, 206, 0.08)",
+                  width: 20,
+                  height: 20,
+                  borderRadius: 20,
+                },
+              },
+              margin: 4,
+              fontWeight: 400,
+              fontSize: 11,
+              color: "#535762",
+              interval: 0,
+              lineHeight: 20,
+            },
+          },
+          yAxis: {
+            type: "value",
+            name: "",
+            axisTick: {
+              show: false,
+            },
+            axisLine: {
+              show: false,
+            },
+            splitLine: {
+              show: false,
+            },
+            axisLabel: {
+              show: false,
+            },
+          },
+          series: seriesData,
+        },
+        true
+      );
+      window.addEventListener("resize", () => {
+        barDataChart.resize();
+      });
+    }
+  </script>
+</html>
