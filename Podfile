@@ -14,6 +14,7 @@ target 'SwiftSnippets' do
 
   # 图片
   pod 'Kingfisher', '~> 8.1.1'
+  pod 'PocketSVG', '~> 2.7.3'
 
   # UI动画
   pod 'Hero', '~> 1.6.3'

@@ -435,6 +435,29 @@
         "title": "SPPermissions",
         "description": "-",
         "className": "PermissionsViewController"
+      },
+      {
+        "imageName": "image",
+        "title": "PocketSVG",
+        "description": "-",
+        "className": "PocketSVGUsageController"
+      }
+    ]
+  },
+  {
+    "title": "12_WKWebView",
+    "cells": [
+      {
+        "imageName": "image",
+        "title": "WKWebView 加载远程数据",
+        "description": "-",
+        "className": "WebViewTestController"
+      },
+      {
+        "imageName": "image",
+        "title": "WKWebView 加载本地数据",
+        "description": "-",
+        "className": "WebViewTest2Controller"
       }
     ]
   }
