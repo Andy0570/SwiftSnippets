@@ -6,10 +6,10 @@ PODS:
   - CHTCollectionViewWaterfallLayout/Swift (0.9.10)
   - FaveButton (3.2.1)
   - GDPerformanceView-Swift (2.1.1)
-  - Hero (1.6.3)
+  - Hero (1.6.4)
   - HGRippleRadarView (0.1.2)
   - Hue (5.0.0)
-  - Kingfisher (8.1.3)
+  - Kingfisher (8.1.4)
   - LicensePlist (3.24.11)
   - PocketSVG (2.7.3)
   - Siren (6.1.3)
@@ -44,10 +44,9 @@ PODS:
   - SwifterSwift/SwiftStdlib (7.0.0)
   - SwifterSwift/UIKit (7.0.0)
   - SwifterSwift/WebKit (7.0.0)
-  - SwiftGen (6.6.3)
-  - SwiftMessages (10.0.1):
-    - SwiftMessages/App (= 10.0.1)
-  - SwiftMessages/App (10.0.1)
+  - SwiftMessages (10.0.2):
+    - SwiftMessages/App (= 10.0.2)
+  - SwiftMessages/App (10.0.2)
   - SwiftyJSON (5.0.2)
   - ViewAnimator (3.1.0)
 
@@ -65,7 +64,6 @@ DEPENDENCIES:
   - PocketSVG (~> 2.7.3)
   - Siren
   - SwifterSwift (~> 7.0.0)
-  - SwiftGen (~> 6.6.3)
   - SwiftMessages (~> 10.0.1)
   - SwiftyJSON (~> 5.0.2)
   - ViewAnimator (~> 3.1.0)
@@ -85,7 +83,6 @@ SPEC REPOS:
     - PocketSVG
     - Siren
     - SwifterSwift
-    - SwiftGen
     - SwiftMessages
     - SwiftyJSON
     - ViewAnimator
@@ -96,19 +93,18 @@ SPEC CHECKSUMS:
   CHTCollectionViewWaterfallLayout: b989a459788d7657ac010e03bc0f7eedca95a420
   FaveButton: 93cfebf6030336fa7653fad2068c3152ed668b39
   GDPerformanceView-Swift: 22d964fe40b19e3d914dba2586237d064de8fd77
-  Hero: 419d43384355b3168512bd8ac6a33aadd3dc575b
+  Hero: 473a0143017e1371d050fcbedb67d317925097f2
   HGRippleRadarView: 5379e27634c09222ebc836671c7425ad7b257cc4
   Hue: c129cb67be7d093a82bbbc30ce8a96757bf6f37a
-  Kingfisher: f2af9028b16baf9dc6c07c570072bc41cbf009ef
+  Kingfisher: a5cc3d8689cd40d7cb2edfa67a5ede0b53122813
   LicensePlist: e8b5c7b30a914b92b83ffd78ded5af057621ba64
   PocketSVG: ca3bc53ea8d68336ba830c47b2e547790507b901
   Siren: c0f6012f61196b73455202db07730f6454a4beb0
   SwifterSwift: e9caf990fc72e835432280755d1f4c43f2a483d5
-  SwiftGen: 4993cbf71cbc4886f775e26f8d5c3a1188ec9f99
-  SwiftMessages: 759b4a0bf5c3a116a0d7e8a34b098ba83c458625
+  SwiftMessages: bfefe945bc05ce7cd328303d53d0d1849e29109d
   SwiftyJSON: f5b1bf1cd8dd53cd25887ac0eabcfd92301c6a5a
   ViewAnimator: a9ceed80266e00fd435ec4fb99b2df64d580d0e4
 
-PODFILE CHECKSUM: 29e724149d19f96600c7b0709d201cc4efbb1e49
+PODFILE CHECKSUM: f4c4a6ce6c5eb417f702f75ddcfdc77538b08b1d
 
 COCOAPODS: 1.16.2

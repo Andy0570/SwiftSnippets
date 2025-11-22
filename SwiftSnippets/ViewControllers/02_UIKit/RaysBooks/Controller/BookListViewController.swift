@@ -101,7 +101,7 @@ final class BookListViewController: UIViewController {
         applySnapshot(animatingDifferences: false)
     }
 
-    func toggleCartStatus(for book: Book) -> Bool {
+    private func toggleCartStatus(for book: Book) -> Bool {
         if let index = booksInCart.firstIndex(of: book.id) {
             booksInCart.remove(at: index)
         } else {
@@ -111,7 +111,7 @@ final class BookListViewController: UIViewController {
         return isInCart(book: book)
     }
 
-    func isInCart(book: Book) -> Bool {
+    private func isInCart(book: Book) -> Bool {
         return booksInCart.contains(book.id)
     }
 }
@@ -162,11 +162,8 @@ extension BookListViewController {
             )
 
             let item = NSCollectionLayoutItem(layoutSize: size)
-
             let group = NSCollectionLayoutGroup.vertical(layoutSize: size, subitem: item, count: 1)
-
             let section = NSCollectionLayoutSection(group: group)
-
             return section
         }
 

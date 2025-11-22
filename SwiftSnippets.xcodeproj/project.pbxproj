@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		219CA3580AB0B0479B4967E3 /* Pods_SwiftSnippets_SwiftSnippetsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BCBAF6C2733D457CA9B0D41 /* Pods_SwiftSnippets_SwiftSnippetsUITests.framework */; };
-		229A87832D015FDC0010CAAA /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = 229A87822D015FDC0010CAAA /* swiftgen.yml */; };
 		229A88C62D01931D0010CAAA /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 229A88C52D01931D0010CAAA /* .swiftlint.yml */; };
 		32EA0B4929F57F385C6F6B67 /* Pods_SwiftSnippetsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 592232381CD479FDE2CF58B4 /* Pods_SwiftSnippetsTests.framework */; };
 		ECDA36AB5F03D790A5F60D7A /* Pods_SwiftSnippets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 990F748CEB7C7E223DACE628 /* Pods_SwiftSnippets.framework */; };
@@ -36,7 +35,6 @@
 		2249BF3B2CEDA9670016B93B /* SwiftSnippets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftSnippets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2249BF512CEDA96D0016B93B /* SwiftSnippetsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftSnippetsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2249BF5B2CEDA96D0016B93B /* SwiftSnippetsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftSnippetsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		229A87822D015FDC0010CAAA /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		229A88C52D01931D0010CAAA /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		4BCBAF6C2733D457CA9B0D41 /* Pods_SwiftSnippets_SwiftSnippetsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftSnippets_SwiftSnippetsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		51F1D47BC5F5BC93D476B1A3 /* Pods-SwiftSnippets.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftSnippets.release.xcconfig"; path = "Target Support Files/Pods-SwiftSnippets/Pods-SwiftSnippets.release.xcconfig"; sourceTree = "<group>"; };
@@ -111,13 +109,12 @@
 			isa = PBXGroup;
 			children = (
 				229A88C52D01931D0010CAAA /* .swiftlint.yml */,
-				229A87822D015FDC0010CAAA /* swiftgen.yml */,
+				60B661F8E885DB6FF5F32C4A /* Frameworks */,
+				C80F399AE9FF07BB3C26B23A /* Pods */,
+				2249BF3C2CEDA9670016B93B /* Products */,
 				220659DD2CF028CB002B4E72 /* SwiftSnippets */,
 				2249BF542CEDA96D0016B93B /* SwiftSnippetsTests */,
 				2249BF5E2CEDA96D0016B93B /* SwiftSnippetsUITests */,
-				2249BF3C2CEDA9670016B93B /* Products */,
-				C80F399AE9FF07BB3C26B23A /* Pods */,
-				60B661F8E885DB6FF5F32C4A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -162,7 +159,6 @@
 			buildConfigurationList = 2249BF642CEDA96D0016B93B /* Build configuration list for PBXNativeTarget "SwiftSnippets" */;
 			buildPhases = (
 				9B26A010EED90BC0F0D2D005 /* [CP] Check Pods Manifest.lock */,
-				229A87812D015F390010CAAA /* SwiftGen */,
 				2249BF372CEDA9660016B93B /* Sources */,
 				229A88C42D018F070010CAAA /* SwiftLint */,
 				2249BF382CEDA9660016B93B /* Frameworks */,
@@ -277,7 +273,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				229A88C62D01931D0010CAAA /* .swiftlint.yml in Resources */,
-				229A87832D015FDC0010CAAA /* swiftgen.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,25 +293,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		229A87812D015F390010CAAA /* SwiftGen */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = SwiftGen;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [[ -f \"${PODS_ROOT}/SwiftGen/bin/swiftgen\" ]]; then\n  \"${PODS_ROOT}/SwiftGen/bin/swiftgen\"\nelse\n  echo \"warning: SwiftGen is not installed. Run 'pod install --repo-update' to install it.\"\nfi\n";
-		};
 		229A88C42D018F070010CAAA /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -497,10 +473,12 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SwiftSnippets/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "BLE（Bluetooth Low Energy）用于连接产品。";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "当你把蓝牙设备作为外围设备（Peripheral）使用时，需要开启的权限";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -535,10 +513,12 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SwiftSnippets/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "BLE（Bluetooth Low Energy）用于连接产品。";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "当你把蓝牙设备作为外围设备（Peripheral）使用时，需要开启的权限";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

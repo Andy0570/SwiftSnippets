@@ -30,6 +30,7 @@ class AttributedStringViewController: UIViewController {
     @IBOutlet private var fourthLabel: UILabel!
     @IBOutlet private var fifthLabel: UILabel!
     @IBOutlet private var sixLabel: UILabel!
+    @IBOutlet weak var sevenLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +42,7 @@ class AttributedStringViewController: UIViewController {
         setThirdLabel()
         setFourthLabel()
         setFifthLabel()
+        setSevenLabel()
 
         // 基于 Swift 的 AttributedString 创建样式化文本
         setSixLabel()
@@ -119,5 +121,31 @@ class AttributedStringViewController: UIViewController {
 
         // AttributedString -> NSAttributedString
         sixLabel.attributedText = NSAttributedString(attributedString)
+    }
+
+    // 代码示例：根据用户类型，显示不同的提示词
+    private func setSevenLabel() {
+        let attributedText = emptyContentAttributedString()
+        sevenLabel.attributedText = attributedText
+    }
+
+    private func emptyContentAttributedString() -> NSAttributedString {
+        // 根据用户类型，显示不同的提示词
+        // let isEndUser = (UserManager.shared.identity == 1)
+        // let prefix = isEndUser ? "end_user_tips" : "business_user_tips"
+        // let content = prefix.localized()
+        let content = "请遵守法律法规和社区规范：你已确认聊天，对方可继续向你发送消息"
+        let subContent = "你已确认聊天，对方可继续向你发送消息"
+
+        let attributedText = NSMutableAttributedString.getAttributedString(fromString: content)
+        // 设置所有字体大小为 #13
+        attributedText.apply(font: UIFont.systemFont(ofSize: 13), onRange: content.fullNSRange)
+        // 设置所有字体颜色
+        attributedText.apply(color: UIColor.darkText, onRange: content.fullNSRange)
+        // 指定子字符串，设置蓝色高亮字体
+        let subContentRange = content.range(of: subContent).require()
+        attributedText.apply(color: UIColor.systemBlue, onRange: NSRange(subContentRange, in: content))
+
+        return attributedText
     }
 }

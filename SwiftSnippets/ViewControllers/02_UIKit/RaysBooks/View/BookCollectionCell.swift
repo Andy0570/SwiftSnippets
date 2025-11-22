@@ -50,6 +50,7 @@ class BookCollectionCell: UICollectionViewCell {
         config.image = UIImage(systemName: "cart.badge.plus")
 
         let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.configuration = config
         button.tintColor = .systemBlue
 
@@ -61,7 +62,6 @@ class BookCollectionCell: UICollectionViewCell {
             button.configuration = config
         }
 
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.addAction(
             UIAction { _ in
                 if let inCart = self.didTapCartButton?() {

@@ -10,7 +10,8 @@ import UIKit
 /// 支持 Interface Builder 的 PaddingLabel 示例
 ///
 /// Reference: <https://medium.com/fabcoding/add-padding-to-uilabel-in-swift-87ba4647cf05>
-@IBDesignable class DesignablePaddingLabel: UILabel {
+@IBDesignable
+class DesignablePaddingLabel: UILabel {
     @IBInspectable var topInset: CGFloat = 5.0
     @IBInspectable var bottomInset: CGFloat = 5.0
     @IBInspectable var leftInset: CGFloat = 16.0
@@ -23,7 +24,9 @@ import UIKit
 
     override var intrinsicContentSize: CGSize {
         let size = super.intrinsicContentSize
-        return CGSize(width: size.width + leftInset + rightInset,
-                      height: size.height + topInset + bottomInset)
+        return CGSize(
+            width: size.width + leftInset + rightInset,
+            height: size.height + topInset + bottomInset
+        )
     }
 }

@@ -18,10 +18,10 @@ struct Section: Codable {
     let title: String
     let cells: [Cell]
 
+    // 加载 Bundle 包中的 json 文件，并通过 Codable 解析为模型数据
     static func sectionsFromBundle() -> [Section] {
         var sections: [Section] = []
 
-        // 加载 Bundle 包中的 json 文件，并通过 Codable 解析为模型数据
         guard let url = Bundle.main.url(forResource: "home", withExtension: "json") else {
             fatalError("Error: Unable to find specified JSON file!")
         }
@@ -32,7 +32,6 @@ struct Section: Codable {
         } catch {
             fatalError("Error occured during parsing, \(error)")
         }
-
         return sections
     }
 }

@@ -48,7 +48,6 @@ target 'SwiftSnippets' do
 
   # 工具&服务
   pod 'Hue', '~> 5.0.0' # 颜色
-  pod 'SwiftGen', '~> 6.6.3' # 项目资产管理
   pod 'SwifterSwift', '~> 7.0.0' # Swift Extensions
   pod 'Siren' # 版本更新弹窗
   pod 'LicensePlist', '~> 3.24.5' # 第三方依赖 Lincense 列表生成器
