@@ -46,6 +46,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Home"
+
         // 首页始终显示大标题
         navigationController?.navigationBar.prefersLargeTitles = true
         // 如果你希望后续页面不显示大标题，则把这行代码添加到各自页面的 viewDidLoad() 方法中
@@ -72,7 +73,7 @@ extension HomeViewController: UITableViewDelegate {
     }
 }
 
-extension NSObject {
+private extension NSObject {
     // <https://stackoverflow.com/questions/46806969/create-a-uiviewcontroller-class-instance-from-string-view-controller-string-nam>
     func viewControllerFromString(viewControllerName: String) -> UIViewController? {
         if viewControllerName == "BookListViewController" {

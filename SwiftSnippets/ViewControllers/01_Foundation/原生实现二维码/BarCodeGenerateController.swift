@@ -8,6 +8,7 @@
 import UIKit
 
 /// 使用原生 Swift 代码生成各种条形码和 QR 码
+/// 
 /// Reference: <https://digitalbunker.dev/native-barcode-qr-code-generation-in-swift/>
 class BarCodeGenerateController: UIViewController {
     @IBOutlet private weak var aztecImageView: UIImageView!

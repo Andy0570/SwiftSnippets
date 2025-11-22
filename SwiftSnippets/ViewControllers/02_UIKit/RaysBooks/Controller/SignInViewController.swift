@@ -39,9 +39,10 @@ final class SignInViewController: UIViewController {
             outgoing.font = UIFont.preferredFont(forTextStyle: .headline)
             return outgoing
         })
-
+        
+        // 在按钮末尾添加箭头（>）图标
         config.image = UIImage(systemName: "chevron.right")
-        // 在标题和图像之间添加 padding
+        // 在标题和图像之间添加 padding 填充距离
         config.imagePadding = 5
         // 将图像放在按钮的末尾
         config.imagePlacement = .trailing

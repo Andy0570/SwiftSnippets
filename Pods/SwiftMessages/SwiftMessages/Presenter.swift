@@ -339,7 +339,7 @@ class Presenter: NSObject {
         }
 
         func bottomLayoutConstraint(view: UIView, containerView: UIView, viewController: UIViewController?) -> NSLayoutConstraint {
-            if case .bottom = config.presentationStyle.topBottomStyle, let tab = viewController as? UITabBarController, tab.sm_isVisible(view: tab.tabBar) {
+            if case .bottom = config.presentationStyle.topBottomStyle, let tab = viewController as? UITabBarController, tab.sm_isVisible(view: tab.tabBar), tab.tabBar.superview != nil, !tab.tabBar.frame.isEmpty {
                 return NSLayoutConstraint(item: view, attribute: .bottom, relatedBy: .equal, toItem: tab.tabBar, attribute: .top, multiplier: 1.00, constant: 0.0)
             }
             return NSLayoutConstraint(item: view, attribute: .bottom, relatedBy: .equal, toItem: containerView, attribute: .bottom, multiplier: 1.00, constant: 0.0)
@@ -368,7 +368,7 @@ class Presenter: NSObject {
         func installInteractive() {
             guard config.dimMode.modal else { return }
             if config.dimMode.interactive {
-                maskingView.tappedHander = { [weak self] in
+                maskingView.tappedHandler = { [weak self] in
                     guard let strongSelf = self else { return }
                     strongSelf.interactivelyHidden = true
                     strongSelf.delegate?.hide(presenter: strongSelf)
@@ -376,7 +376,7 @@ class Presenter: NSObject {
             } else {
                 // There's no action to take, but the presence of
                 // a tap handler prevents interaction with underlying views.
-                maskingView.tappedHander = { }
+                maskingView.tappedHandler = { }
             }
         }
 
@@ -398,21 +398,31 @@ class Presenter: NSObject {
                     elements += [view]
             }
             if config.dimMode.interactive {
-                let dismissView = UIView(frame: maskingView.bounds)
-                dismissView.translatesAutoresizingMaskIntoConstraints = true
-                dismissView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-                maskingView.addSubview(dismissView)
-                maskingView.sendSubviewToBack(dismissView)
-                dismissView.isUserInteractionEnabled = false
-                dismissView.isAccessibilityElement = true
+                let dismissView = maskingViewOverlay()
                 dismissView.accessibilityLabel = config.dimModeAccessibilityLabel
                 dismissView.accessibilityTraits = UIAccessibilityTraits.button
                 elements.append(dismissView)
+            } else if config.dimMode.modal {
+                let plainView = maskingViewOverlay()
+                plainView.accessibilityTraits = UIAccessibilityTraits.none
+                elements.append(plainView)
             }
             if config.dimMode.modal {
                 maskingView.accessibilityViewIsModal = true
             }
             maskingView.accessibleElements = elements
+        }
+        
+        func maskingViewOverlay() -> UIView {
+            let overlayView = UIView(frame: maskingView.bounds)
+            overlayView.translatesAutoresizingMaskIntoConstraints = true
+            overlayView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            maskingView.addSubview(overlayView)
+            maskingView.sendSubviewToBack(overlayView)
+            overlayView.isUserInteractionEnabled = false
+            overlayView.isAccessibilityElement = true
+            
+            return overlayView
         }
 
         installed = true
