@@ -1,6 +1,0 @@
-framework module Pods_SwiftSnippets_SwiftSnippetsUITests {
-  umbrella header "Pods-SwiftSnippets-SwiftSnippetsUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -5,10 +5,14 @@ PODS:
     - CHTCollectionViewWaterfallLayout/Swift (= 0.9.10)
   - CHTCollectionViewWaterfallLayout/Swift (0.9.10)
   - FaveButton (3.2.1)
+  - FSPagerView (0.8.3)
   - GDPerformanceView-Swift (2.1.1)
   - Hero (1.6.4)
   - HGRippleRadarView (0.1.2)
   - Hue (5.0.0)
+  - IGListDiffKit (5.1.0)
+  - IGListKit (5.1.0):
+    - IGListDiffKit (= 5.1.0)
   - Kingfisher (8.1.4)
   - LicensePlist (3.24.11)
   - PocketSVG (2.7.3)
@@ -55,10 +59,12 @@ DEPENDENCIES:
   - anim (~> 1.2.10)
   - CHTCollectionViewWaterfallLayout (~> 0.9.10)
   - FaveButton (~> 3.2.1)
+  - FSPagerView
   - GDPerformanceView-Swift (~> 2.1.1)
   - Hero (~> 1.6.3)
   - HGRippleRadarView (~> 0.1.2)
   - Hue (~> 5.0.0)
+  - IGListKit
   - Kingfisher (~> 8.1.1)
   - LicensePlist (~> 3.24.5)
   - PocketSVG (~> 2.7.3)
@@ -74,10 +80,13 @@ SPEC REPOS:
     - anim
     - CHTCollectionViewWaterfallLayout
     - FaveButton
+    - FSPagerView
     - GDPerformanceView-Swift
     - Hero
     - HGRippleRadarView
     - Hue
+    - IGListDiffKit
+    - IGListKit
     - Kingfisher
     - LicensePlist
     - PocketSVG
@@ -92,10 +101,13 @@ SPEC CHECKSUMS:
   anim: 8603b8aa9f20c26fb04bfc94967f0e942687938d
   CHTCollectionViewWaterfallLayout: b989a459788d7657ac010e03bc0f7eedca95a420
   FaveButton: 93cfebf6030336fa7653fad2068c3152ed668b39
+  FSPagerView: 670405b2f18e2a87fa37f20b00de783e562c25a8
   GDPerformanceView-Swift: 22d964fe40b19e3d914dba2586237d064de8fd77
   Hero: 473a0143017e1371d050fcbedb67d317925097f2
   HGRippleRadarView: 5379e27634c09222ebc836671c7425ad7b257cc4
   Hue: c129cb67be7d093a82bbbc30ce8a96757bf6f37a
+  IGListDiffKit: f3e9bb6b993a6127a25234e1713fbf32f26a6c63
+  IGListKit: d753b3d4df9edb381af491109d11a1084fad5f67
   Kingfisher: a5cc3d8689cd40d7cb2edfa67a5ede0b53122813
   LicensePlist: e8b5c7b30a914b92b83ffd78ded5af057621ba64
   PocketSVG: ca3bc53ea8d68336ba830c47b2e547790507b901
@@ -105,6 +117,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: f5b1bf1cd8dd53cd25887ac0eabcfd92301c6a5a
   ViewAnimator: a9ceed80266e00fd435ec4fb99b2df64d580d0e4
 
-PODFILE CHECKSUM: f4c4a6ce6c5eb417f702f75ddcfdc77538b08b1d
+PODFILE CHECKSUM: 305544ed62bcc0bdc371eae870d3e5eb885acc22
 
 COCOAPODS: 1.16.2

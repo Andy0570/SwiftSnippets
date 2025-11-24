@@ -282,21 +282,21 @@
       },
       {
         "imageName": "image",
-        "title": "IGListKit_建模和绑定",
-        "description": "",
-        "className": "ModelAndBingViewController"
-      },
-      {
-        "imageName": "image",
-        "title": "IGListKit_Example",
-        "description": "",
+        "title": "IGListKit_SuperHero",
+        "description": "Super Hero",
         "className": "SuperHeroViewController"
       },
       {
         "imageName": "image",
-        "title": "IGListKit_Example2",
+        "title": "IGListKit_FormDemo",
         "description": "",
         "className": "PublishImageViewController"
+      },
+      {
+        "imageName": "image",
+        "title": "IGListKit_建模和绑定",
+        "description": "",
+        "className": "ModelAndBingViewController"
       },
       {
         "imageName": "image",
