@@ -24,6 +24,8 @@ target 'SwiftSnippets' do
   pod 'anim', '~> 1.2.10' # 页面内动画
   pod 'ViewAnimator', '~> 3.1.0' # 页面转场动画
   pod 'HGRippleRadarView', '~> 0.1.2' # 雷达视图
+  pod 'IGListKit'
+  pod 'FSPagerView'
   # pod 'MJRefresh', '~> 3.7.9'
   # pod 'NVActivityIndicatorView', '~> 5.2.0' # <https://github.com/ninjaprox/NVActivityIndicatorView>
   # pod 'HMSegmentedControl', '~> 1.5.6' # <https://github.com/HeshamMegid/HMSegmentedControl>
@@ -54,16 +56,7 @@ target 'SwiftSnippets' do
 
   # 调试工具/崩溃统计
   pod 'GDPerformanceView-Swift', '~> 2.1.1'
-
-  target 'SwiftSnippetsTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'SwiftSnippetsUITests' do
-    # Pods for testing
-  end
-
+  
 end
 
 # 更改所有第三方框架 Target 版本
