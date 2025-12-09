@@ -34,12 +34,17 @@ open class FoxScrollStackRow: UIView, UIGestureRecognizerDelegate {
     /// Constraints to handle controller's view padding changes.
     private var paddingConstraints: ConstraintsHolder?
     
+    /// Location of the separator view.
+    /// It's automatically managed when you change the axis of the parent stackview.
     internal var separatorAxis: NSLayoutConstraint.Axis = .horizontal {
         didSet {
             guard separatorAxis != oldValue else {
                 return
             }
-            
+            didUpdateSeparatorViewContraintsIfNeeded()
+            didUpdateSeparatorAxis()
+            didUpdateSeparatorInsets()
+            layoutIfNeeded()
         }
     }
     
@@ -47,7 +52,7 @@ open class FoxScrollStackRow: UIView, UIGestureRecognizerDelegate {
     
     /// Return the index of the row into the parent stack.
     public var index: Int? {
-        
+        return self.stackView?.indexOfRow(self)
     }
     
     /// Row highlight color.
@@ -81,14 +86,18 @@ open class FoxScrollStackRow: UIView, UIGestureRecognizerDelegate {
     /// NOTE: This value is strongly retained.
     public private(set) var contentView: UIView?
     
-    // MARK: - Manager Separator
+    // MARK: - Manage Separator
     
     /// Separator view object.
-    public separatorView = FoxScrollStackSeparator()
+    public let separatorView = FoxScrollStackSeparator()
     
+    /// Specifies the default insets for cell's separator.
+    /// By default the value applied is inerithed from the separator's insets configuration of the
+    /// parent stackview at the time of the creation of the cell.
+    /// You can however assign a custom insets for each separator.
     open var separatorInsets: UIEdgeInsets = .zero {
         didSet {
-            
+            didUpdateSeparatorInsets()
         }
     }
     
@@ -132,6 +141,7 @@ open class FoxScrollStackRow: UIView, UIGestureRecognizerDelegate {
     }
     
     // MARK: - Initialization
+    
     internal init(view: UIView, stackView: FoxScrollStack) {
         self.stackView = stackView
         self.controller = nil
@@ -173,9 +183,7 @@ open class FoxScrollStackRow: UIView, UIGestureRecognizerDelegate {
     }
     
     private func setupPostInit() {
-        guard let contentView else {
-            return
-        }
+        guard let contentView else { return }
         
         clipsToBounds = true
         insetsLayoutMarginsFromSafeArea = false
@@ -186,40 +194,213 @@ open class FoxScrollStackRow: UIView, UIGestureRecognizerDelegate {
     }
     
     internal func layoutUI() {
-        guard let contentView else {
-            return
-        }
+        guard let contentView else { return }
         
         contentView.removeFromSuperview()
         
         addSubview(contentView)
         addSubview(separatorView)
         
+        didUpdateContentViewContraints()
+        didUpdateSeparatorViewContraintsIfNeeded()
+        didUpdateSeparatorAxis()
         
+        applyParentStackAttributes()
+        
+        separatorView.isHidden = isSeparatorHidden
+        setNeedsUpdateConstraints()
+    }
+    
+    open override func updateConstraints() {
+        // called the event to update the height of the row.
+        askForCutomizedSizeOfContentView(animated: false)
+        
+        super.updateConstraints()
+    }
+    
+    private func applyParentStackAttributes() {
+        guard let stackView = self.stackView else {
+            return
+        }
+        
+        rowInsets = stackView.rowInsets
+        rowPadding = stackView.rowPadding
+        rowBackgroundColor = stackView.rowBackgroundColor
+        rowHighlightColor = stackView.rowHighlightColor
+        
+        separatorAxis = (stackView.axis == .horizontal ? .vertical : .horizontal)
+        separatorInsets = stackView.separatorInsets
+        
+        separatorView.color = stackView.separatorColor
+        separatorView.thickness = stackView.separatorThickness
+        isSeparatorHidden = stackView.hideSeparators
     }
     
     // MARK: - Manage Separator
     
     private func didUpdateContentViewContraints() {
-        guard let contentView else {
-            return
-        }
+        guard let contentView else { return }
         
+        let bottomConstraint = contentView.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor, constant: rowPadding.bottom)
+        bottomConstraint.priority = UILayoutPriority(rawValue: UILayoutPriority.required.rawValue - 1)
         
+        paddingConstraints = ConstraintsHolder(
+            top: contentView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor, constant: rowPadding.top),
+            left: contentView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor, constant: rowPadding.left),
+            bottom: bottomConstraint,
+            right: contentView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor, constant: rowPadding.right)
+        )
+        
+        paddingConstraints?.activateAll()
     }
     
     private func didUpdateSeparatorViewContraintsIfNeeded() {
-        
+        if separatorConstraints == nil {
+            separatorConstraints = ConstraintsHolder(
+                top: separatorView.topAnchor.constraint(equalTo: topAnchor),
+                left: separatorView.leadingAnchor.constraint(equalTo: leadingAnchor),
+                bottom: separatorView.bottomAnchor.constraint(equalTo: bottomAnchor),
+                right: separatorView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            )
+        }
     }
     
     private func didUpdateSeparatorAxis() {
-        
+        separatorConstraints?.top?.isActive = (separatorAxis == .vertical)
+        separatorConstraints?.bottom?.isActive = true
+        separatorConstraints?.left?.isActive = (separatorAxis == .horizontal)
+        separatorConstraints?.right?.isActive = true
     }
     
     private func didUpdateSeparatorInsets() {
+        separatorConstraints?.top?.constant = separatorInsets.top
+        separatorConstraints?.bottom?.constant = (separatorAxis == .horizontal ? 0 : -separatorInsets.bottom)
+        separatorConstraints?.left?.constant = separatorInsets.left
+        separatorConstraints?.right?.constant = (separatorAxis == .vertical ? 0 : -separatorInsets.right)
+    }
+    
+    // MARK: - Sizing the Controller
+    internal func askForCutomizedSizeOfContentView(animated: Bool) {
+        guard let customizableController = controller as? FoxScrollStackContainableController else {
+            return // ignore, it's not implemented, use autolayout.
+        }
+        
+        let currentAxis = stackView!.axis
+        guard let bestSize = customizableController.scrollStackRowSizeForAxis(currentAxis, row: self, in: self.stackView!) else {
+            // ignore, use autolayout in place for content view or if you have used views instead of controllers.
+            // you need to set the heightAnchor in this case!
+            return
+        }
+        
+        switch bestSize {
+            case .fixed(let value):
+                setupRowToFixedValue(value)
+            case .fitLayoutForAxis:
+                setupRowSizeToFitLayout()
+        }
+    }
+    
+    private func setupRowToFixedValue(_ value: CGFloat) {
+        guard let stackView, let contentView else { return }
+        
+        if stackView.axis == .vertical {
+            contentView.width(constant: nil)
+            contentView.height(constant: value)
+        } else {
+            contentView.width(constant: value)
+            contentView.height(constant: nil)
+        }
+    }
+    
+    // 移除指定视图中的固定高度和固定宽度约束
+    private func removeFixedDimensionConstraintsIfNeeded(_ contentView: UIView) {
+        let fixedDimensions = contentView.constraints.filter {
+            $0.firstAttribute == .height || $0.firstAttribute == .width
+        }
+        contentView.removeConstraints(fixedDimensions)
+    }
+    
+    private func setupRowSizeToFitLayout() {
+        guard let stackView, let contentView else { return }
+        
+        // If user changed the way of how the controller's view is resized
+        // (ie from fixed height to auto-dimension) we should need to remove
+        // attached constraints about height/width in order to leave the view to
+        // auto resize according to its content.
+        removeFixedDimensionConstraintsIfNeeded(contentView)
+        
+        var bestSize: CGSize!
         
     }
     
+    // MARK: - Handle Touch
+    
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        guard let view = gestureRecognizer.view else {
+            return false
+        }
+        
+        let location = touch.location(in: view)
+        var hitView = view.hitTest(location, with: nil)
+        
+        // Traverse the chain of superviews looking for any UIControls.
+        while hitView != view && hitView != nil {
+            if hitView is UIControl {
+                // Ensure UIControls get the touches instead of the tap gesture.
+                return false
+            }
+            hitView = hitView?.superview
+        }
+        
+        return true
+    }
+    
+    open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        guard contentView?.isUserInteractionEnabled ?? false else {
+            return
+        }
+        
+        if let contentView = contentView as? FoxScrollStackRowHighlightable, contentView.isHighlightable {
+            contentView.setIsHighlighted(true)
+        }
+    }
+    
+    open override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesMoved(touches, with: event)
+        guard contentView?.isUserInteractionEnabled ?? false, let touch = touches.first else {
+            return
+        }
+        
+        let locationInSelf = touch.location(in: self)
+        
+        if let contentView = contentView as? FoxScrollStackRowHighlightable, contentView.isHighlightable {
+            let isPointInsideCell = point(inside: locationInSelf, with: event)
+            contentView.setIsHighlighted(isPointInsideCell)
+        }
+    }
+    
+    open override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
+        guard contentView?.isUserInteractionEnabled ?? false else {
+            return
+        }
+        
+        if let contentView = contentView as? FoxScrollStackRowHighlightable, contentView.isHighlightable {
+            contentView.setIsHighlighted(false)
+        }
+    }
+    
+    open override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        guard contentView?.isUserInteractionEnabled ?? false else {
+            return
+        }
+        
+        if let contentView = contentView as? FoxScrollStackRowHighlightable, contentView.isHighlightable {
+            contentView.setIsHighlighted(false)
+        }
+    }
 }
 
 // MARK: - ConstraintsHolder

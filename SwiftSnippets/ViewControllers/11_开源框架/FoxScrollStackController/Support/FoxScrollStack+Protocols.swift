@@ -11,7 +11,7 @@ import UIKit
 
 /// You can implement the following protocol in your view controller in order
 /// to specify explictely (without using autolayout constraints) the best size (width/height depending
-/// by the axis) of the controller when inside a scroll staci view.
+/// by the axis) of the controller when inside a scroll stack view.
 public protocol FoxScrollStackContainableController: UIViewController {
     
     /// If you implement this protocol you can manage the size of the controller
@@ -34,7 +34,7 @@ public protocol FoxScrollStackContainableController: UIViewController {
 // MARK: - FoxScrollStackControllerDelegate
 
 /// You can implement the following delegate to receive events about row visibility changes during scroll of the stack.
-/// NOTE: No events are currently sent at the time of add/remove/move. A PR about is is accepted :-)
+/// NOTE: No events are currently sent at the time of add/remove/move. A PR about is accepted :-)
 public protocol FoxScrollStackControllerDelegate: AnyObject {
     
     /// Tells the delegate when the user scrolls the content view within the receiver.
