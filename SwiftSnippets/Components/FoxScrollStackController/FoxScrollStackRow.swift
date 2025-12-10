@@ -280,6 +280,7 @@ open class FoxScrollStackRow: UIView, UIGestureRecognizerDelegate {
     }
     
     // MARK: - Sizing the Controller
+    
     internal func askForCutomizedSizeOfContentView(animated: Bool) {
         guard let customizableController = controller as? FoxScrollStackContainableController else {
             return // ignore, it's not implemented, use autolayout.
