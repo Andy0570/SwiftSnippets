@@ -441,6 +441,12 @@
         "title": "PocketSVG",
         "description": "-",
         "className": "PocketSVGUsageController"
+      },
+      {
+        "imageName": "image",
+        "title": "ScrollStackController",
+        "description": "-",
+        "className": "ScrollStackDemoController"
       }
     ]
   },

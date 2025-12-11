@@ -8,15 +8,14 @@
 import UIKit
 
 extension UIView {
-    
     public func height(constant: CGFloat?) {
         setConstraint(value: constant, attribute: .height)
     }
-    
+
     public func width(constant: CGFloat?) {
         setConstraint(value: constant, attribute: .width)
     }
-    
+
     private func removeConstraint(attribute: NSLayoutConstraint.Attribute) {
         constraints.forEach {
             if $0.firstAttribute == attribute {
@@ -24,7 +23,7 @@ extension UIView {
             }
         }
     }
-    
+
     private func setConstraint(value: CGFloat?, attribute: NSLayoutConstraint.Attribute) {
         removeConstraint(attribute: attribute)
         if let value = value {
@@ -39,19 +38,18 @@ extension UIView {
             self.addConstraint(constraint)
         }
     }
-    
-    public static func execute(animated: Bool = true, _ callback: @escaping (() -> Void), completion:  (() -> Void)? = nil) {
+
+    public static func execute(animated: Bool = true, _ callback: @escaping (() -> Void), completion: (() -> Void)? = nil) {
         guard animated else {
             callback()
             completion?()
             return
         }
-        
+
         UIView.animate(withDuration: 0.3, animations: callback) { isFinished in
             if isFinished {
                 completion?()
             }
         }
     }
-    
 }

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ScrollStackDemoController" customModule="SwiftSnippets" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="U84-NH-m7z" id="1b0-Fi-oDy"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ScrollStackController" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RUr-sA-LB9">
+                    <rect key="frame" x="15" y="74" width="358" height="26.333333333333329"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create complex layouts with UIViewControllers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Md5-Jq-Ahk">
+                    <rect key="frame" x="15" y="108.33333333333333" width="358" height="17"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PqR-eh-phf">
+                    <rect key="frame" x="0.0" y="698" width="393" height="120"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="U1f-yb-FiF">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="120"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="KeI-6y-6G6">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hUe-yd-R15" userLabel="Add Row">
+                                            <rect key="frame" x="0.0" y="0.0" width="124.33333333333333" height="60"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" title="Add Row">
+                                                <fontDescription key="titleFontDescription" type="system" pointSize="12"/>
+                                            </buttonConfiguration>
+                                            <connections>
+                                                <action selector="addNewRow:" destination="-1" eventType="touchUpInside" id="T2Q-1b-TU9"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kGO-8r-PPx">
+                                            <rect key="frame" x="134.33333333333334" y="0.0" width="124.33333333333334" height="60"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" title="Hide/Show Row">
+                                                <fontDescription key="titleFontDescription" type="system" pointSize="12"/>
+                                            </buttonConfiguration>
+                                            <connections>
+                                                <action selector="hideOrShowRandomRow:" destination="-1" eventType="touchUpInside" id="QyF-J8-V34"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hvb-k4-qR7">
+                                            <rect key="frame" x="268.66666666666669" y="0.0" width="124.33333333333331" height="60"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" title="Toggle Axis">
+                                                <fontDescription key="titleFontDescription" type="system" pointSize="12"/>
+                                            </buttonConfiguration>
+                                            <connections>
+                                                <action selector="toggleAxis:" destination="-1" eventType="touchUpInside" id="ee0-Js-UpF"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </stackView>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="f50-Ml-1iO">
+                                    <rect key="frame" x="0.0" y="60" width="393" height="60"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u72-Lf-auB">
+                                            <rect key="frame" x="0.0" y="0.0" width="124.33333333333333" height="60"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" title="Remove Row">
+                                                <fontDescription key="titleFontDescription" type="system" pointSize="12"/>
+                                            </buttonConfiguration>
+                                            <connections>
+                                                <action selector="removeRow:" destination="-1" eventType="touchUpInside" id="OZX-6a-nK7"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tfl-tE-tjh">
+                                            <rect key="frame" x="134.33333333333334" y="0.0" width="124.33333333333334" height="60"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" title="Move Row">
+                                                <fontDescription key="titleFontDescription" type="system" pointSize="12"/>
+                                            </buttonConfiguration>
+                                            <connections>
+                                                <action selector="moveRowToRandom:" destination="-1" eventType="touchUpInside" id="Ln4-DT-iGh"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HV5-RP-fcG">
+                                            <rect key="frame" x="268.66666666666669" y="0.0" width="124.33333333333331" height="60"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" title="Scroll Random">
+                                                <fontDescription key="titleFontDescription" type="system" pointSize="12"/>
+                                            </buttonConfiguration>
+                                            <connections>
+                                                <action selector="scrollToRandom:" destination="-1" eventType="touchUpInside" id="RqC-8r-phe"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemGray5Color"/>
+                    <constraints>
+                        <constraint firstItem="U1f-yb-FiF" firstAttribute="top" secondItem="PqR-eh-phf" secondAttribute="top" id="4lh-kE-igf"/>
+                        <constraint firstItem="U1f-yb-FiF" firstAttribute="leading" secondItem="PqR-eh-phf" secondAttribute="leading" id="DXF-ed-fDQ"/>
+                        <constraint firstAttribute="bottom" secondItem="U1f-yb-FiF" secondAttribute="bottom" id="FTL-kp-MS8"/>
+                        <constraint firstAttribute="trailing" secondItem="U1f-yb-FiF" secondAttribute="trailing" id="RsT-o8-g0H"/>
+                        <constraint firstAttribute="height" constant="120" id="rnu-4u-1hP"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U84-NH-m7z">
+                    <rect key="frame" x="0.0" y="125.33333333333331" width="393" height="572.66666666666674"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Md5-Jq-Ahk" secondAttribute="trailing" constant="20" id="03A-jV-Li5"/>
+                <constraint firstItem="RUr-sA-LB9" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="15" id="3Cy-Ou-XET"/>
+                <constraint firstItem="Md5-Jq-Ahk" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="7lh-bs-yKE"/>
+                <constraint firstItem="U84-NH-m7z" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="9Ed-Xt-opB"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="PqR-eh-phf" secondAttribute="bottom" id="9w6-Cs-Oz6"/>
+                <constraint firstItem="PqR-eh-phf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="EVQ-oP-RAI"/>
+                <constraint firstItem="PqR-eh-phf" firstAttribute="top" secondItem="U84-NH-m7z" secondAttribute="bottom" id="Ti6-nh-Hxf"/>
+                <constraint firstItem="RUr-sA-LB9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="Ufu-eH-cPg"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="U84-NH-m7z" secondAttribute="trailing" id="eGR-NQ-SqA"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="RUr-sA-LB9" secondAttribute="trailing" constant="20" id="fRN-OR-4yW"/>
+                <constraint firstItem="U84-NH-m7z" firstAttribute="top" secondItem="Md5-Jq-Ahk" secondAttribute="bottom" id="nf4-tt-II5"/>
+                <constraint firstItem="Md5-Jq-Ahk" firstAttribute="top" secondItem="RUr-sA-LB9" secondAttribute="bottom" constant="8" symbolic="YES" id="p0Z-vQ-ycu"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="PqR-eh-phf" secondAttribute="trailing" id="ph6-iE-YAB"/>
+            </constraints>
+            <point key="canvasLocation" x="132" y="-11"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

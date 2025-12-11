@@ -116,3 +116,9 @@ trailing_whitespace:
 # 垂直方向上的空格行，限制为一行
 vertical_whitespace:
   max_empty_lines: 2
+
+file_length:
+  warning: 400
+  error: 1200
+  ignores:
+    - ./SwiftSnippets/Components/FoxScrollStackController
