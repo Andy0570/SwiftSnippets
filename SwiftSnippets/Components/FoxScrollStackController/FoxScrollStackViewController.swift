@@ -8,6 +8,7 @@
 import UIKit
 
 open class FoxScrollStackViewController: UIViewController {
+    
     // MARK: Public Properties
 
     /// Inner stack view control.

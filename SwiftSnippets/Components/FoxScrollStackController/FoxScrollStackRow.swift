@@ -10,6 +10,7 @@ import UIKit
 // MARK: - FoxScrollStackRow
 
 open class FoxScrollStackRow: UIView, UIGestureRecognizerDelegate {
+    
     // MARK: - Private Properties
 
     /// Weak reference to the parent stack view.
@@ -217,9 +218,7 @@ open class FoxScrollStackRow: UIView, UIGestureRecognizerDelegate {
     }
 
     private func applyParentStackAttributes() {
-        guard let stackView = self.stackView else {
-            return
-        }
+        guard let stackView else { return }
 
         rowInsets = stackView.rowInsets
         rowPadding = stackView.rowPadding
@@ -329,6 +328,23 @@ open class FoxScrollStackRow: UIView, UIGestureRecognizerDelegate {
         removeFixedDimensionConstraintsIfNeeded(contentView)
 
         var bestSize: CGSize!
+        if stackView.axis == .vertical {
+            let maxAllowedSize = CGSize(width: contentView.bounds.width, height: 0)
+            bestSize = contentView.systemLayoutSizeFitting(
+                maxAllowedSize,
+                withHorizontalFittingPriority: .required,
+                verticalFittingPriority: .fittingSizeLevel
+            )
+        } else {
+            let maxAllowedSize = CGSize(width: 0, height: contentView.bounds.height)
+            bestSize = contentView.systemLayoutSizeFitting(
+                maxAllowedSize,
+                withHorizontalFittingPriority: .fittingSizeLevel,
+                verticalFittingPriority: .required
+            )
+        }
+        
+        setupRowToFixedValue(bestSize.height)
     }
 
     // MARK: - Handle Touch
@@ -395,7 +411,8 @@ open class FoxScrollStackRow: UIView, UIGestureRecognizerDelegate {
             return
         }
 
-        if let contentView = contentView as? FoxScrollStackRowHighlightable, contentView.isHighlightable {
+        if let contentView = contentView as? FoxScrollStackRowHighlightable,
+            contentView.isHighlightable {
             contentView.setIsHighlighted(false)
         }
     }
