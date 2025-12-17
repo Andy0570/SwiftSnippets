@@ -8,6 +8,7 @@
 import UIKit
 
 /// 点击按钮时，弹出菜单（iOS 15特性）
+/// <https://theswiftdev.com/10-little-uikit-tips-you-should-know/>
 class MenuButton: UIButton {
     @available(*, unavailable)
     override init(frame: CGRect) {

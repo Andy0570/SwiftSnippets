@@ -10,13 +10,14 @@ target 'SwiftSnippets' do
 
   # Pods for SwiftSnippets
   # 网络
-  pod 'Alamofire', '~> 5.10.1'
+  pod 'Alamofire'
 
   # 图片
-  pod 'Kingfisher', '~> 8.1.1'
+  pod 'Kingfisher'
   pod 'PocketSVG', '~> 2.7.3'
 
   # UI动画
+  pod 'SnapKit'
   pod 'Hero', '~> 1.6.3'
   pod 'SwiftMessages', '~> 10.0.1'
   pod 'CHTCollectionViewWaterfallLayout', '~> 0.9.10' # 瀑布流布局

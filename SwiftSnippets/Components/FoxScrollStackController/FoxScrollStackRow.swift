@@ -10,7 +10,6 @@ import UIKit
 // MARK: - FoxScrollStackRow
 
 open class FoxScrollStackRow: UIView, UIGestureRecognizerDelegate {
-    
     // MARK: - Private Properties
 
     /// Weak reference to the parent stack view.
@@ -343,7 +342,7 @@ open class FoxScrollStackRow: UIView, UIGestureRecognizerDelegate {
                 verticalFittingPriority: .required
             )
         }
-        
+
         setupRowToFixedValue(bestSize.height)
     }
 

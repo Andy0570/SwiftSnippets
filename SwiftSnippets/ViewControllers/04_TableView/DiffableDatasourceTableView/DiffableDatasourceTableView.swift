@@ -35,13 +35,13 @@ extension VideoGame {
 
  open class UITableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType> : NSObject, UITableViewDataSource where SectionIdentifierType : Hashable, ItemIdentifierType : Hashable { }
 
- 1. UITableViewDiffableDataSource 是 NSObject 的子类对象，同时它遵守 UITableViewDataSource 协议。它用来维护 TableView 的数据源。
- 2. 其中，SectionIdentifierType, ItemIdentifierType 是它包含的两个泛型类型。这两个泛型类型被约束为需要遵守 Hashable 协议。
+ 1. `UITableViewDiffableDataSource` 是 `NSObject` 的子类对象，同时它遵守 `UITableViewDataSource` 协议。它用来维护 TableView 的数据源。
+ 2. 其中，`SectionIdentifierType` 和 `ItemIdentifierType` 是它包含的两个泛型类型。这两个泛型类型被约束为需要遵守 `Hashable` 协议。
 
  typealias UITableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>.CellProvider = (_ tableView: UITableView, _ indexPath: IndexPath, _ itemIdentifier: ItemIdentifierType) -> UITableViewCell?
 
- Diffable DataSource 负责当前数据源配置，DataSourceSnapshot 负责变更后的数据源处理。
- Diffable DataSource 通过调用自身 apply 方法将 DataSourceSnapshot 变更后的数据更新同步到 UITableView 或 UICollectionView 的 UI。
+ Diffable DataSource 负责当前数据源配置，DataSource Snapshot 负责变更后的数据源处理。
+ Diffable DataSource 通过调用自身 `apply` 方法将 DataSource Snapshot 变更后的数据更新同步到 UITableView 的 UI。
  
  Diffable DataSource 在初始化时可能看起来有点令人生畏，所以我发现通过为你使用的每个数据源使用类型别名来阅读它会更容易。
  虽然这不是必需的，但我认为这里值得的。

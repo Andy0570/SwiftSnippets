@@ -8,7 +8,6 @@
 import UIKit
 
 open class FoxScrollStack: UIScrollView, UIScrollViewDelegate {
-    
     // MARK: Default Properties
 
     private static let defaultRowInsets = UIEdgeInsets(
@@ -677,8 +676,7 @@ open class FoxScrollStack: UIScrollView, UIScrollViewDelegate {
 
     /// Initial configuration of the control.
     private func setupUI() {
-        // backgroundColor = .white
-        backgroundColor = .red
+        backgroundColor = .white
 
         // Create stack view and add it to the scrollView
         stackView.translatesAutoresizingMaskIntoConstraints = false
