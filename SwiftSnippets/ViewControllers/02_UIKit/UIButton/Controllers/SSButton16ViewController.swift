@@ -31,7 +31,7 @@ extension SSButton16ViewController {
 
         // titleLabel
         let titleLabel = UILabel.makeForTitle()
-        titleLabel.text = "16.带边框线条的圆角按钮"
+        titleLabel.text = "16.带边框线条的圆角按钮（左Label，右Button）"
         view.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview()

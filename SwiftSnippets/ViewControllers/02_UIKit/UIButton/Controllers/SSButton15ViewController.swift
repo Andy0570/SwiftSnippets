@@ -74,7 +74,7 @@ extension SSButton15ViewController {
         view.addSubview(copyButton)
         copyButton.snp.makeConstraints { make in
             make.top.equalTo(contentLabel.snp.bottom).offset(10)
-            make.leading.equalTo(titleLabel)
+            make.leading.equalTo(contentLabel)
             make.bottomMargin.equalToSuperview()
         }
     }
