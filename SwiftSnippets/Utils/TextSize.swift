@@ -14,14 +14,14 @@ public struct TextSize {
         let font: UIFont
         let width: CGFloat
         let insets: UIEdgeInsets
-        
+
         init(text: String, font: UIFont, width: CGFloat, insets: UIEdgeInsets) {
             self.text = text
             self.font = font
             self.width = width
             self.insets = insets
         }
-        
+
         override var hash: Int {
             var hasher = Hasher()
             hasher.combine(text)
@@ -33,7 +33,7 @@ public struct TextSize {
             hasher.combine(insets.right)
             return hasher.finalize()
         }
-        
+
         override func isEqual(_ object: Any?) -> Bool {
             guard let other = object as? CacheKey else { return false }
             return text == other.text &&
@@ -42,18 +42,18 @@ public struct TextSize {
                    insets == other.insets
         }
     }
-    
+
     private static let cache = NSCache<CacheKey, NSValue>()
-    
+
     // MARK: - 主方法
     public static func size(text: String, font: UIFont, width: CGFloat, insets: UIEdgeInsets = .zero) -> CGRect {
         let key = CacheKey(text: text, font: font, width: width, insets: insets)
-        
+
         // 查缓存
         if let cachedValue = cache.object(forKey: key) {
             return cachedValue.cgRectValue
         }
-        
+
         // 没有缓存则计算
         let constrainedSize = CGSize(width: width - insets.left - insets.right, height: .greatestFiniteMagnitude)
         let attributes = [NSAttributedString.Key.font: font]
@@ -61,10 +61,10 @@ public struct TextSize {
         var bounds = (text as NSString).boundingRect(with: constrainedSize, options: options, attributes: attributes, context: nil)
         bounds.size.width = width
         bounds.size.height = ceil(bounds.height + insets.top + insets.bottom)
-        
+
         // 存缓存
         cache.setObject(NSValue(cgRect: bounds), forKey: key)
-        
+
         return bounds
     }
 }

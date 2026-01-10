@@ -13,36 +13,36 @@ final class SSMultipleLabelViewController: UIViewController {
         static let font = UIFont.systemFont(ofSize: 15.0, weight: .regular)
         static let insets = UIEdgeInsets(top: 0, left: 16, bottom: 8, right: 16)
     }
-    
+
     static func cellSize(width: CGFloat, text: String) -> CGSize {
         let cellBounds = TextSize.size(text: text, font: Constants.font, width: width, insets: Constants.insets)
         return cellBounds.size
     }
-    
+
     // MARK: - Controls
     private var titleLabel: UILabel!
     private var titleLabelHeightConstraint: NSLayoutConstraint!
-    
+
     // MARK: - Public
     func configure(with text: String) {
         titleLabel.text = text
         updateViewConstraints()
     }
-    
+
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        
+
         view.height(constant: nil)
     }
-    
+
     override func updateViewConstraints() {
         // 手动计算 titleLabel 的高度
         let fixedWidth = view.frame.size.width - 32
         let newSize = SSMultipleLabelViewController.cellSize(width: fixedWidth, text: titleLabel.text ?? "")
         self.titleLabelHeightConstraint.constant = newSize.height
-        
+
         view.height(constant: nil)
         super.updateViewConstraints()
     }
@@ -52,7 +52,7 @@ final class SSMultipleLabelViewController: UIViewController {
 extension SSMultipleLabelViewController {
     private func setupView() {
         view.backgroundColor = UIColor.clear
-        
+
         // titleLabel
         titleLabel = UILabel(frame: .zero)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -61,11 +61,11 @@ extension SSMultipleLabelViewController {
         titleLabel.textAlignment = .natural
         titleLabel.numberOfLines = 0
         view.addSubview(titleLabel)
-        
+
         // 垂直方向上，titleLabel 多行显示，不压缩高度
 //        titleLabel.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         titleLabelHeightConstraint = titleLabel.heightAnchor.constraint(equalToConstant: 60)
-        
+
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.topAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -84,8 +84,7 @@ extension SSMultipleLabelViewController {
 //        return .fixed(bestSize.height)
          return .fitLayoutForAxis
     }
-    
+
     func reloadContentFormStackView(stackView: FoxScrollStack, row: FoxScrollStackRow, animated: Bool) {
-        
     }
 }
