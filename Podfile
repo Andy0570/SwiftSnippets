@@ -20,6 +20,7 @@ target 'SwiftSnippets' do
   pod 'SnapKit'
   pod 'Hero', '~> 1.6.3'
   pod 'SwiftMessages', '~> 10.0.1'
+  pod 'MagazineLayout', '~> 1.7.0'
   pod 'CHTCollectionViewWaterfallLayout', '~> 0.9.10' # 瀑布流布局
   pod 'FaveButton', '~> 3.2.1' # 点赞按钮
   pod 'anim', '~> 1.2.10' # 页面内动画
@@ -57,7 +58,7 @@ target 'SwiftSnippets' do
 
   # 调试工具/崩溃统计
   pod 'GDPerformanceView-Swift', '~> 2.1.1'
-  
+
 end
 
 # 更改所有第三方框架 Target 版本

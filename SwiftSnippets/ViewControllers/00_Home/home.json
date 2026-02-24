@@ -332,6 +332,12 @@
         "title": "iOS设计模式进阶",
         "description": "",
         "className": "GameViewController"
+      },
+      {
+        "imageName": "image",
+        "title": "在iOS上实现设计系统组件",
+        "description": "",
+        "className": ""
       }
     ]
   },

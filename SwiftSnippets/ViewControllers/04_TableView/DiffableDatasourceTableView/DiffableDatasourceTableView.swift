@@ -8,7 +8,7 @@
 import UIKit
 
 /**
- 使用 UITableView 建立 diffable 数据源。
+ 使用 UITableView 创建可差分数据源
  
  参考：
  <https://www.notion.so/andy0570/UITableView-diffable-225973ced06c80aa98cedf6be5fd115b?source=copy_link>

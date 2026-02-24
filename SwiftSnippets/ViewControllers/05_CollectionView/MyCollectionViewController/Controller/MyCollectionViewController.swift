@@ -6,7 +6,8 @@
 //
 
 /**
- 参考：使用 UICollectionView.CellRegistration 配置集合视图
+ ### 使用 UICollectionView.CellRegistration 配置集合视图
+ 
  <https://www.donnywals.com/configure-collection-view-cells-with-uicollectionview-cellregistration/>
  */
 

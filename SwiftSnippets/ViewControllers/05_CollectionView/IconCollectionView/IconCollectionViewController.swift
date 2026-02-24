@@ -12,6 +12,7 @@
 
 import UIKit
 
+// 使用 Enum 枚举类型定义 Section
 enum SectionType {
     case all
 }
