@@ -2,16 +2,21 @@
 //  RTVideoCollectionViewCell.swift
 //  SwiftSnippets
 //
-//  Created by huqilin on 2026/2/14.
+//  Created by huqilin on 2026/2/27.
 //
 
 import UIKit
 
 class RTVideoCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var thumbnailView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var subtitleLabel: UILabel!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    var video: RTVideo? {
+        didSet {
+            thumbnailView.image = video?.thumbnail
+            titleLabel.text = video?.title
+            subtitleLabel.text = "\(video?.lessonCount ?? 0) lessons"
+        }
     }
-
 }

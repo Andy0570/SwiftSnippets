@@ -41,7 +41,7 @@ extension RTSection {
                 title: "Demystifying Views in iOS",
                 thumbnail: UIImage(named: "views"),
                 lessonCount: 26,
-                link:URL(string: "https://www.raywenderlich.com/4518-demystifying-views-in-ios")
+                link: URL(string: "https://www.raywenderlich.com/4518-demystifying-views-in-ios")
             ),
             RTVideo(
                 title: "Reproducing Popular iOS Controls",
@@ -55,7 +55,7 @@ extension RTSection {
                 title: "Fastlane for iOS",
                 thumbnail: UIImage(named: "fastlane"),
                 lessonCount: 44,
-                link: URL(string:"https://www.raywenderlich.com/1259223-fastlane-for-ios")
+                link: URL(string: "https://www.raywenderlich.com/1259223-fastlane-for-ios")
             ),
             RTVideo(
                 title: "Beginning RxSwift",
@@ -88,7 +88,7 @@ extension RTSection {
                 thumbnail: UIImage(named: "notifications"),
                 lessonCount: 33,
                 link: URL(string: "https://www.raywenderlich.com/1258151-push-notifications")
-            ),
+            )
         ])
     ]
 }

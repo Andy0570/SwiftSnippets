@@ -315,7 +315,13 @@
         "title": "Fluid Photo",
         "description": "",
         "className": "PhotoCollectionViewController"
-      }
+      },
+      {
+        "imageName": "image",
+        "title": "RayTube",
+        "description": "Collection View and Diffable Data Source",
+        "className": "RTVideoViewController"
+      },
     ]
   },
   {

@@ -11,12 +11,12 @@ import UIKit
 ///
 /// SeeAlso: <https://medium.com/@mail.asifnewaz/dashed-line-border-around-a-uiview-96abb81da560>
 final class RectangularDashedView: UIView {
-    @IBInspectable var cornerRadius: CGFloat = 0 {
-        didSet {
-            layer.cornerRadius = cornerRadius
-            layer.masksToBounds = cornerRadius > 0
-        }
-    }
+//    @IBInspectable var cornerRadius: CGFloat = 0 {
+//        didSet {
+//            layer.cornerRadius = cornerRadius
+//            layer.masksToBounds = cornerRadius > 0
+//        }
+//    }
     @IBInspectable var dashWidth: CGFloat = 0
     @IBInspectable var dashColor: UIColor = .clear
     @IBInspectable var dashLength: CGFloat = 0

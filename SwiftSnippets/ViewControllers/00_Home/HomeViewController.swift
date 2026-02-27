@@ -118,6 +118,8 @@ private extension NSObject {
             return PhotoStreamViewController(collectionViewLayout: PinterestLayout())
         } else if viewControllerName == "CustomPresentingTableViewController" {
             return CustomPresentingTableViewController(style: .plain)
+        } else if viewControllerName == "RTVideoViewController" {
+            return RTVideoViewController(collectionViewLayout: UICollectionViewLayout())
         } else if let appName = Bundle.main.infoDictionary?["CFBundleName"] as? String {
             // printLog("CFBundleName: \(appName)")
             if let viewControllerType = NSClassFromString("\(appName).\(viewControllerName)") as? UIViewController.Type {

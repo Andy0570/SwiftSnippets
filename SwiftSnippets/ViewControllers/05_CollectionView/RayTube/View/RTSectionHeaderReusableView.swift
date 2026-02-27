@@ -11,7 +11,7 @@ class RTSectionHeaderReusableView: UICollectionReusableView {
     static var reuseIdentifier: String {
         return String(describing: SectionHeaderReusableView.self)
     }
-    
+
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
