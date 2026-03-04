@@ -5,7 +5,6 @@
 //  Created by Qilin Hu on 2022/9/7.
 //
 
-import Foundation
 import UIKit
 import CoreLocation
 import CommonCrypto

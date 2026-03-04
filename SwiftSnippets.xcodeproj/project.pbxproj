@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03EDC8CF2F58085200DB1306 /* PhotoData in Resources */ = {isa = PBXBuildFile; fileRef = 03EDC8CE2F58085200DB1306 /* PhotoData */; };
 		229A88C62D01931D0010CAAA /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 229A88C52D01931D0010CAAA /* .swiftlint.yml */; };
 		ECDA36AB5F03D790A5F60D7A /* Pods_SwiftSnippets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 990F748CEB7C7E223DACE628 /* Pods_SwiftSnippets.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		03EDC8CE2F58085200DB1306 /* PhotoData */ = {isa = PBXFileReference; lastKnownFileType = folder; path = PhotoData; sourceTree = "<group>"; };
 		11843D1D3988C1BFB3AA238F /* Pods-SwiftSnippets.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftSnippets.debug.xcconfig"; path = "Target Support Files/Pods-SwiftSnippets/Pods-SwiftSnippets.debug.xcconfig"; sourceTree = "<group>"; };
 		2249BF3B2CEDA9670016B93B /* SwiftSnippets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftSnippets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		229A88C52D01931D0010CAAA /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 		2249BF322CEDA9660016B93B = {
 			isa = PBXGroup;
 			children = (
+				03EDC8CE2F58085200DB1306 /* PhotoData */,
 				229A88C52D01931D0010CAAA /* .swiftlint.yml */,
 				60B661F8E885DB6FF5F32C4A /* Frameworks */,
 				C80F399AE9FF07BB3C26B23A /* Pods */,
@@ -162,6 +165,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03EDC8CF2F58085200DB1306 /* PhotoData in Resources */,
 				229A88C62D01931D0010CAAA /* .swiftlint.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
