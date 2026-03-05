@@ -40,7 +40,6 @@ class HRMViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.largeTitleDisplayMode = .never
         title = "心率传感器"
 
         // 初始化中心设备

@@ -5,7 +5,6 @@
 //  Created by huqilin on 2025/10/17.
 //
 
-// MARK: 可折叠展开的集合视图，参考<https://www.swiftjectivec.com/collapsable-collectionview/>
 import UIKit
 
 // 支持父-子关系的数据模型
@@ -18,6 +17,8 @@ private struct Item: Hashable {
 // 类型别名，建议把任何可区别的数据源类型化，以保证可读性。
 private typealias CollectionDataSource = UICollectionViewDiffableDataSource<Int, Item>
 
+/// 可折叠展开的集合视图
+/// Reference: <https://www.swiftjectivec.com/collapsable-collectionview/>
 final class CollaspibleCollectionViewController: UIViewController {
     private let data: [Item] = {
         return [

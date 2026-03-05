@@ -36,11 +36,7 @@ final class CartViewController: UIViewController {
 
         title = "Cart"
         isModalInPresentation = true
-
-        navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.navigationBar.backgroundColor = .systemBackground
-
-        navigationItem.largeTitleDisplayMode = .never
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(systemItem: .close, primaryAction: UIAction { _ in
             self.dismiss(animated: true)

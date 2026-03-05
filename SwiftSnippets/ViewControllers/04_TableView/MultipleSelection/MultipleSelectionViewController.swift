@@ -50,7 +50,6 @@ final class MultipleSelectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "TableView 中的多选功能"
-        navigationItem.largeTitleDisplayMode = .never
         view.backgroundColor = UIColor.systemBackground
 
         tableView.backgroundColor = UIColor.systemBackground

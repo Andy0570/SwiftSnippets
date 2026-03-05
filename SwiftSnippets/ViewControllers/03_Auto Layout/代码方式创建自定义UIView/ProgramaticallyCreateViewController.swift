@@ -24,7 +24,6 @@ class ProgramaticallyCreateViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .systemBackground
-        navigationItem.largeTitleDisplayMode = .never
 
         view.addSubview(addButton)
         NSLayoutConstraint.activate([

@@ -35,7 +35,6 @@ final class GrowingCellViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "动态调整 UITextView 的高度"
-        navigationItem.largeTitleDisplayMode = .never
 
         // 自适应 Cell 高度
         tableView.rowHeight = UITableView.automaticDimension

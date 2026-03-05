@@ -21,8 +21,8 @@ class HomeNavigationController: UINavigationController {
 
     func initialize() {
         // 始终显示大导航栏标题
-        // navigationBar.prefersLargeTitles = true
-        // navigationItem.largeTitleDisplayMode = .never
+        navigationBar.prefersLargeTitles = false
+        navigationItem.largeTitleDisplayMode = .never
 
         // custom tint color
         navigationBar.tintColor = .systemGray

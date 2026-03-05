@@ -65,7 +65,6 @@ final class DiffableDatasourceTableView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        navigationItem.largeTitleDisplayMode = .never
 
         tableView.register(cellWithClass: UITableViewCell.self)
         view.addSubview(tableView)

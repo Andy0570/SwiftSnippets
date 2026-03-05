@@ -104,7 +104,6 @@ class FriendlyFormViewController: UIViewController {
         super.viewDidLoad()
         title = "Create an Account"
         view.backgroundColor = .systemBackground
-        navigationItem.largeTitleDisplayMode = .never
 
         setupSubviews()
     }

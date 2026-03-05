@@ -12,7 +12,6 @@ class AnchorsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        navigationItem.largeTitleDisplayMode = .never
 
         let label1 = UILabel()
         // 默认情况下，iOS 会基于视图的尺寸和大小自动为你生成自动布局约束

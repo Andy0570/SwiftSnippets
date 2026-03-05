@@ -34,7 +34,6 @@ class AttributedStringViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.largeTitleDisplayMode = .never
 
         // 基于 Objective-C 的 NSAttributedString 来创建样式化文本
         setFirstLabel()

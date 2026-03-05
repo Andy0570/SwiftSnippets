@@ -18,7 +18,6 @@ class BarCodeGenerateController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.largeTitleDisplayMode = .never
 
         generateAztecBarcode()
         generateCode128Barcode()

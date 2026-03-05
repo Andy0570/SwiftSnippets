@@ -16,7 +16,6 @@ class CustomControlViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.largeTitleDisplayMode = .never
         view.backgroundColor = .systemBackground
 
         // 日期选择器

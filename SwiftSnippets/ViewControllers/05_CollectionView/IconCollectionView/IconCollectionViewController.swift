@@ -5,11 +5,6 @@
 //  Created by Qilin Hu on 2022/2/22.
 //
 
-/**
- 参考：Using Diffable Data Source with Collection Views
- <https://www.appcoda.com/diffable-data-source/>
- */
-
 import UIKit
 
 // 使用 Enum 枚举类型定义 Section
@@ -17,6 +12,8 @@ enum SectionType {
     case all
 }
 
+/// Using Diffable Data Source with Collection Views
+/// Reference: <https://www.appcoda.com/diffable-data-source/>
 class IconCollectionViewController: UIViewController {
     private var iconSet: [Icon] = [
         Icon(name: "candle", price: 3.99, isFeatured: false),
@@ -92,7 +89,7 @@ class IconCollectionViewController: UIViewController {
         // <Section, Icon> 中的 Icon 表示我们使用 Icon 类型处理 cell 数据。
         let dataSource = UICollectionViewDiffableDataSource<SectionType, Icon>(collectionView: collectionView) { collectionView, indexPath, icon -> UICollectionViewCell? in
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IconCollectionViewCell.identifier, for: indexPath) as? IconCollectionViewCell else {
-                return nil
+                fatalError("Could not create new cell")
             }
 
             cell.iconImageView.image = UIImage(named: icon.name)

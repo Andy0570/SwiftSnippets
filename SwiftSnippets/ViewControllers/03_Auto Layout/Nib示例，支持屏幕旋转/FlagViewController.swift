@@ -21,7 +21,6 @@ class FlagViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        navigationItem.largeTitleDisplayMode = .never
 
         button1.layer.borderWidth = 1
         button2.layer.borderWidth = 1

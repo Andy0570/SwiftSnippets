@@ -19,7 +19,6 @@ class ZoomableCollectionView: UICollectionView {
     convenience init(frame: CGRect) {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: frame.width, height: frame.width * 4 / 3)
-        // スクロールの向き
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
@@ -31,20 +30,16 @@ class ZoomableCollectionView: UICollectionView {
     }
 
     func setup() {
-        // デリゲートをつける
         self.delegate = self
         self.dataSource = self
 
-        // カスタムセルを指定
         self.register(ZoomableCell.self, forCellWithReuseIdentifier: "singleCell")
 
-        // スクロールバーを表示するかどうか
         self.showsHorizontalScrollIndicator = false
         self.showsVerticalScrollIndicator = false
 
         self.backgroundColor = UIColor.gray
 
-        // ページングをするかどうか
         self.isPagingEnabled = true
     }
 }
@@ -61,7 +56,6 @@ extension ZoomableCollectionView: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        // セルの設定
         let cell: ZoomableCell = collectionView.dequeueReusableCell(withReuseIdentifier: "singleCell", for: indexPath) as! ZoomableCell
 
         let image = UIImage(named: "kanagawa")

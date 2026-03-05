@@ -47,11 +47,6 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         title = "Home"
 
-        // 首页始终显示大标题
-        navigationController?.navigationBar.prefersLargeTitles = true
-        // 如果你希望后续页面不显示大标题，则把这行代码添加到各自页面的 viewDidLoad() 方法中
-        // navigationItem.largeTitleDisplayMode = .never
-
         // 加载数据源，设置代理
         arrayDataSource = ArrayDataSource(sections: sections, cellReuseIdentifier: String(describing: UITableViewCell.self))
         arrayDataSource.cellConfigureClosure = { tableViewCell, cell in

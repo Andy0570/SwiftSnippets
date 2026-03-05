@@ -21,7 +21,6 @@ class SlideViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.largeTitleDisplayMode = .never
 
         setupSlider()
         updateTitleLabel()

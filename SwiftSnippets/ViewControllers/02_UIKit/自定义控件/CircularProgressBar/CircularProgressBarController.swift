@@ -10,11 +10,6 @@ import UIKit
 class CircularProgressBarController: UIViewController {
     @IBOutlet weak var circularProgressBar: CircularProgressBar!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        navigationItem.largeTitleDisplayMode = .never
-    }
-
     // MARK: - Actions
 
     @IBAction func sliderAction(_ sender: UISlider) {

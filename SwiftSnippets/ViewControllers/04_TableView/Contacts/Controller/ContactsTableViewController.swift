@@ -25,7 +25,6 @@ class ContactsTableViewController: UITableViewController {
         super.init(style: .grouped)
         self.title = "Contacts"
         self.view.backgroundColor = .white
-        navigationItem.largeTitleDisplayMode = .never
 
         tableView.register(ContactTableCell.self, forCellReuseIdentifier: ContactTableCell.reuseIdentifier)
         tableView.register(SectionHeaderReusableView.self, forHeaderFooterViewReuseIdentifier: SectionHeaderReusableView.reuseIdentifier)

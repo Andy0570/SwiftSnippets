@@ -276,12 +276,6 @@
       },
       {
         "imageName": "image",
-        "title": "Diffable Data Source with UICollectionView",
-        "description": "",
-        "className": "IconCollectionViewController"
-      },
-      {
-        "imageName": "image",
         "title": "IGListKit_SuperHero",
         "description": "Super Hero",
         "className": "SuperHeroViewController"
@@ -300,7 +294,13 @@
       },
       {
         "imageName": "image",
-        "title": "FSPagerView",
+        "title": "Fluid Photo，交互",
+        "description": "创建像 iOS Photos 应用一样的过渡和交互",
+        "className": "PhotoCollectionViewController"
+      },
+      {
+        "imageName": "image",
+        "title": "FSPagerView，开源轮播器",
         "description": "",
         "className": "FSPageViewController"
       },
@@ -312,9 +312,9 @@
       },
       {
         "imageName": "image",
-        "title": "Fluid Photo",
+        "title": "Diffable Data Source with UICollectionView",
         "description": "",
-        "className": "PhotoCollectionViewController"
+        "className": "IconCollectionViewController"
       },
       {
         "imageName": "image",

@@ -105,8 +105,6 @@ final class FlickrPhotosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.largeTitleDisplayMode = .never
-
         // searchTextField
         self.searchTextField = UITextField(frame: .zero)
         self.searchTextField.placeholder = "Search    "

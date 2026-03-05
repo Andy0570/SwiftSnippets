@@ -18,7 +18,6 @@ class FaveButtonViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.largeTitleDisplayMode = .never
 
         // optional, set default selected fave-buttons with initial
         // startup animation disabled

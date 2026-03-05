@@ -27,7 +27,6 @@ class BayleafLoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        navigationItem.largeTitleDisplayMode = .never
 
         for (index, textField) in textFields.enumerated() {
             textField?.attributedPlaceholder = NSAttributedString(string: placeholders[index], attributes: [.foregroundColor: UIColor.white])
