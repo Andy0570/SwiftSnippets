@@ -11,7 +11,7 @@ class RWPhotoItemCell: UICollectionViewCell {
     static let reuseIdentifer = "rwotos-photo-item-cell-reuse-identifier"
     let imageView = UIImageView()
     let contentContainer = UIView()
-    
+
     var photoURL: URL? {
         didSet {
             configure()
@@ -34,7 +34,7 @@ extension RWPhotoItemCell {
         contentContainer.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(contentContainer)
 
-        guard let photoURL = self.photoURL else { return };
+        guard let photoURL = self.photoURL else { return }
         let photo = UIImage(contentsOfFile: photoURL.path)
         imageView.image = photo
         imageView.translatesAutoresizingMaskIntoConstraints = false

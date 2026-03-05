@@ -12,24 +12,24 @@ class RWAlbumItemCell: UICollectionViewCell {
     let titleLabel = UILabel()
     let featuredPhotoView = UIImageView()
     let contentContainer = UIView()
-    
+
     var title: String? {
         didSet {
             configure()
         }
     }
-    
+
     var featuredPhotoURL: URL? {
         didSet {
             configure()
         }
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
     }
-    
+
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -39,15 +39,17 @@ class RWAlbumItemCell: UICollectionViewCell {
 extension RWAlbumItemCell {
     private func configure() {
         contentContainer.translatesAutoresizingMaskIntoConstraints = false
+
+        contentView.addSubview(featuredPhotoView)
         contentView.addSubview(contentContainer)
-        
+
         featuredPhotoView.translatesAutoresizingMaskIntoConstraints = false
         if let featuredPhotoURL {
             featuredPhotoView.image = UIImage(contentsOfFile: featuredPhotoURL.path)
         }
         featuredPhotoView.clipsToBounds = true
         contentContainer.addSubview(featuredPhotoView)
-        
+
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.text = title
         titleLabel.font = UIFont.preferredFont(forTextStyle: .headline)
@@ -60,18 +62,18 @@ extension RWAlbumItemCell {
         titleLabel.layer.shadowOffset = CGSize(width: 4, height: 4)
         titleLabel.layer.masksToBounds = false
         contentContainer.addSubview(titleLabel)
-        
+
         NSLayoutConstraint.activate([
             contentContainer.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             contentContainer.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             contentContainer.topAnchor.constraint(equalTo: contentView.topAnchor),
             contentContainer.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            
+
             featuredPhotoView.leadingAnchor.constraint(equalTo: contentContainer.leadingAnchor),
             featuredPhotoView.trailingAnchor.constraint(equalTo: contentContainer.trailingAnchor),
             featuredPhotoView.topAnchor.constraint(equalTo: contentContainer.topAnchor),
             featuredPhotoView.bottomAnchor.constraint(equalTo: contentContainer.bottomAnchor),
-            
+
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),

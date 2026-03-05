@@ -10,7 +10,7 @@ import UIKit
 
 class FSPageViewController: UIViewController {
     @IBOutlet weak var pagerView: FSPagerView!
-    
+
     fileprivate let imageNames = ["1", "2", "3", "4", "5", "6", "7"]
     fileprivate var numberOfItems = 7
 

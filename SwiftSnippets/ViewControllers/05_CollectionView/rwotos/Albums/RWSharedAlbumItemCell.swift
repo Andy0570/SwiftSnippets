@@ -7,6 +7,7 @@
 
 import UIKit
 
+// swiftlint:disable all
 enum Owner: Int, CaseIterable {
     case Tom
     case Matt
@@ -31,6 +32,7 @@ enum Owner: Int, CaseIterable {
         }
     }
 }
+// swiftlint:enable all
 
 class RWSharedAlbumItemCell: UICollectionViewCell {
     static let reuseIdentifer = "rwotos-shared-album-item-cell-reuse-identifier"
@@ -69,6 +71,8 @@ class RWSharedAlbumItemCell: UICollectionViewCell {
 extension RWSharedAlbumItemCell {
     private func configure() {
         contentContainer.translatesAutoresizingMaskIntoConstraints = false
+
+        contentView.addSubview(featuredPhotoView)
         contentView.addSubview(contentContainer)
 
         featuredPhotoView.translatesAutoresizingMaskIntoConstraints = false
@@ -123,7 +127,7 @@ extension RWSharedAlbumItemCell {
             ownerAvatar.heightAnchor.constraint(equalToConstant: 30),
             ownerAvatar.widthAnchor.constraint(equalToConstant: 30),
             ownerAvatar.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -spacing),
-            ownerAvatar.bottomAnchor.constraint(equalTo: featuredPhotoView.bottomAnchor, constant: -spacing),
+            ownerAvatar.bottomAnchor.constraint(equalTo: featuredPhotoView.bottomAnchor, constant: -spacing)
         ])
     }
 }

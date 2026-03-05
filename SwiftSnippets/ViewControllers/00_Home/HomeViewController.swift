@@ -120,6 +120,12 @@ private extension NSObject {
             return CustomPresentingTableViewController(style: .plain)
         } else if viewControllerName == "RTVideoViewController" {
             return RTVideoViewController(collectionViewLayout: UICollectionViewLayout())
+        } else if viewControllerName == "RWAlbumsViewController" {
+            guard let bundleURL = Bundle.main.url(forResource: "PhotoData", withExtension: "") else {
+                fatalError("无法找到指定的资源文件夹: PhotoData")
+            }
+            let albumsVC = RWAlbumsViewController(withAlbumsFromDirectory: bundleURL)
+            return albumsVC
         } else if let appName = Bundle.main.infoDictionary?["CFBundleName"] as? String {
             // printLog("CFBundleName: \(appName)")
             if let viewControllerType = NSClassFromString("\(appName).\(viewControllerName)") as? UIViewController.Type {

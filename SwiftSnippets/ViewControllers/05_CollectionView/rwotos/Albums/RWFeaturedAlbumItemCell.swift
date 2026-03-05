@@ -46,6 +46,8 @@ class RWFeaturedAlbumItemCell: UICollectionViewCell {
 extension RWFeaturedAlbumItemCell {
     private func configure() {
         contentContainer.translatesAutoresizingMaskIntoConstraints = false
+
+        contentView.addSubview(featuredPhotoView)
         contentView.addSubview(contentContainer)
 
         featuredPhotoView.translatesAutoresizingMaskIntoConstraints = false
@@ -89,7 +91,7 @@ extension RWFeaturedAlbumItemCell {
             imageCountLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
             imageCountLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             imageCountLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            imageCountLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            imageCountLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
 }

@@ -14,7 +14,7 @@ extension StringProtocol {
     var firstUppercased: String {
         return prefix(1).uppercased() + dropFirst()
     }
-    
+
     /// 将字符串首字母大写，并把所有下划线 `_` 替换为空格
     ///
     ///     "hello_world".displayNicely // "Hello world"

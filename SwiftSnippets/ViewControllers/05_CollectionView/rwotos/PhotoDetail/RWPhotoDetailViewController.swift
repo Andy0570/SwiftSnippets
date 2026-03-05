@@ -15,22 +15,22 @@ class RWPhotoDetailViewController: UIViewController {
         self.init()
         self.photoURL = photoURL
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         if let photoURL {
             let imageName = photoURL.lastPathComponent
             navigationItem.title = imageName
-            
+
             let image = UIImage(contentsOfFile: photoURL.path)
             imageView.image = image
             imageView.contentMode = .scaleAspectFit
-            
+
             imageView.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview(imageView)
             view.backgroundColor = .systemBackground
-            
+
             NSLayoutConstraint.activate([
                 imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),

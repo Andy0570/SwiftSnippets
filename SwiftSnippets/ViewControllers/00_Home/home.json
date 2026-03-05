@@ -318,10 +318,17 @@
       },
       {
         "imageName": "image",
-        "title": "RayTube",
+        "title": "RayTube，可差分数据源",
         "description": "Collection View and Diffable Data Source",
         "className": "RTVideoViewController"
       },
+      {
+        "imageName": "image",
+        "title": "rwotos，组合式布局",
+        "description": "Modern Collection Views with Compositional Layouts",
+        "className": "RWAlbumsViewController"
+      },
+
     ]
   },
   {
