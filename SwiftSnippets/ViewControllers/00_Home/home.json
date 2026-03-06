@@ -328,7 +328,12 @@
         "description": "Modern Collection Views with Compositional Layouts",
         "className": "RWAlbumsViewController"
       },
-
+      {
+        "imageName": "image",
+        "title": "Symbol 示例，可差分数据源",
+        "description": "Advances in CollectionView",
+        "className": "SymbolDemoViewController"
+      },
     ]
   },
   {

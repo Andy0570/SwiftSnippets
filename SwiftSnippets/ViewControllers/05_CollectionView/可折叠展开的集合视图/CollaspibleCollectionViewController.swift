@@ -15,7 +15,7 @@ private struct Item: Hashable {
 }
 
 // 类型别名，建议把任何可区别的数据源类型化，以保证可读性。
-private typealias CollectionDataSource = UICollectionViewDiffableDataSource<Int, Item>
+private typealias DataSource = UICollectionViewDiffableDataSource<Int, Item>
 
 /// 可折叠展开的集合视图
 /// Reference: <https://www.swiftjectivec.com/collapsable-collectionview/>
@@ -28,6 +28,8 @@ final class CollaspibleCollectionViewController: UIViewController {
         ]
     }()
 
+    private lazy var dataSource: DataSource = makeDataSource()
+
     private lazy var collectionView: UICollectionView = {
         let listConfiguration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
         let layout = UICollectionViewCompositionalLayout.list(using: listConfiguration)
@@ -37,7 +39,15 @@ final class CollaspibleCollectionViewController: UIViewController {
         return collectionView
     }()
 
-    private lazy var dataSource: CollectionDataSource = {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        view.addSubview(collectionView)
+        collectionView.frame = view.bounds
+        applySnapshot(animatingDifferences: false)
+    }
+
+    private func makeDataSource() -> DataSource {
         // 注册重用 cell：header cell
         let parentItemCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Item> {
             cell, _, model in
@@ -65,19 +75,14 @@ final class CollaspibleCollectionViewController: UIViewController {
         }
 
         // 创建 diffable 数据源，我们检查 model，以确定它是一个父类还是一个子类。根据结果返回正确的 cell 配置并创建 cell。
-        let dataSource = CollectionDataSource(collectionView: collectionView) { collectionView, indexPath, model in
+        let dataSource = DataSource(collectionView: collectionView) { collectionView, indexPath, model in
             let configType = model.subItems.isEmpty ? subItemsCellRegistration : parentItemCellRegistration
             return collectionView.dequeueConfiguredReusableCell(using: configType, for: indexPath, item: model)
         }
         return dataSource
-    }()
+    }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        view.addSubview(collectionView)
-        collectionView.frame = view.bounds
-
+    private func applySnapshot(animatingDifferences: Bool = true) {
         let firstParentItem = data.first!
         let subItems = data.first!.subItems
 
@@ -88,6 +93,6 @@ final class CollaspibleCollectionViewController: UIViewController {
         // 填充该 section 部分内容
         snapshot.append(subItems, to: firstParentItem)
         // 应用快照
-        dataSource.apply(snapshot, to: 0)
+        dataSource.apply(snapshot, to: 0, animatingDifferences: animatingDifferences)
     }
 }
