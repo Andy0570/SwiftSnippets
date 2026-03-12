@@ -172,7 +172,7 @@ extension SymbolDemoViewController {
             cell.contentConfiguration = content
         }
     }
-    
+
     private func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView, cellProvider: { [weak self] collectionView, indexPath, item -> UICollectionViewCell? in
             guard let self else { return nil }

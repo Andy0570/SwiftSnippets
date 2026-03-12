@@ -66,9 +66,6 @@ final class BookListViewController: UIViewController {
         view.backgroundColor = .systemBackground
         title = "Books"
 
-        navigationItem.largeTitleDisplayMode = .automatic
-        navigationController?.navigationBar.prefersLargeTitles = true
-
         let cartButton = UIBarButtonItem(
             title: "Cart",
             image: UIImage(systemName: "cart"),
@@ -117,16 +114,15 @@ final class BookListViewController: UIViewController {
 }
 
 // MARK: - DataSource Implementation
-
 extension BookListViewController {
-    func applySnapshot(animatingDifferences: Bool = true) {
+    private func applySnapshot(animatingDifferences: Bool = true) {
         var snapshot = CollectionSnapshot()
         snapshot.appendSections([.main])
         snapshot.appendItems(books)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 
-    func makeDataSource() -> CollectionDataSource {
+    private func makeDataSource() -> CollectionDataSource {
         collectionView.register(
             BookCollectionCell.self,
             forCellWithReuseIdentifier: BookCollectionCell.reuseIdentifier
@@ -152,9 +148,8 @@ extension BookListViewController {
 }
 
 // MARK: - Layout Implementation
-
 extension BookListViewController {
-    func makeLayout() -> UICollectionViewCompositionalLayout {
+    private func makeLayout() -> UICollectionViewCompositionalLayout {
         let layout = UICollectionViewCompositionalLayout { _, _ in
             let size = NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1.0),
@@ -166,7 +161,6 @@ extension BookListViewController {
             let section = NSCollectionLayoutSection(group: group)
             return section
         }
-
         return layout
     }
 }

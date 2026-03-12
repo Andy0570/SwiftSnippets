@@ -37,12 +37,8 @@ class ItemListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .systemBackground
-
-        navigationItem.largeTitleDisplayMode = .automatic
-        navigationController?.navigationBar.prefersLargeTitles = true
         title = "Checkmate"
-
+        view.backgroundColor = .systemBackground
         navigationItem.searchController = searchController
         definesPresentationContext = true
 

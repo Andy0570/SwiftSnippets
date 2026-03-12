@@ -45,8 +45,6 @@ final class SSButtonDemoViewController: UIViewController {
 extension SSButtonDemoViewController {
     private func setupView() {
         title = "Button Demo"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.largeTitleDisplayMode = .automatic
         view.backgroundColor = .systemBackground
 
         stackView.backgroundColor = .systemBackground

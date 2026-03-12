@@ -35,27 +35,24 @@ struct MagazineLayoutSection {
         }
     }
 
-    let identifier: String
     let header: HeaderInfo
     let footer: FooterInfo
     let items: [CellConfigurator]
     let background: BackgroundInfo
     let sectionInset: UIEdgeInsets
-    let itemInset: UIEdgeInsets
+    let itemsInset: UIEdgeInsets
 
-    init(identifier: String,
-         items: [CellConfigurator],
-         header: HeaderInfo,
-         footer: FooterInfo,
-         background: BackgroundInfo,
-         sectionInset: UIEdgeInsets = .zero,
-         itemInset: UIEdgeInsets = .zero) {
-        self.identifier = identifier
+    init(items: [CellConfigurator],
+         header: HeaderInfo = .hidden(),
+         footer: FooterInfo = .hidden(),
+         background: BackgroundInfo = .hidden(),
+         sectionInset: UIEdgeInsets = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16),
+         itemsInset: UIEdgeInsets = .zero) {
         self.header = header
         self.footer = footer
         self.items = items
         self.background = background
         self.sectionInset = sectionInset
-        self.itemInset = itemInset
+        self.itemsInset = itemsInset
     }
 }
