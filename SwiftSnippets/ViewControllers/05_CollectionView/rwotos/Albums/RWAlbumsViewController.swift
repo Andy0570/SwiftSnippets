@@ -242,6 +242,7 @@ extension RWAlbumsViewController: UICollectionViewDelegate {
         guard let item = dataSource.itemIdentifier(for: indexPath) else {
             return
         }
+
         let albumDetailVC = RWAlbumDetailViewController(withPhotosFromDirectory: item.albumURL)
         navigationController?.pushViewController(albumDetailVC, animated: true)
     }
