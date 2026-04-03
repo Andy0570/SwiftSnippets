@@ -6,7 +6,7 @@
 //
 
 /**
- ### 使用 UICollectionView.CellRegistration 配置集合视图
+ ### 使用 UICollectionView.CellRegistration 配置集合视图 Cell
  
  <https://www.donnywals.com/configure-collection-view-cells-with-uicollectionview-cellregistration/>
  */
@@ -63,7 +63,7 @@ class MyCollectionViewController: UIViewController {
 
 extension MyCollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return 17
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

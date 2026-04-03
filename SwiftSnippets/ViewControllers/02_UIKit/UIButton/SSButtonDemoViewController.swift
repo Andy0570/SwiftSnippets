@@ -34,6 +34,7 @@ final class SSButtonDemoViewController: UIViewController {
     private let button14VC = SSButton14ViewController()
     private let button15VC = SSButton15ViewController()
     private let button16VC = SSButton16ViewController()
+    private let button17VC = SSButton17ViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +60,7 @@ extension SSButtonDemoViewController {
         let rows = [
             button1VC, button2VC, button3VC, button4VC, button5VC, button6VC,
             button7VC, button8VC, button9VC, button10VC, button11VC, button12VC,
-            button13VC, button14VC, button15VC, button16VC
+            button13VC, button14VC, button15VC, button16VC, button17VC
         ]
         stackView.addRows(controllers: rows)
 

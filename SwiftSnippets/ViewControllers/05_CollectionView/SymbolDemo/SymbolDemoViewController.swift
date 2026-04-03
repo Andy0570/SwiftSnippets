@@ -104,6 +104,7 @@ extension SymbolDemoViewController {
                 // Create layout for list section
                 case .list:
                     var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
+                    // Cell 右滑删除手势
                     configuration.trailingSwipeActionsConfigurationProvider = { [weak self] indexPath in
                         guard let self, let selectedItem = self.dataSource.itemIdentifier(for: indexPath) else {
                             return nil
@@ -197,18 +198,21 @@ extension SymbolDemoViewController {
     }
 
     private func applySnapshot() {
+        // ----------------------------------
         // Apply grid snapshot to data source
         var gridSnapshot = NSDiffableDataSourceSectionSnapshot<Item>()
         let gridItems = itemSection.gridItem.map { Item(symbol: $0) }
         gridSnapshot.append(gridItems)
         dataSource.apply(gridSnapshot, to: .grid, animatingDifferences: false)
 
+        // ----------------------------------
         // Apply list snapshot to data source
         var listSnapshot = NSDiffableDataSourceSectionSnapshot<Item>()
         let listItems = itemSection.gridItem.map { Item(symbol: $0) }
         listSnapshot.append(listItems)
         dataSource.apply(listSnapshot, to: .list, animatingDifferences: false)
 
+        // ----------------------------------
         var outlineSnapshot = NSDiffableDataSourceSectionSnapshot<Item>()
         for item in itemSection.outlineItem {
             // Append header item to snapshot

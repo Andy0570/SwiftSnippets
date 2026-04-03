@@ -22,10 +22,11 @@ final class MyCollectionViewCell: UICollectionViewCell {
     }
 
     func initialize() {
-        label.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(label)
-
         backgroundColor = .random
+
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        contentView.addSubview(label)
 
         NSLayoutConstraint.activate([
             label.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 8),

@@ -264,7 +264,7 @@
       },
       {
         "imageName": "image",
-        "title": "使用 UICollectionView.CellRegistration 配置集合视图",
+        "title": "使用 UICollectionView.CellRegistration 配置集合视图 Cell",
         "description": "",
         "className": "MyCollectionViewController"
       },
@@ -294,7 +294,7 @@
       },
       {
         "imageName": "image",
-        "title": "Fluid Photo，交互",
+        "title": "Fluid Photo，过渡和交互",
         "description": "创建像 iOS Photos 应用一样的过渡和交互",
         "className": "PhotoCollectionViewController"
       },
