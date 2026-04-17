@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 /// 基于 UIBezierPaths 实现的自定义动画 Progress Bar
 ///
@@ -27,6 +28,8 @@ class ProgressBarsViewController: UIViewController {
 
     @IBOutlet weak var progressSlider: UISlider!
 
+    private var pieChartView: SSAnalysisPieChartView!
+
     var colorRed: CGFloat = 250
     var colorGreen: CGFloat = 186
     var colorBlue: CGFloat = 218
@@ -35,8 +38,25 @@ class ProgressBarsViewController: UIViewController {
     var gradientGreen: CGFloat = 255
     var gradientBlue: CGFloat = 255
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // pieChartView
+        pieChartView = SSAnalysisPieChartView(frame: .zero)
+        pieChartView.backgroundColor = UIColor(hex: "#BBBEC6")
+        pieChartView.color = UIColor(hex: "#8A3FFC")
+        view.addSubview(pieChartView)
+        pieChartView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(16)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottomMargin)
+            make.size.equalTo(CGSize(width: 46, height: 46))
+        }
+        pieChartView.progress = 0.75
+    }
+
     @IBAction func progressChanged(_ sender: UISlider) {
         let progress = CGFloat(sender.value)
+
         horizontalBar.progress = progress
         gradientHorizontalBar.progress = progress
         ringBar.progress = progress

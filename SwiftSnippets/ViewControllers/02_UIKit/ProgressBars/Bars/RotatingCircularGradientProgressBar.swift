@@ -38,14 +38,17 @@ class RotatingCircularGradientProgressBar: UIView {
     }
 
     private func setupLayers() {
+        // backgroundMask
         backgroundMask.lineWidth = ringWidth
         backgroundMask.fillColor = nil
         backgroundMask.strokeColor = UIColor.black.cgColor
         layer.mask = backgroundMask
 
+        // progressLayer
         progressLayer.lineWidth = ringWidth
         progressLayer.fillColor = nil
 
+        // gradientLayer
         layer.addSublayer(gradientLayer)
 
         gradientLayer.mask = progressLayer
@@ -53,8 +56,7 @@ class RotatingCircularGradientProgressBar: UIView {
     }
 
     private func createAnimation() {
-        // MARK: Rotation Animation
-
+        // Rotation Animation
         let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
 
         rotationAnimation.fromValue = CGFloat(Double.pi / 2)
@@ -64,16 +66,14 @@ class RotatingCircularGradientProgressBar: UIView {
 
         gradientLayer.add(rotationAnimation, forKey: "rotationAnimation")
 
-        // MARK: Gradient Animation
+        // Gradient Animation
         let startPointAnimation = CAKeyframeAnimation(keyPath: "startPoint")
         startPointAnimation.values = [CGPoint.zero, CGPoint(x: 1, y: 0), CGPoint(x: 1, y: 1)]
-
         startPointAnimation.repeatCount = Float.infinity
         startPointAnimation.duration = 1
 
         let endPointAnimation = CAKeyframeAnimation(keyPath: "endPoint")
         endPointAnimation.values = [CGPoint(x: 1, y: 1), CGPoint(x: 0, y: 1), CGPoint.zero]
-
         endPointAnimation.repeatCount = Float.infinity
         endPointAnimation.duration = 1
 
@@ -82,16 +82,20 @@ class RotatingCircularGradientProgressBar: UIView {
     }
 
     override func draw(_ rect: CGRect) {
+        // 使用 CAShapeLayer 为 layer 创建一个圆形蒙版
         let circlePath = UIBezierPath(ovalIn: rect.insetBy(dx: ringWidth / 2, dy: ringWidth / 2))
         backgroundMask.path = circlePath.cgPath
 
+        // progressLayer
         progressLayer.path = circlePath.cgPath
         progressLayer.lineCap = .round
         progressLayer.strokeStart = 0
         progressLayer.strokeEnd = progress
         progressLayer.strokeColor = UIColor.black.cgColor
 
+        // gradientLayer
         gradientLayer.frame = rect
+        // 三色渐变（color -> gradientColor -> color）
         gradientLayer.colors = [color.cgColor, gradientColor.cgColor, color.cgColor]
     }
 }

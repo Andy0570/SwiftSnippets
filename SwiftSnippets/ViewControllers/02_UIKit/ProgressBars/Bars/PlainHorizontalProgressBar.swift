@@ -35,9 +35,11 @@ class PlainHorizontalProgressBar: UIView {
     }
 
     override func draw(_ rect: CGRect) {
+        // 使用 CAShapeLayer 为 layer 创建一个圆角矩形蒙版
         backgroundMask.path = UIBezierPath(roundedRect: rect, cornerRadius: rect.height * 0.25).cgPath
         layer.mask = backgroundMask
 
+        // progressLayer
         let progressRect = CGRect(origin: .zero, size: CGSize(width: rect.width * progress, height: rect.height))
         progressLayer.frame = progressRect
         progressLayer.backgroundColor = color.cgColor

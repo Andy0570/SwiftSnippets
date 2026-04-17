@@ -26,7 +26,7 @@ class BarCodeGenerateController: UIViewController {
     }
 
     /// Aztec Barcode
-    func generateAztecBarcode() {
+    private func generateAztecBarcode() {
         if let data = "http://www.digitalbunker.dev".data(using: .ascii),
             let aztecBarcode = try? AztecBarcode(inputMessage: data) {
             aztecImageView.image = BarcodeService.generateBarcode(from: aztecBarcode)
@@ -34,7 +34,7 @@ class BarCodeGenerateController: UIViewController {
     }
 
     /// Code128
-    func generateCode128Barcode() {
+    private func generateCode128Barcode() {
         if let data = "http://www.digitalbunker.dev".data(using: .ascii) {
             let code128Barcode = Code128Barcode(inputMessage: data, inputQuietSpace: 20, inputBarcodeHeight: 100)
             code128ImageView.image = BarcodeService.generateBarcode(from: code128Barcode)
@@ -42,7 +42,7 @@ class BarCodeGenerateController: UIViewController {
     }
 
     /// PDF417
-    func generatePDF417Barcode() {
+    private func generatePDF417Barcode() {
         if let data = "http://www.digitalbunker.dev".data(using: .ascii) {
             let pdfBarcode = PDF417Barcode(inputMessage: data, inputMinWidth: 100, inputMaxWidth: 100, inputMinHeight: 100, inputMaxHeight: 100, inputDataColumns: 10, inputRows: 10, inputPreferredAspectRatio: 3, inputCompactionMode: 2, inputCompactStyle: true, inputCorrectionLevel: 2, inputAlwaysSpecifyCompaction: true)
             pdf417ImageView.image = BarcodeService.generateBarcode(from: pdfBarcode)
@@ -50,7 +50,7 @@ class BarCodeGenerateController: UIViewController {
     }
 
     /// QRCode
-    func generateQRCode() {
+    private func generateQRCode() {
         if let data = "http://www.digitalbunker.dev".data(using: .ascii) {
             let qrCode = QRCode(inputMessage: data)
             qrCodeImageView.image = BarcodeService.generateBarcode(from: qrCode)

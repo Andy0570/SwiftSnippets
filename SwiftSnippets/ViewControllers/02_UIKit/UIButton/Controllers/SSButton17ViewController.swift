@@ -5,7 +5,7 @@
 //  Created by huqilin on 2026/4/3.
 //
 
-import Foundation
+import UIKit
 
 /// 17.测试把 UIButton 当 cell 使用
 final class SSButton17ViewController: UIViewController {

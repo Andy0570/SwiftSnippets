@@ -166,7 +166,7 @@ extension NSMutableAttributedString {
         self.addAttributes([NSAttributedString.Key.shadow: shadow], range: range)
     }
 
-    // MARK: - Paragraph Style  Attribute
+    // MARK: - Paragraph Style Attribute
 
     // Apply paragraph style on substring
     func alignment(alignment: NSTextAlignment, subString: String) {

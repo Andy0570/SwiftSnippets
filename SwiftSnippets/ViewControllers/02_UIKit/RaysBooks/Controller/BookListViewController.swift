@@ -16,8 +16,8 @@ final class BookListViewController: UIViewController {
     // MARK: - Views
 
     private lazy var collectionView: UICollectionView = {
-        let tempLayout = UICollectionViewFlowLayout()
-        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: tempLayout)
+        let flowLayout = UICollectionViewFlowLayout()
+        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()

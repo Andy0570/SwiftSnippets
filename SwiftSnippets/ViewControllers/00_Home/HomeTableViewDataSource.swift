@@ -1,5 +1,5 @@
 //
-//  ArrayDataSource.swift
+//  HomeTableViewDataSource.swift
 //  SwiftSnippets
 //
 //  Created by Qilin Hu on 2024/12/6.
@@ -7,9 +7,11 @@
 
 import UIKit
 
-class ArrayDataSource: NSObject, UITableViewDataSource {
-    private var sections: [Section]!
-    private var cellReuseIdentifier: String!
+class HomeTableViewDataSource: NSObject, UITableViewDataSource {
+    private let sections: [Section]
+    private let cellReuseIdentifier: String
+
+    // 通过闭包配置UI
     var cellConfigureClosure: ((UITableViewCell, Cell) -> Void)?
 
     init(sections: [Section], cellReuseIdentifier: String) {

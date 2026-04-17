@@ -1,18 +1,18 @@
 //
-//  PlainCircularProgressBar.swift
+//  SSAnalysisPieChartView.swift
 //  SwiftSnippets
 //
-//  Created by huqilin on 2025/7/18.
+//  Created by huqilin on 2026/4/17.
 //
 
 import UIKit
 
-@IBDesignable
-class PlainCircularProgressBar: UIView {
-    @IBInspectable var color: UIColor = .gray {
+/// 环形饼图
+final class SSAnalysisPieChartView: UIView {
+    var color: UIColor = .gray {
         didSet { setNeedsDisplay() }
     }
-    @IBInspectable var ringWidth: CGFloat = 5
+    var ringWidth: CGFloat = 14.0
 
     var progress: CGFloat = 0 {
         didSet { setNeedsDisplay() }
@@ -20,6 +20,9 @@ class PlainCircularProgressBar: UIView {
 
     private let progressLayer = CAShapeLayer()
     private let backgroundMask = CAShapeLayer()
+
+    private let startGapLayer = CAShapeLayer()
+    private let endGapLayer = CAShapeLayer()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,20 +45,47 @@ class PlainCircularProgressBar: UIView {
         progressLayer.lineWidth = ringWidth
         progressLayer.fillColor = nil
         layer.addSublayer(progressLayer)
+
+        for gap in [startGapLayer, endGapLayer] {
+            gap.lineWidth = ringWidth
+            gap.strokeColor = UIColor.white.cgColor // 模拟的间隙颜色
+            gap.fillColor = nil
+            gap.lineCap = .butt
+            layer.addSublayer(gap)
+        }
+
         // 因为默认的绘制起点是 x 轴，这里反向旋转 90 度，调整默认绘制起点在 Y 轴上。
         layer.transform = CATransform3DMakeRotation(CGFloat(90 * Double.pi / 180), 0, 0, -1)
     }
 
     override func draw(_ rect: CGRect) {
-        // 使用 CAShapeLayer 为 layer 创建一个圆形蒙版
         let circlePath = UIBezierPath(ovalIn: rect.insetBy(dx: ringWidth / 2, dy: ringWidth / 2))
         backgroundMask.path = circlePath.cgPath
 
-        // progressLayer
         progressLayer.path = circlePath.cgPath
-        progressLayer.lineCap = .round
+        progressLayer.lineCap = .butt
         progressLayer.strokeStart = 0
         progressLayer.strokeEnd = progress
         progressLayer.strokeColor = color.cgColor
+
+        // 通过在 progressLayer 两端绘制「间隔」模拟饼图效果
+        // 如果进度为0或者1，则不添加间隔
+        if progress <= 0.01 || progress == 1 {
+            startGapLayer.path = circlePath.cgPath
+            startGapLayer.strokeStart = 0
+            startGapLayer.strokeEnd = 0
+
+            endGapLayer.path = circlePath.cgPath
+            endGapLayer.strokeStart = 0
+            endGapLayer.strokeEnd = 0
+        } else {
+            startGapLayer.path = circlePath.cgPath
+            startGapLayer.strokeStart = 0.99
+            startGapLayer.strokeEnd = 1
+
+            endGapLayer.path = circlePath.cgPath
+            endGapLayer.strokeStart = progress - 0.01
+            endGapLayer.strokeEnd = progress
+        }
     }
 }

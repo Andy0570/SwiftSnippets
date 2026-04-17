@@ -7,11 +7,12 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+/// Home
+final class HomeViewController: UIViewController {
     private let sections = Section.sectionsFromBundle()
-    private var arrayDataSource: ArrayDataSource! {
+    private var dataSource: HomeTableViewDataSource! {
         didSet {
-            tableView.dataSource = arrayDataSource
+            tableView.dataSource = dataSource
         }
     }
 
@@ -32,6 +33,7 @@ class HomeViewController: UIViewController {
         // 如果我们添加了 scrollviews，这个技巧可以防止导航栏折叠
         // view.addSubview(UIView(frame: .zero))
 
+        // tableView
         view.addSubview(tableView)
         view.backgroundColor = .systemBackground
         NSLayoutConstraint.activate([
@@ -48,19 +50,21 @@ class HomeViewController: UIViewController {
         title = "Home"
 
         // 加载数据源，设置代理
-        arrayDataSource = ArrayDataSource(sections: sections, cellReuseIdentifier: String(describing: UITableViewCell.self))
-        arrayDataSource.cellConfigureClosure = { tableViewCell, cell in
+        dataSource = HomeTableViewDataSource(sections: sections, cellReuseIdentifier: String(describing: UITableViewCell.self))
+        // 通过 Block 配置 cell
+        dataSource.cellConfigureClosure = { tableViewCell, cell in
             tableViewCell.configureForCell(cell: cell)
         }
         tableView.reloadData()
     }
 }
 
+// MARK: - UITableViewDelegate
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
-        if let item = self.arrayDataSource?.getCellItem(at: indexPath),
+        if let item = self.dataSource?.getCellItem(at: indexPath),
             let controller = viewControllerFromString(viewControllerName: item.className) {
             controller.title = item.title
             navigationController?.pushViewController(controller, animated: true)
@@ -159,7 +163,8 @@ private extension NSObject {
             baseVC.sections = sections
             return baseVC
         } else if let appName = Bundle.main.infoDictionary?["CFBundleName"] as? String {
-            // printLog("CFBundleName: \(appName)")
+            printLog("CFBundleName: \(appName)")
+
             if let viewControllerType = NSClassFromString("\(appName).\(viewControllerName)") as? UIViewController.Type {
                 return viewControllerType.init()
             }

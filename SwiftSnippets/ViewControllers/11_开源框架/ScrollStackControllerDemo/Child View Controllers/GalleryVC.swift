@@ -106,16 +106,6 @@ class GalleryVC: UIViewController {
     }
 }
 
-extension GalleryVC: FoxScrollStackContainableController {
-    // 固定高度
-    func scrollStackRowSizeForAxis(_ axis: NSLayoutConstraint.Axis, row: FoxScrollStackRow, in stackView: FoxScrollStack) -> FoxScrollStack.ControllerSize? {
-        return .fixed(300)
-    }
-
-    func reloadContentFormStackView(stackView: FoxScrollStack, row: FoxScrollStackRow, animated: Bool) {
-    }
-}
-
 extension GalleryVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return urls.count
@@ -147,5 +137,15 @@ extension GalleryVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLay
 
     public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         pageControl.currentPage = indexPath.item
+    }
+}
+
+extension GalleryVC: FoxScrollStackContainableController {
+    // 固定高度
+    func scrollStackRowSizeForAxis(_ axis: NSLayoutConstraint.Axis, row: FoxScrollStackRow, in stackView: FoxScrollStack) -> FoxScrollStack.ControllerSize? {
+        return .fixed(300)
+    }
+
+    func reloadContentFormStackView(stackView: FoxScrollStack, row: FoxScrollStackRow, animated: Bool) {
     }
 }
