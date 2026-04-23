@@ -29,6 +29,7 @@ class ProgressBarsViewController: UIViewController {
     @IBOutlet weak var progressSlider: UISlider!
 
     private var pieChartView: SSAnalysisPieChartView!
+    private var pieChartView2: SSAnalysisPieChartView2!
 
     var colorRed: CGFloat = 250
     var colorGreen: CGFloat = 186
@@ -49,9 +50,21 @@ class ProgressBarsViewController: UIViewController {
         pieChartView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottomMargin)
-            make.size.equalTo(CGSize(width: 46, height: 46))
+            make.size.equalTo(CGSize(width: 60, height: 60))
         }
         pieChartView.progress = 0.75
+
+        // pieChartView2
+        pieChartView2 = SSAnalysisPieChartView2(frame: .zero)
+        pieChartView2.primaryColor = UIColor(hex: "#BBBEC6")
+        pieChartView2.secondaryColor = UIColor(hex: "#8A3FFC")
+        view.addSubview(pieChartView2)
+        pieChartView2.snp.makeConstraints { make in
+            make.top.equalTo(pieChartView.snp.top)
+            make.leading.equalTo(pieChartView.snp.trailing).offset(8)
+            make.size.equalTo(pieChartView)
+        }
+        pieChartView2.progress = 0.75
     }
 
     @IBAction func progressChanged(_ sender: UISlider) {

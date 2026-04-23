@@ -7,7 +7,7 @@
 
 import UIKit
 
-/// 环形饼图
+/// 环形饼图，在一段贝塞尔曲线两端添加空白的方式，模拟分段绘制效果。
 final class SSAnalysisPieChartView: UIView {
     var color: UIColor = .gray {
         didSet { setNeedsDisplay() }
