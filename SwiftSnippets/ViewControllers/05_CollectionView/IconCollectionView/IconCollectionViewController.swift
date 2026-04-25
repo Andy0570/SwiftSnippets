@@ -7,11 +7,6 @@
 
 import UIKit
 
-// 使用 Enum 枚举类型定义 Section
-enum SectionType {
-    case all
-}
-
 /// Using Diffable Data Source with Collection Views
 /// Reference: <https://www.appcoda.com/diffable-data-source/>
 class IconCollectionViewController: UIViewController {
@@ -38,8 +33,17 @@ class IconCollectionViewController: UIViewController {
         Icon(name: "ic_vespa", price: 9.99, isFeatured: false)
     ]
 
+    // MARK: - Type Aliases
+    private typealias DataSource = UICollectionViewDiffableDataSource<SectionType, Icon>
+    private typealias Snapshot = NSDiffableDataSourceSnapshot<SectionType, Icon>
+
+    // 使用 Enum 枚举类型定义 Section
+    private enum SectionType {
+        case all
+    }
+
     // 使用 lazy 修饰该变量，只有实例初始化完成之后，才能检索该变量
-    lazy var dataSource = configureDataSource()
+    private lazy var dataSource = makeDataSource()
 
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UICollectionViewFlowLayout())
@@ -83,13 +87,13 @@ class IconCollectionViewController: UIViewController {
         updateSnapshot()
     }
 
-    func configureDataSource() -> UICollectionViewDiffableDataSource<SectionType, Icon> {
+    private func makeDataSource() -> DataSource {
         // 创建 UICollectionViewDiffableDataSource<Section, Icon> 实例，它是一个泛型对象，能够处理集合中不同的 section 和 item。
         // <Section, Icon> 中的 Section 表示我们使用自定义的 Section 枚举类型处理 section 部分。
         // <Section, Icon> 中的 Icon 表示我们使用 Icon 类型处理 cell 数据。
-        let dataSource = UICollectionViewDiffableDataSource<SectionType, Icon>(collectionView: collectionView) { collectionView, indexPath, icon -> UICollectionViewCell? in
+        let dataSource = DataSource(collectionView: collectionView) { collectionView, indexPath, icon -> UICollectionViewCell? in
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IconCollectionViewCell.identifier, for: indexPath) as? IconCollectionViewCell else {
-                fatalError("Could not create new cell")
+                fatalError("Unable to dequeue 'IconCollectionViewCell'")
             }
 
             cell.iconImageView.image = UIImage(named: icon.name)
@@ -100,9 +104,9 @@ class IconCollectionViewController: UIViewController {
         return dataSource
     }
 
-    func updateSnapshot(animatingChange: Bool = false) {
+    private func updateSnapshot(animated: Bool = false) {
         // 创建一个 NSDiffableDataSourceSnapshot 快照并填充数据
-        var snapshot = NSDiffableDataSourceSnapshot<SectionType, Icon>()
+        var snapshot = Snapshot()
         snapshot.appendSections([.all])
         snapshot.appendItems(iconSet, toSection: .all)
         // 将快照应用到数据源
