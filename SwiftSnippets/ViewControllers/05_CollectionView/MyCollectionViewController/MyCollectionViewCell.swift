@@ -12,8 +12,7 @@ final class MyCollectionViewCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-
-        self.initialize()
+        setupView()
     }
 
     @available(*, unavailable)
@@ -21,9 +20,10 @@ final class MyCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder) isn not available")
     }
 
-    func initialize() {
+    private func setupView() {
         backgroundColor = .random
 
+        // label
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
         contentView.addSubview(label)

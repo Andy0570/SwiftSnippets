@@ -104,23 +104,23 @@
         "className": "BayleafLoginViewController"
       },
       {
-          "imageName": "image",
-          "title": "自定义AlertView",
-          "description": "-",
-          "className": "CustomAlertHomeController"
+        "imageName": "image",
+        "title": "自定义AlertView",
+        "description": "-",
+        "className": "CustomAlertHomeController"
       },
       {
-          "imageName": "image",
-          "title": "Model Presentation",
-          "description": "-",
-          "className": "CustomPresentingTableViewController"
+        "imageName": "image",
+        "title": "Model Presentation",
+        "description": "-",
+        "className": "CustomPresentingTableViewController"
       },
       {
-          "imageName": "image",
-          "title": "在 UIView 上画虚线边框",
-          "description": "-",
-          "className": "UIViewDashedBorderController"
-      },
+        "imageName": "image",
+        "title": "在 UIView 上画虚线边框",
+        "description": "-",
+        "className": "UIViewDashedBorderController"
+      }
     ]
   },
   {
@@ -244,24 +244,24 @@
   {
     "title": "05_CollectionView",
     "cells": [
-        {
-          "imageName": "image",
-          "title": "FlickrSearch",
-          "description": "",
-          "className": "FlickrPhotosViewController"
-        },
-        {
-          "imageName": "image",
-          "title": "CollectionView 流式布局",
-          "description": "Advances in CollectionView",
-          "className": "SSFlowLayoutCollectionViewController"
-        },
-        {
-          "imageName": "image",
-          "title": "Pinterest 瀑布流布局",
-          "description": "",
-          "className": "PhotoStreamViewController"
-        },
+      {
+        "imageName": "image",
+        "title": "FlickrSearch",
+        "description": "",
+        "className": "FlickrPhotosViewController"
+      },
+      {
+        "imageName": "image",
+        "title": "CollectionView 流式布局",
+        "description": "Advances in CollectionView",
+        "className": "SSFlowLayoutCollectionViewController"
+      },
+      {
+        "imageName": "image",
+        "title": "Pinterest 瀑布流布局",
+        "description": "",
+        "className": "PhotoStreamViewController"
+      },
       {
         "imageName": "image",
         "title": "自定义日历组件",
@@ -282,33 +282,9 @@
       },
       {
         "imageName": "image",
-        "title": "IGListKit_SuperHero",
-        "description": "Super Hero",
-        "className": "SuperHeroViewController"
-      },
-      {
-        "imageName": "image",
-        "title": "IGListKit_FormDemo",
-        "description": "",
-        "className": "PublishImageViewController"
-      },
-      {
-        "imageName": "image",
-        "title": "IGListKit_建模和绑定",
-        "description": "",
-        "className": "ModelAndBingViewController"
-      },
-      {
-        "imageName": "image",
         "title": "Fluid Photo，过渡和交互",
         "description": "创建像 iOS Photos 应用一样的过渡和交互",
         "className": "PhotoCollectionViewController"
-      },
-      {
-        "imageName": "image",
-        "title": "FSPagerView，开源轮播器",
-        "description": "",
-        "className": "FSPageViewController"
       },
       {
         "imageName": "image",
@@ -442,6 +418,30 @@
   {
     "title": "11_开源框架",
     "cells": [
+       {
+        "imageName": "image",
+        "title": "FSPagerView，开源轮播器",
+        "description": "",
+        "className": "FSPageViewController"
+      },
+      {
+        "imageName": "image",
+        "title": "IGListKit_SuperHero",
+        "description": "Super Hero",
+        "className": "SuperHeroViewController"
+      },
+      {
+        "imageName": "image",
+        "title": "IGListKit_FormDemo",
+        "description": "",
+        "className": "PublishImageViewController"
+      },
+      {
+        "imageName": "image",
+        "title": "IGListKit_建模和绑定",
+        "description": "",
+        "className": "ModelAndBingViewController"
+      },
       {
         "imageName": "image",
         "title": "HGRippleRadarView_1",
