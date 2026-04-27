@@ -300,6 +300,12 @@
       },
       {
         "imageName": "image",
+        "title": "组合式布局，每行显式两个 Cell",
+        "description": "",
+        "className": "BaseStylizedCollectionViewController"
+      },
+      {
+        "imageName": "image",
         "title": "RayTube，可差分数据源",
         "description": "Collection View and Diffable Data Source",
         "className": "RTVideoViewController"

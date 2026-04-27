@@ -1,15 +1,13 @@
 //
-//  IconCollectionViewController.swift
-//  SwiftCheatSheet
+//  BaseStylizedCollectionViewController.swift
+//  SwiftSnippets
 //
-//  Created by Qilin Hu on 2022/2/22.
+//  Created by huqilin on 2026/4/27.
 //
 
 import UIKit
 
-/// Using Diffable Data Source with Collection Views
-/// Reference: <https://www.appcoda.com/diffable-data-source/>
-class IconCollectionViewController: UIViewController {
+final class BaseStylizedCollectionViewController: UIViewController {
     private var iconSet: [Icon] = [
         Icon(name: "candle", price: 3.99, isFeatured: false),
         Icon(name: "cat", price: 2.99, isFeatured: true),
@@ -22,15 +20,7 @@ class IconCollectionViewController: UIViewController {
         Icon(name: "rip", price: 7.99, isFeatured: false),
         Icon(name: "skull", price: 8.99, isFeatured: false),
         Icon(name: "sky", price: 0.99, isFeatured: false),
-        Icon(name: "toxic", price: 2.99, isFeatured: false),
-        Icon(name: "ic_book", price: 2.99, isFeatured: false),
-        Icon(name: "ic_backpack", price: 3.99, isFeatured: false),
-        Icon(name: "ic_camera", price: 4.99, isFeatured: false),
-        Icon(name: "ic_coffee", price: 3.99, isFeatured: true),
-        Icon(name: "ic_glasses", price: 3.99, isFeatured: false),
-        Icon(name: "ic_ice_cream", price: 4.99, isFeatured: false),
-        Icon(name: "ic_smoking_pipe", price: 6.99, isFeatured: false),
-        Icon(name: "ic_vespa", price: 9.99, isFeatured: false)
+        Icon(name: "toxic", price: 2.99, isFeatured: false)
     ]
 
     // MARK: - Type Aliases
@@ -42,24 +32,23 @@ class IconCollectionViewController: UIViewController {
         case all
     }
 
+    private var collectionView: UICollectionView!
+
     // 使用 lazy 修饰该变量，只有实例初始化完成之后，才能检索该变量
     private lazy var dataSource = makeDataSource()
-
-    private lazy var collectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UICollectionViewFlowLayout())
-        collectionView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        collectionView.backgroundColor = .systemGroupedBackground
-        return collectionView
-    }()
 
     // 在 loadView() 方法中实例化视图并添加布局约束
     override func loadView() {
         super.loadView()
 
-        view.backgroundColor = UIColor.systemBackground
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(collectionView)
+        view.backgroundColor = UIColor.white
 
+        // collectionView
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: makeCollectionViewLayout())
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        collectionView.backgroundColor = .systemGroupedBackground
+        view.addSubview(collectionView)
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -72,19 +61,31 @@ class IconCollectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Configure the layout and item size
-        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.itemSize = CGSize(width: 100, height: 150)
-            layout.estimatedItemSize = .zero
-            layout.minimumInteritemSpacing = 10
-        }
-
         // 注册重用 cell for nib
-        collectionView.register(IconCollectionViewCell.nib, forCellWithReuseIdentifier: IconCollectionViewCell.identifier)
+        collectionView.register(
+            BaseStylizedCollectionViewCell.self,
+            forCellWithReuseIdentifier: BaseStylizedCollectionViewCell.reuseIdentifier
+        )
 
         // 连接集合视图与数据源
         collectionView.dataSource = dataSource
         updateSnapshot()
+    }
+
+    // 每行显式两个 Cell
+    private func makeCollectionViewLayout() -> UICollectionViewCompositionalLayout {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(162))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(162))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
+        group.interItemSpacing = .fixed(16)
+
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 16
+        section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16)
+
+        return UICollectionViewCompositionalLayout(section: section)
     }
 
     private func makeDataSource() -> DataSource {
@@ -92,12 +93,11 @@ class IconCollectionViewController: UIViewController {
         // <Section, Icon> 中的 Section 表示我们使用自定义的 Section 枚举类型处理 section 部分。
         // <Section, Icon> 中的 Icon 表示我们使用 Icon 类型处理 cell 数据。
         let dataSource = DataSource(collectionView: collectionView) { collectionView, indexPath, icon -> UICollectionViewCell? in
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IconCollectionViewCell.identifier, for: indexPath) as? IconCollectionViewCell else {
-                fatalError("Unable to dequeue 'IconCollectionViewCell'")
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BaseStylizedCollectionViewCell.reuseIdentifier, for: indexPath) as? BaseStylizedCollectionViewCell else {
+                fatalError("Unable to dequeue 'BaseStylizedCollectionViewCell'")
             }
 
-            cell.iconImageView.image = UIImage(named: icon.name)
-            cell.iconPriceLabel.text = "$\(icon.price)"
+            cell.configure(with: "$\(icon.price)", imageName: icon.name)
             return cell
         }
 
