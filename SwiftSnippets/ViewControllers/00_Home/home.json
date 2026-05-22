@@ -105,7 +105,7 @@
       },
       {
         "imageName": "image",
-        "title": "自定义AlertView",
+        "title": "⚠️自定义AlertView",
         "description": "-",
         "className": "CustomAlertHomeController"
       },
@@ -120,6 +120,12 @@
         "title": "在 UIView 上画虚线边框",
         "description": "-",
         "className": "UIViewDashedBorderController"
+      },
+      {
+        "imageName": "image",
+        "title": "💡走马灯效果",
+        "description": "-",
+        "className": "SSMarqueeViewController"
       }
     ]
   },
@@ -306,6 +312,12 @@
       },
       {
         "imageName": "image",
+        "title": "组合式布局，水平显示 Cell",
+        "description": "",
+        "className": "SSAnalysisOverviewViewController"
+      },
+      {
+        "imageName": "image",
         "title": "RayTube，可差分数据源",
         "description": "Collection View and Diffable Data Source",
         "className": "RTVideoViewController"
@@ -321,7 +333,7 @@
         "title": "Symbol 示例，可差分数据源",
         "description": "Advances in CollectionView",
         "className": "SymbolDemoViewController"
-      }
+      },
     ]
   },
   {
