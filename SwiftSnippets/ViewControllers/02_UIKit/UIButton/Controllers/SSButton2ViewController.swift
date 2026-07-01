@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import SnapKit
 
 /// 移出黑名单，旧方法创建的 outlien 样式按钮，没有点击特效
 final class SSButton2ViewController: UIViewController {
     // MARK: - Controls
+    
+    // 旧方法创建的 outlien 样式按钮，没有点击特效
     private(set) lazy var removeButton: UIButton = {
         let button = UIButton(type: .custom)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -21,6 +24,30 @@ final class SSButton2ViewController: UIViewController {
         button.layer.masksToBounds = true
         button.layer.borderColor = UIColor(hexString: "#53CAC3")?.cgColor
         button.layer.borderWidth = 1.0
+        return button
+    }()
+    
+    // 新语法创建的按钮，可以根据按钮状态更新样式
+    private lazy var newRemoveButton: UIButton = {
+        var configuration = UIButton.Configuration.filled()
+        configuration.title = "新语法"
+        configuration.background.cornerRadius = 2.0
+        configuration.background.strokeWidth = 1.0
+        configuration.background.strokeColor = UIColor(hexString: "#53CAC3")
+        
+        let button = UIButton(configuration: configuration, primaryAction: nil)
+        
+        button.configurationUpdateHandler = { button in
+            switch button.state {
+                case .highlighted:
+                    button.configuration?.baseBackgroundColor = UIColor(hexString: "#53CAC3")
+                    button.configuration?.baseForegroundColor = UIColor.white
+                default:
+                    button.configuration?.baseBackgroundColor = UIColor.white
+                    button.configuration?.baseForegroundColor = UIColor(hexString: "#53CAC3")
+            }
+        }
+        
         return button
     }()
 
@@ -38,7 +65,7 @@ extension SSButton2ViewController {
 
         // titleLabel
         let titleLabel = UILabel.makeForTitle()
-        titleLabel.text = "2.旧方法创建的 outlien 样式按钮，没有点击特效"
+        titleLabel.text = "2.自定义 outline 按钮"
         view.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview()
@@ -47,10 +74,17 @@ extension SSButton2ViewController {
 
         // removeButton
         view.addSubview(self.removeButton)
-        NSLayoutConstraint.activate([
-            removeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            removeButton.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
+        self.removeButton.snp.makeConstraints { make in
+            make.trailing.equalTo(self.view.snp.centerX).offset(-20)
+            make.centerY.equalToSuperview()
+        }
+        
+        // newRemoveButton
+        view.addSubview(self.newRemoveButton)
+        self.newRemoveButton.snp.makeConstraints { make in
+            make.leading.equalTo(self.view.snp.centerX).offset(20)
+            make.centerY.equalToSuperview()
+        }
     }
 }
 

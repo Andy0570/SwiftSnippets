@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import SnapKit
 
 /// 9.渲染图片 tint 值
 final class SSButton9ViewController: UIViewController {
+    
     // 视频详情页，更多按钮...
     private lazy var moreButton: UIButton = {
         let button = UIButton(type: .custom)
@@ -22,6 +24,23 @@ final class SSButton9ViewController: UIViewController {
         }
 
         button.addTarget(self, action: #selector(moreButtonTapped(_:)), for: .touchUpInside)
+        return button
+    }()
+    
+    // 全屏按钮，仅显示图片
+    private lazy var fullScreenButton: UIButton = {
+        var configuration = UIButton.Configuration.filled()
+        configuration.baseBackgroundColor = ColorPalette.fillSecondary
+        configuration.baseForegroundColor = ColorPalette.labelPrimary
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 6, leading: 6, bottom: 6, trailing: 6)
+        configuration.image = UIImage(named: "fullscreen").require().withRenderingMode(.alwaysTemplate)
+        configuration.cornerStyle = .small
+        
+
+        let button = UIButton(configuration: configuration, primaryAction: UIAction { [weak self] _ in
+            guard let self else { return }
+            showSwiftMessageWithInfo("点击了全屏按钮...")
+        })
         return button
     }()
 
@@ -40,12 +59,18 @@ final class SSButton9ViewController: UIViewController {
 
         // moreButton
         view.addSubview(moreButton)
-        NSLayoutConstraint.activate([
-            moreButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            moreButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            moreButton.widthAnchor.constraint(equalToConstant: 36),
-            moreButton.heightAnchor.constraint(equalToConstant: 36)
-        ])
+        moreButton.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(16)
+            make.centerY.equalToSuperview()
+            make.size.equalTo(CGSize(width: 36, height: 36))
+        }
+        
+        view.addSubview(fullScreenButton)
+        fullScreenButton.snp.makeConstraints { make in
+            make.leading.equalTo(moreButton.snp.trailing).offset(16)
+            make.centerY.equalToSuperview()
+            make.size.equalTo(CGSize(width: 24, height: 24))
+        }
     }
 
     @objc private func moreButtonTapped(_ sender: UIButton) {

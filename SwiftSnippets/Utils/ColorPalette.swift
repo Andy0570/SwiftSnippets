@@ -112,4 +112,15 @@ enum ColorPalette {
     static var denim: UIColor {
         return self.colorWithDarkMode(darkColorHex: "#3c5080", lightColorHex: "#3c5080")
     }
+    
+    static var fillSecondary: UIColor {
+        return self.colorWithDarkMode(
+            darkColor: UIColor(hex: 0x828691, transparency: 0.18).require(),
+            lightColor: UIColor(hex: 0x828691, transparency: 0.18).require()
+        )
+    }
+    
+    static var labelPrimary: UIColor {
+        return self.colorWithDarkMode(darkColorHex: "#E9EBF0", lightColorHex: "#141414")
+    }
 }

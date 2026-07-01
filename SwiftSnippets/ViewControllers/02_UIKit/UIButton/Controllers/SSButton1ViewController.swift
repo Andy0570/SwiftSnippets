@@ -37,7 +37,7 @@ extension SSButton1ViewController {
 
         // titleLabel
         let titleLabel = UILabel.makeForTitle()
-        titleLabel.text = "1.自定义 outline 按钮（iOS15）"
+        titleLabel.text = "1.自定义 outline 按钮子类（iOS15）"
         view.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview()
