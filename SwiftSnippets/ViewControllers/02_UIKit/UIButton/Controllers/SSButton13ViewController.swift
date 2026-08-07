@@ -102,6 +102,39 @@ final class SSButton13ViewController: UIViewController {
         button.addTarget(self, action: #selector(setupButtonDidTapped(_:)), for: .touchUpInside)
         return button
     }()
+    
+    private lazy var deviceSNButton: UIButton = {
+        var config = UIButton.Configuration.tinted()
+        config.baseBackgroundColor = UIColor(hex: "#FFFFFF ")
+        config.baseForegroundColor = UIColor(hex: "#141414")
+        config.background.cornerRadius = 6.0
+        config.title = "609KAFWF65MA004"
+        config.titleLineBreakMode = .byClipping
+
+        // 配置按钮标题样式
+        config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer({ incoming in
+            var outgoing = incoming
+            outgoing.font = UIFont.systemFont(ofSize: 13)
+            return outgoing
+        })
+
+        // 配置图片
+        config.image = UIImage(named: "arrow_right")?.withRenderingMode(.alwaysTemplate)
+        config.imagePlacement = .trailing
+        config.imagePadding = 4.0
+
+        // 设置内容边距
+        config.contentInsets = NSDirectionalEdgeInsets(top: 4, leading: 10, bottom: 4, trailing: 10)
+        
+        let deviceIdButton = UIButton(configuration: config)
+        deviceIdButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        deviceIdButton.titleLabel?.numberOfLines = 1
+//        deviceIdButton.setContentHuggingPriority(.required, for: .horizontal)
+//        deviceIdButton.setContentCompressionResistancePriority(.required, for: .horizontal)
+//        deviceIdButton.titleLabel?.setContentHuggingPriority(.required, for: .horizontal)
+//        deviceIdButton.titleLabel?.setContentCompressionResistancePriority(.required, for: .horizontal)
+        return deviceIdButton
+    }()
 
     // 支持动态显示/隐藏图片
     var showSetupButtonArrow: Bool = true {
@@ -148,17 +181,18 @@ extension SSButton13ViewController {
         horizontalStackView.axis = .horizontal
         horizontalStackView.alignment = .center
         horizontalStackView.distribution = .fillProportionally
-        horizontalStackView.spacing = 4
+        horizontalStackView.spacing = 2
         view.addSubview(horizontalStackView)
         horizontalStackView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
             make.centerY.equalTo(view.snp.centerY)
             make.width.equalTo(view.snp.width)
         }
-
+        
         horizontalStackView.addArrangedSubview(detailsButton)
         horizontalStackView.addArrangedSubview(systemDetailsButton)
         horizontalStackView.addArrangedSubview(setupButton)
+        horizontalStackView.addArrangedSubview(deviceSNButton)
     }
 }
 

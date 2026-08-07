@@ -36,7 +36,6 @@ final class SSButton9ViewController: UIViewController {
         configuration.image = UIImage(named: "fullscreen").require().withRenderingMode(.alwaysTemplate)
         configuration.cornerStyle = .small
         
-
         let button = UIButton(configuration: configuration, primaryAction: UIAction { [weak self] _ in
             guard let self else { return }
             showSwiftMessageWithInfo("点击了全屏按钮...")
