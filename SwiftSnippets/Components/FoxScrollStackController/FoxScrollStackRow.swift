@@ -55,10 +55,10 @@ open class FoxScrollStackRow: UIView, UIGestureRecognizerDelegate {
     }
 
     /// Row highlight color.
-    open var rowHighlightColor = FoxScrollStack.defaultRowColor
+    open var rowHighlightColor = FoxScrollStack.defaultRowHighlightColor
 
     /// Row background color.
-    open var rowBackgroundColor = FoxScrollStack.defaultRowHighlightColor {
+    open var rowBackgroundColor = FoxScrollStack.defaultRowColor {
         didSet {
             backgroundColor = rowBackgroundColor
         }
