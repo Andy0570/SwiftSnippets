@@ -10,6 +10,7 @@ import UIKit
 // MARK: - FoxScrollStackRow
 
 open class FoxScrollStackRow: UIView, UIGestureRecognizerDelegate {
+    
     // MARK: - Private Properties
 
     /// Weak reference to the parent stack view.
@@ -146,7 +147,7 @@ open class FoxScrollStackRow: UIView, UIGestureRecognizerDelegate {
         self.controller = nil
         self.contentView = view
         self.rowPadding = stackView.rowPadding
-        self.isSeparatorHidden = stackView.isSeparatorHidden
+        self.isSeparatorHidden = stackView.hideSeparators
 
         super.init(frame: .zero)
 
@@ -158,7 +159,7 @@ open class FoxScrollStackRow: UIView, UIGestureRecognizerDelegate {
         self.controller = controller
         self.contentView = controller.view
         self.rowPadding = stackView.rowPadding
-        self.isSeparatorHidden = stackView.isSeparatorHidden
+        self.isSeparatorHidden = stackView.hideSeparators
 
         super.init(frame: .zero)
 
@@ -342,8 +343,8 @@ open class FoxScrollStackRow: UIView, UIGestureRecognizerDelegate {
                 verticalFittingPriority: .required
             )
         }
-
-        setupRowToFixedValue(bestSize.height)
+        
+        setupRowToFixedValue(stackView.axis == .vertical ? bestSize.height : bestSize.width)
     }
 
     // MARK: - Handle Touch

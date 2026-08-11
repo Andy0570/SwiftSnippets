@@ -8,6 +8,7 @@
 import UIKit
 
 open class FoxScrollStack: UIScrollView, UIScrollViewDelegate {
+    
     // MARK: Default Properties
 
     private static let defaultRowInsets = UIEdgeInsets(
@@ -45,10 +46,7 @@ open class FoxScrollStack: UIScrollView, UIScrollViewDelegate {
 
     /// Rows currently active into the Scroll stack.
     public var rows: [FoxScrollStackRow] {
-        // swiftlint:disable force_cast
-        return stackView.arrangedSubviews.filter {
-            $0 is FoxScrollStackRow
-        } as! [FoxScrollStackRow]
+        return stackView.arrangedSubviews.compactMap { $0 as? FoxScrollStackRow }
     }
 
     /// Return all visible (partially or enterly) rows.
@@ -143,16 +141,20 @@ open class FoxScrollStack: UIScrollView, UIScrollViewDelegate {
 
     /// Hides or show separators.
     /// You can set property for a single separator by setting new value inside the row's `separatoView`.
+    /// Kept in sync with `hideSeparators`.
     open var isSeparatorHidden: Bool = false {
         didSet {
-            rows.forEach { row in
-                row.isSeparatorHidden = isSeparatorHidden
+            guard isSeparatorHidden != oldValue else { return }
+            if hideSeparators != isSeparatorHidden {
+                hideSeparators = isSeparatorHidden
+            } else {
+                applySeparatorHiddenToRows(isSeparatorHidden)
             }
         }
     }
 
     /// Hide automatically the last separator.
-    open var autoHideLastRowSeparator = false {
+    open var autoHideLastRowSeparator = true {
         didSet {
             updateRowsSeparatorVisibility()
         }
@@ -161,21 +163,37 @@ open class FoxScrollStack: UIScrollView, UIScrollViewDelegate {
     /// Hide all separators.
     /// This not necessary reflect the current status of separator (you can also change this property individually per row).
     /// Once you set a new value it will be applied to any new added row and current rows.
+    /// Kept in sync with `isSeparatorHidden`.
     open var hideSeparators = false {
         didSet {
-            rows.forEach { row in
-                row.isSeparatorHidden = hideSeparators
+            guard hideSeparators != oldValue else { return }
+            if isSeparatorHidden != hideSeparators {
+                isSeparatorHidden = hideSeparators
+            } else {
+                applySeparatorHiddenToRows(hideSeparators)
             }
         }
     }
 
     /// The background color of rows in the stack view.
     /// By default is set to `clear`.
-    open var rowBackgroundColor = FoxScrollStack.defaultRowColor
+    open var rowBackgroundColor = FoxScrollStack.defaultRowColor {
+        didSet {
+            rows.forEach { row in
+                row.rowBackgroundColor = rowBackgroundColor
+            }
+        }
+    }
 
     /// The highlight background color of rows in the stack view.
     /// By default is set to (rgb:0.85,0.85,0.85).
-    open var rowHighlightColor = FoxScrollStack.defaultRowHighlightColor
+    open var rowHighlightColor = FoxScrollStack.defaultRowHighlightColor {
+        didSet {
+            rows.forEach { row in
+                row.rowHighlightColor = rowHighlightColor
+            }
+        }
+    }
 
     // MARK: Delegates
 
@@ -184,7 +202,15 @@ open class FoxScrollStack: UIScrollView, UIScrollViewDelegate {
     /// for its own.
     public weak var stackDelegate: FoxScrollStackControllerDelegate? {
         didSet {
-            self.delegate = (stackDelegate != nil ? self : nil)
+            updateScrollViewDelegateOwnership()
+        }
+    }
+
+    /// Optional standard `UIScrollViewDelegate` forwarded from this stack when it owns `delegate`.
+    /// Use this when you also need classic scroll-view callbacks alongside `stackDelegate`.
+    public weak var scrollViewDelegate: UIScrollViewDelegate? {
+        didSet {
+            updateScrollViewDelegateOwnership()
         }
     }
 
@@ -350,8 +376,10 @@ open class FoxScrollStack: UIScrollView, UIScrollViewDelegate {
     /// - Parameter animated: `true` to animate the removeal, by default is `false`.
     @discardableResult
     open func removeRows(indexes rowIndexes: [Int], animated: Bool = false) -> [UIViewController]? {
-        return rowIndexes.compactMap {
-            return removeRowFromStackView(safeRowAtIndex($0), animated: animated)
+        // Resolve rows first so shifting indexes after each removal cannot delete the wrong rows.
+        let rowsToRemove = safeRowsAtIndexes(rowIndexes)
+        return rowsToRemove.compactMap {
+            return removeRowFromStackView($0, animated: animated)
         }
     }
 
@@ -388,16 +416,17 @@ open class FoxScrollStack: UIScrollView, UIScrollViewDelegate {
     /// - Parameter animated: `true` to animate the transition.
     /// - Parameter completion: optional callback called at the end of the transition.
     open func moveRow(index sourceIndex: Int, to destIndex: Int, animated: Bool = false, completion: (() -> Void)? = nil) {
-        guard sourceIndex >= 0, sourceIndex < rows.count, destIndex < rows.count else {
+        guard sourceIndex >= 0, sourceIndex < rows.count,
+              destIndex >= 0, destIndex < rows.count,
+              sourceIndex != destIndex else {
+            completion?()
             return
         }
 
         let sourceRow = rows[sourceIndex]
 
         func executeMoveRow() {
-            if sourceRow == stackView.arrangedSubviews.first {
-                sourceRow.removeFromSuperview()
-            }
+            // UIStackView moves an already-arranged view when re-inserted at a new index.
             stackView.insertArrangedSubview(sourceRow, at: destIndex)
             postInsertRow(sourceRow, animated: false)
             stackView.setNeedsLayout()
@@ -423,21 +452,26 @@ open class FoxScrollStack: UIScrollView, UIScrollViewDelegate {
     /// - Parameter completion: completion callback called once the operation did finish.
     open func setRowHidden(index rowIndex: Int, isHidden: Bool, animated: Bool, completion: (() -> Void)? = nil) {
         guard let row = safeRowAtIndex(rowIndex) else {
+            completion?()
             return
         }
 
         guard animated else {
             row.isHidden = isHidden
+            completion?()
             return
         }
 
         guard row.isHidden != isHidden else {
+            completion?()
             return
         }
 
         let coordinator = FoxScrollStackRowAnimator(row: row, toHidden: isHidden, internalHandler: {
             row.isHidden = isHidden
             row.layoutIfNeeded()
+        }, completion: { _ in
+            completion?()
         })
         coordinator.execute()
     }
@@ -450,8 +484,14 @@ open class FoxScrollStack: UIScrollView, UIScrollViewDelegate {
     /// - Parameter animated: `true` to perform animated transition.
     /// - Parameter completion: completion callback called once the operation did finish.
     open func setRowsHidden(indexes rowIndexes: [Int], isHidden: Bool, animated: Bool, completion: (() -> Void)? = nil) {
-        rowIndexes.forEach {
-            setRowHidden(index: $0, isHidden: isHidden, animated: animated)
+        guard rowIndexes.isEmpty == false else {
+            completion?()
+            return
+        }
+
+        for (offset, index) in rowIndexes.enumerated() {
+            let isLast = offset == rowIndexes.count - 1
+            setRowHidden(index: index, isHidden: isHidden, animated: animated, completion: isLast ? completion : nil)
         }
     }
 
@@ -606,8 +646,9 @@ open class FoxScrollStack: UIScrollView, UIScrollViewDelegate {
 
         let sourceRow = rows[sourceIndex]
         guard animated else {
-            removeRow(index: sourceRow.index!)
+            removeRowFromStackView(sourceRow, animated: false)
             _ = handler(sourceIndex, false)
+            completion?()
             return
         }
 
@@ -615,7 +656,9 @@ open class FoxScrollStack: UIScrollView, UIScrollViewDelegate {
 
         UIView.execute {
             sourceRow.isHidden = true
-        } completion: {
+        } completion: { [weak self] in
+            guard let self else { return }
+            self.removeRowFromStackView(sourceRow, animated: false)
             let newRow = handler(sourceIndex, false)
             newRow.isHidden = true
             UIView.execute({
@@ -632,11 +675,13 @@ open class FoxScrollStack: UIScrollView, UIScrollViewDelegate {
     ///   - callback: callback to call on enumrate.
     private func enumerateItems<T>(_ list: [T], insertAt location: InsertLocation, callback: ((T) -> FoxScrollStackRow?)) -> [FoxScrollStackRow] {
         switch location {
-            case .top:
-                return list.reversed().compactMap(callback).reversed() // double reversed() is to avoid strange behaviour when additing rows on tops.
-
-            default:
+            case .bottom:
                 return list.compactMap(callback)
+
+            case .top, .atIndex, .afterView, .beforeView, .after, .before:
+                // Inserting at a fixed relative index repeatedly would reverse the list;
+                // reverse before insert so the final order matches the input.
+                return list.reversed().compactMap(callback).reversed()
         }
     }
 
@@ -650,6 +695,9 @@ open class FoxScrollStack: UIScrollView, UIScrollViewDelegate {
             case .bottom:
                 return rows.count
             case .atIndex(let index):
+                guard index >= 0, index <= rows.count else {
+                    return nil
+                }
                 return index
             case .afterView(let view):
                 guard let index = rowForView(view)?.index else {
@@ -676,8 +724,9 @@ open class FoxScrollStack: UIScrollView, UIScrollViewDelegate {
 
     /// Initial configuration of the control.
     private func setupUI() {
-        backgroundColor = .white
-
+        showsVerticalScrollIndicator = false
+        showsHorizontalScrollIndicator = false
+        
         // Create stack view and add it to the scrollView
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -745,8 +794,12 @@ open class FoxScrollStack: UIScrollView, UIScrollViewDelegate {
         if bounds.contains(rowFrame) {
             return .entire
         } else {
+            let rowArea = rowFrame.width * rowFrame.height
+            guard rowArea > 0 else {
+                return .partial(percentage: 0)
+            }
             let intersection = bounds.intersection(rowFrame)
-            let intersectionPercentage = ((intersection.width * intersection.height) / (rowFrame.width * rowFrame.height)) * 100
+            let intersectionPercentage = ((intersection.width * intersection.height) / rowArea) * 100
             return .partial(percentage: intersectionPercentage)
         }
     }
@@ -859,10 +912,22 @@ open class FoxScrollStack: UIScrollView, UIScrollViewDelegate {
 
     /// Update the separator visibility.
     private func updateRowsSeparatorVisibility() {
-        let rows = stackView.arrangedSubviews as? [FoxScrollStackRow] ?? []
-        for (idx, row) in rows.enumerated() {
-            row.separatorView.isHidden = (idx == rows.last?.index ? true : row.isSeparatorHidden)
+        let currentRows = rows
+        for (idx, row) in currentRows.enumerated() {
+            let isLastRow = idx == currentRows.count - 1
+            if isLastRow && autoHideLastRowSeparator {
+                row.separatorView.isHidden = true
+            } else {
+                row.separatorView.isHidden = row.isSeparatorHidden
+            }
         }
+    }
+
+    private func applySeparatorHiddenToRows(_ hidden: Bool) {
+        rows.forEach { row in
+            row.isSeparatorHidden = hidden
+        }
+        updateRowsSeparatorVisibility()
     }
 
     /// Return the row before a given row, if exists.
@@ -895,6 +960,7 @@ open class FoxScrollStack: UIScrollView, UIScrollViewDelegate {
         }
 
         row.alpha = 0.0
+        row.isHidden = false
         layoutIfNeeded()
         UIView.execute({
             row.alpha = 1.0
@@ -949,6 +1015,7 @@ open class FoxScrollStack: UIScrollView, UIScrollViewDelegate {
 
             switch (previous, current) {
                 case (.offscreen, .partial), // row will become visible
+                    (.offscreen, .entire),
                     (nil, .entire),
                     (nil, .partial),
                     (.partial, .entire),
@@ -957,6 +1024,7 @@ open class FoxScrollStack: UIScrollView, UIScrollViewDelegate {
                     delegate.scrollStackRowDidBecomeVisible(self, row: row, index: idx, state: current)
 
                 case (.partial, .offscreen), // row will become invisible
+                    (.entire, .offscreen),
                     (.entire, .partial),
                     (.partial, .hidden),
                     (.entire, .hidden):
@@ -981,7 +1049,7 @@ open class FoxScrollStack: UIScrollView, UIScrollViewDelegate {
                 if axis == .horizontal {
                     adjustedPoint.x = frame.origin.x - ((bounds.size.width - frame.size.width) / 2.0)
                 } else {
-                    adjustedPoint.y = frame.origin.y - (bounds.size.height - frame.size.height)
+                    adjustedPoint.y = frame.origin.y - ((bounds.size.height - frame.size.height) / 2.0)
                 }
 
             case .final:
@@ -1024,6 +1092,8 @@ open class FoxScrollStack: UIScrollView, UIScrollViewDelegate {
     // MARK: UIScrollViewDelegate
 
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        scrollViewDelegate?.scrollViewDidScroll?(scrollView)
+
         guard let stackDelegate else { return }
 
         stackDelegate.scrollStackDidScroll(self, offset: contentOffset)
@@ -1032,6 +1102,8 @@ open class FoxScrollStack: UIScrollView, UIScrollViewDelegate {
     }
 
     public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        scrollViewDelegate?.scrollViewDidEndScrollingAnimation?(scrollView)
+
         guard let stackDelegate else { return }
 
         stackDelegate.scrollStackDidEndScrollingAnimation(self)
@@ -1048,5 +1120,9 @@ open class FoxScrollStack: UIScrollView, UIScrollViewDelegate {
             stackDelegate.scrollStackContentSizeDidChange(self, form: cachedContentSize, to: contentSize)
         }
         cachedContentSize = self.contentSize
+    }
+
+    private func updateScrollViewDelegateOwnership() {
+        delegate = (stackDelegate != nil || scrollViewDelegate != nil) ? self : nil
     }
 }

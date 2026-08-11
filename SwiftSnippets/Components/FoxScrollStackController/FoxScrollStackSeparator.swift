@@ -8,6 +8,7 @@
 import UIKit
 
 public final class FoxScrollStackSeparator: UIView {
+    
     internal init() {
         super.init(frame: .zero)
         setupUI()
