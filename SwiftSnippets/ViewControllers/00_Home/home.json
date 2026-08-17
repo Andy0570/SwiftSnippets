@@ -126,6 +126,12 @@
         "title": "💡走马灯效果",
         "description": "-",
         "className": "SSMarqueeViewController"
+      },
+      {
+        "imageName": "image",
+        "title": "UIImagePickerController",
+        "description": "-",
+        "className": "SSImagePickerController"
       }
     ]
   },

@@ -263,6 +263,8 @@
 				INFOPLIST_FILE = SwiftSnippets/Info.plist;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "BLE（Bluetooth Low Energy）用于连接产品。";
 				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "当你把蓝牙设备作为外围设备（Peripheral）使用时，需要开启的权限";
+				INFOPLIST_KEY_NSCameraUsageDescription = "The App needs your consent to access the camera.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "The App needs your consent to access the Photo Library.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -303,6 +305,8 @@
 				INFOPLIST_FILE = SwiftSnippets/Info.plist;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "BLE（Bluetooth Low Energy）用于连接产品。";
 				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "当你把蓝牙设备作为外围设备（Peripheral）使用时，需要开启的权限";
+				INFOPLIST_KEY_NSCameraUsageDescription = "The App needs your consent to access the camera.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "The App needs your consent to access the Photo Library.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
